@@ -8,8 +8,6 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.text :description
       t.boolean :public
       t.belongs_to :event_organizer
-      t.references :organization
-      t.references :poll
 
       t.timestamps
     end

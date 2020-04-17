@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_16_161341) do
+ActiveRecord::Schema.define(version: 2020_04_17_122513) do
 
   create_table "comment_replies", force: :cascade do |t|
     t.text "content"
@@ -122,6 +122,13 @@ ActiveRecord::Schema.define(version: 2020_04_16_161341) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "poll_notifications", force: :cascade do |t|
+    t.integer "notification_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notification_id"], name: "index_poll_notifications_on_notification_id"
+  end
+
   create_table "polls", force: :cascade do |t|
     t.string "name"
     t.text "possibleDates"
@@ -158,6 +165,16 @@ ActiveRecord::Schema.define(version: 2020_04_16_161341) do
     t.string "phone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.date "answerDate"
+    t.integer "poll_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["poll_id"], name: "index_votes_on_poll_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
 end
