@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_122513) do
   end
 
   create_table "event_organizers", force: :cascade do |t|
-    t.integer "eventsCreated"
+    t.integer "eventsCreated", default: 0
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
