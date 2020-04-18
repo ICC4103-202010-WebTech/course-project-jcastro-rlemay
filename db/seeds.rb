@@ -4,7 +4,6 @@
 u1 = User.create(name: "Richard", lastName: "Le May", password: "webtech",
                  email: "ralemay@miuandes.cl", location: "Edificio de Ingenieria",
                  address: "Universidad de los Andes", phone: "+56944274841")
-u1.inbox_id = Inbox.find_by_user_id(u1.id).id
 n1 = Notification.create(message: "Welcome to the Event Web Page",user_id: u1.id)
 u1.save!
 n1.save!
@@ -12,7 +11,6 @@ n1.save!
 u2 = User.create(name: "Julio", lastName: "Castro", password: "webtech",
                  email: "jacatro2@miuandes.cl", location: "Edificio de Ingenieria",
                  address: "Universidad de los Andes", phone: "+569452746541")
-u2.inbox_id = Inbox.find_by_user_id(u2.id).id
 n2 = Notification.create(message: "Welcome to the Event Web Page",user_id: u2.id)
 u2.save!
 n2.save!
@@ -95,7 +93,7 @@ e2poll = Poll.create(name: "Birthday date", possibleDates: "2020-06-06, 2020-08-
 e2poll.save!
 n11 = Notification.create(message: "A new poll has been created",user_id: u1.id)
 n11.save!
-e2pollnot = PollNotification.create(notification_id: n11)
+e2pollnot = PollNotification.create(notification_id: n11.id, poll_id: e2poll.id)
 e2pollnot.save!
 
 e2pollvoteu1 = Vote.create(answerDate: Date.today(), poll_id: e2poll.id, user_id: u1.id)

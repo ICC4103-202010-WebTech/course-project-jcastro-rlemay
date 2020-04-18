@@ -126,9 +126,11 @@ ActiveRecord::Schema.define(version: 2020_04_17_122513) do
 
   create_table "poll_notifications", force: :cascade do |t|
     t.integer "notification_id"
+    t.integer "poll_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["notification_id"], name: "index_poll_notifications_on_notification_id"
+    t.index ["poll_id"], name: "index_poll_notifications_on_poll_id"
   end
 
   create_table "polls", force: :cascade do |t|
@@ -166,10 +168,8 @@ ActiveRecord::Schema.define(version: 2020_04_17_122513) do
     t.string "address"
     t.string "phone"
     t.integer "organization_id"
-    t.integer "inbox_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["inbox_id"], name: "index_users_on_inbox_id"
     t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 
