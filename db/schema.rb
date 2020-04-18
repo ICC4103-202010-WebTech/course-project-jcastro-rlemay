@@ -59,8 +59,10 @@ ActiveRecord::Schema.define(version: 2020_04_17_122513) do
     t.string "location"
     t.text "description"
     t.boolean "public"
+    t.integer "event_organizer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_organizer_id"], name: "index_events_on_event_organizer_id"
   end
 
   create_table "inboxes", force: :cascade do |t|
@@ -117,7 +119,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_122513) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
-    t.integer "members"
+    t.integer "members", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -163,8 +165,12 @@ ActiveRecord::Schema.define(version: 2020_04_17_122513) do
     t.string "location"
     t.string "address"
     t.string "phone"
+    t.integer "organization_id"
+    t.integer "inbox_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["inbox_id"], name: "index_users_on_inbox_id"
+    t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 
   create_table "votes", force: :cascade do |t|
