@@ -15,7 +15,8 @@ Explain what should happen model-wise if a user is deleted and the user has alre
 # Queries
 
 To go ahead and try the queries, you need to put in the console, this command:
-- rake db:queryi , where "i" is the number of the respective query, following the course project´s document 
+- rake db:queryi , where "i" is the number of the respective query, following the course project´s document.
+    i.e rake db:query1 should give you the query that gives all the events created by a certain user.
 
 # Seeds file
 
