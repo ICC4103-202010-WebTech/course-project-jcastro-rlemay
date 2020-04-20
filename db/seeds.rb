@@ -8,12 +8,26 @@ n1 = Notification.create(message: "Welcome to the Event Web Page",user_id: u1.id
 u1.save!
 n1.save!
 
+u1p = UserProfile.find_by_user_id(u1.id)
+u1p.userName = "rlemayd"
+u1p.bio = "Student of Web tech, cursing 4th year in the University of los Andes"
+u1p.save!
+n12 = Notification.create(message: "Your Username and bio has been updated!",user_id: u1.id)
+n12.save!
+
 u2 = User.create(name: "Julio", lastName: "Castro", password: "webtech",
                  email: "jacatro2@miuandes.cl", location: "Edificio de Ingenieria",
                  address: "Universidad de los Andes", phone: "+569452746541")
 n2 = Notification.create(message: "Welcome to the Event Web Page",user_id: u2.id)
 u2.save!
 n2.save!
+
+u2p = UserProfile.find_by_user_id(u2.id)
+u2p.userName = "jacastro2"
+u2p.bio = "Student of Web tech, cursing 4th year in the University of los Andes"
+u2p.save!
+n13 = Notification.create(message: "Your Username and bio has been updated!",user_id: u2.id)
+n13.save!
 
 sa = SystemAdmin.create(user_id: u2.id)
 sa.save!
@@ -57,6 +71,9 @@ e1p.save!
 oe1 = OrganizationEvent.create(organization_id: o1.id, event_id: e1.id)
 oe1.save!
 
+ie1 = Invitation.create(message: "You are invited to my house!", user_id: u2.id, event_id: e1.id)
+ie1.save!
+
 comme1 = Comment.create(content: "I think its going to be great this event", image: "Photo of him",
                         user_id: u2.id, event_page_id: e1p.id)
 n6 = Notification.create(message: "You have a new comment in your event",user_id: u1.id)
@@ -88,6 +105,9 @@ e2p.save!
 oe2 = OrganizationEvent.create(organization_id: o1.id, event_id: e2.id)
 oe2.save!
 
+ie2 = Invitation.create(message: "You are invited to my birthday party!!", user_id: u1.id, event_id: e2.id)
+ie2.save!
+
 e2poll = Poll.create(name: "Birthday date", possibleDates: "2020-06-06, 2020-08-06, 2020-12-06", minimumAnswers: 5,
                      event_id: e2.id)
 e2poll.save!
@@ -110,8 +130,3 @@ comme2rep = CommentReply.create(content: "Yeah i think the same!", image: "Photo
 n10 = Notification.create(message: "You have a new reply on your comment",user_id: u1.id)
 comme2rep.save!
 n10.save!
-
-
-
-
-
