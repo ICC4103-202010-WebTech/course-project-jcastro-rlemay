@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_122513) do
+ActiveRecord::Schema.define(version: 2020_04_20_213214) do
 
   create_table "comment_replies", force: :cascade do |t|
     t.text "content"
@@ -108,6 +108,15 @@ ActiveRecord::Schema.define(version: 2020_04_17_122513) do
     t.index ["organization_id"], name: "index_organization_events_on_organization_id"
   end
 
+  create_table "organization_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "organization_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_organization_members_on_organization_id"
+    t.index ["user_id"], name: "index_organization_members_on_user_id"
+  end
+
   create_table "organization_profiles", force: :cascade do |t|
     t.text "description"
     t.string "bannerPicture"
@@ -167,10 +176,8 @@ ActiveRecord::Schema.define(version: 2020_04_17_122513) do
     t.string "location"
     t.string "address"
     t.string "phone"
-    t.integer "organization_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 
   create_table "votes", force: :cascade do |t|

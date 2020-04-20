@@ -45,8 +45,8 @@ o1Profile.description = "Massive Event"
 o1Profile.bannerPicture = "PHOTO"
 o1Profile.save!
 
-u1.organization_id = o1.id
-u2.organization_id = o1.id
+om1 = OrganizationMember.create(user_id: u1.id,organization_id: o1.id)
+om2 = OrganizationMember.create(user_id: u2.id,organization_id: o1.id)
 n4 = Notification.create(message: "Welcome to the Organization",user_id: u2.id)
 u1.save!
 u2.save!
