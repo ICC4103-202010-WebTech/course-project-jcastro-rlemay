@@ -2,7 +2,7 @@ namespace :db do
 
   task :query1 => :environment do
     puts("Query 1: Get all events created by certain user.")
-    result1 = User.find(1).events
+    result1 = Event.where("event_organizer_id" => 1)
     puts(result1)
     puts("EOQ") # End Of Query -- always add this line after a query.
   end

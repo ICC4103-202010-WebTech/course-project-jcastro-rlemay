@@ -51,6 +51,8 @@ n4 = Notification.create(message: "Welcome to the Organization",user_id: u2.id)
 u1.save!
 u2.save!
 n4.save!
+om1.save!
+om2.save!
 
 e1o = EventOrganizer.create(user_id: u1.id)
 e1o.save!
