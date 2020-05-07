@@ -11,18 +11,53 @@ body {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-a {
-    color: #ff5a19;
+header#header_home_page {
+    padding: 1em;
+    background-color: #111;
+}
+
+header#header_home_page a#logo {
+    float: left;
+    width: fit-content;
+    float: left;
+}
+
+header#header_home_page h1 {
+    padding-left: 7%;
+    width: fit-content;
+    float: left;
+}
+
+header#header_home_page form#search_bar {
+    width: fit-content;
+    float: left;
+}
+
+header#header_home_page ul#navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #111;
+    float: right;
+    width: fit-content;
+}
+
+header#header_home_page ul#navbar li {
+    float: left;
+}
+
+header#header_home_page ul#navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
 }
 
-a:hover {
-    color: #ff2121;
-}
-
-header {
-    padding: 1em;
-    height: 75px;
+/* Change the link color to #111 (black) on hover */
+header#header_home_page ul#navbar li a:hover {
+    background-color: #111;
 }
 
 div#container {
@@ -44,7 +79,7 @@ aside#other_activity h1{
     color: #8E7A3F;
 }
 section#recent_activity{
-    width: auto;
+    width: 65%;
     height: auto;
     background-color: #262626;
     color: #ffffff;
@@ -52,6 +87,13 @@ section#recent_activity{
     margin: 2%;
     border: 2px solid #8E7A3F;
     float: left;
+}
+section#recent_activity i{
+    float: left;
+    width: auto;
+}
+section#recent_activity table{
+    width: auto;
 }
 section#recent_activity h1{
     color: #8E7A3F;
@@ -69,31 +111,7 @@ footer {
     height: 6em;
 }
 
-ul#navbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #262626;
-}
 
-
-ul#navbar li {
-    float: left;
-}
-
-ul#navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-ul#navbar li a:hover {
-    background-color: #111;
-}
 
 td,th {
     padding: 0.2em;

@@ -5,20 +5,33 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/bb30ccd945.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <nav>
-    <ul id="navbar">
-      <h1><li><%= link_to "Eventer", root_path%></li></h1>
-      <li><%= link_to "New Event", events_path %></li>
-      <li><%= link_to "Inbox", user_inboxes_path(1) %></li>
-      <li><%= link_to "Profile", controller: "users", action: "show", id: 1 %></li>
-    </ul>
-  </nav>
-
   <body>
+    <header id="header_home_page">
+      <a id="logo"
+         href="/" title="Go to home page">
+        <i class="far fa-image fa-4x"></i>
+      </a>
+      <h1><%= link_to "Eventer", root_path%></h1>
+      <form role="search" aria-label="site" id="search_bar">
+        <label>
+          <input type="search"/>
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+      <nav>
+        <ul id="navbar">
+
+          <li><%= link_to "New Event", events_path %></li>
+          <li><%= link_to "Inbox", user_inboxes_path(1) %></li>
+          <li><%= link_to "Profile", controller: "users", action: "show", id: 1 %></li>
+        </ul>
+      </nav>
+    </header>
     <main>
       <%= yield %>
     </main>
