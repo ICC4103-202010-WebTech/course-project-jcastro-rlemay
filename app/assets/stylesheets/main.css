@@ -1,0 +1,101 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+a {
+    color: #ff5a19;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff2121;
+}
+
+header {
+    padding: 1em;
+    height: 75px;
+}
+
+div#container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+}
+
+aside#other_activity {
+    width: 20%;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    margin: 2%;
+    border: 2px solid #8E7A3F;
+    float: right;
+}
+aside#other_activity h1{
+    color: #8E7A3F;
+}
+section#recent_activity{
+    width: auto;
+    height: auto;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    margin: 2%;
+    border: 2px solid #8E7A3F;
+    float: left;
+}
+section#recent_activity h1{
+    color: #8E7A3F;
+    font-size: xx-large;
+}
+main {
+    background-color: #333;
+    width: 100%;
+}
+
+footer {
+    color: white;
+    background: #262626;
+    padding: 1em;
+    height: 6em;
+}
+
+ul#navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #262626;
+}
+
+
+ul#navbar li {
+    float: left;
+}
+
+ul#navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+ul#navbar li a:hover {
+    background-color: #111;
+}
+
+td,th {
+    padding: 0.2em;
+    text-align: left;
+}

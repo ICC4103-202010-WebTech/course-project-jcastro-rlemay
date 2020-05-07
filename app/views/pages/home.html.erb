@@ -1,1 +1,30 @@
-<h1>HOLA MUNDO</h1>
+
+<section id="recent_activity">
+  <h1>Recent event activity</h1>
+
+  <table>
+    <tr>
+      <th>Index</th>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Event Organizer</th>
+    </tr>
+    <% @recent_events.each_with_index do |invitation, index|   %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= invitation.event.name %></td>
+        <td> <%= invitation.event.start_date %></td>
+        <td><%= invitation.event.end_date %></td>
+        <td><%= invitation.event.location %></td>
+        <td> <%= invitation.event.description %></td>
+        <td> <%= invitation.event.event_organizer.user.name %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
+<aside id="other_activity">
+  <h1>Other Activity</h1>
+</aside>

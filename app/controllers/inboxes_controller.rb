@@ -4,12 +4,13 @@ class InboxesController < ApplicationController
   # GET /inboxes
   # GET /inboxes.json
   def index
-    @inboxes = Inbox.all
+    @inboxes = Inbox.where(user_id: params[:user_id])
   end
 
   # GET /inboxes/1
   # GET /inboxes/1.json
   def show
+    @inbox = Inbox.where(user_id: params[:user_id])
   end
 
   # GET /inboxes/new
@@ -69,6 +70,6 @@ class InboxesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inbox_params
-      params.fetch(:inbox, {})
+      params.fetch(:inbox, {}).permit(:id, :user_id)
     end
 end

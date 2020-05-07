@@ -9,7 +9,22 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <nav>
+    <ul id="navbar">
+      <h1><li><%= link_to "Eventer", root_path%></li></h1>
+      <li><%= link_to "New Event", events_path %></li>
+      <li><%= link_to "Inbox", user_inboxes_path(1) %></li>
+      <li><%= link_to "Profile", controller: "users", action: "show", id: 1 %></li>
+    </ul>
+  </nav>
+
   <body>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <h4>Contact Information</h4>
+      <p>Contact us at: help@ticketshop.com</p>
+    </footer>
   </body>
 </html>

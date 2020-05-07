@@ -12,9 +12,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, defaults: { format: :html }
+  resources :users, defaults: { format: :html } do
+    resources :inboxes, defaults: { format: :html }
+  end
   resources :comments, defaults: { format: :html }
-  resources :inboxes, defaults: { format: :html }
   resources :events, defaults: { format: :html }
   resources :organizations, defaults: { format: :html }
 end
