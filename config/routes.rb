@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :users do
-        resources :inboxes
+        resources :inboxes, shallow: true
       end
       resources :events do
         resources :comments
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, defaults: { format: :html } do
-    resources :inboxes, defaults: { format: :html }
+    resources :inboxes, defaults: { format: :html }, shallow: true
   end
   resources :comments, defaults: { format: :html }
   resources :events, defaults: { format: :html }
