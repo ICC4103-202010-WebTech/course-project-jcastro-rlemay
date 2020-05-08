@@ -10,6 +10,21 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    if params[:public]
+      @visibility = "Public"
+    else
+      @visibility = "Private"
+    end
+    if params[:start_date] == nil
+      @date = "Poll"
+    else
+      @date = params[:start_date]
+    end
+    if params[:end_date] == nil
+      @end_date = "Poll"
+    else
+      @end_date = params[:end_date]
+    end
   end
 
   # GET /events/new
@@ -69,6 +84,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.fetch(:event, {})
+      params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
+                                      :description, :public, :event_organizer_id)
     end
 end

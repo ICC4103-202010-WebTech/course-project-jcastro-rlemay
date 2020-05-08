@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :inboxes, defaults: { format: :html }, shallow: true
   end
   resources :comments, defaults: { format: :html }
-  resources :events, defaults: { format: :html }
+  resources :events, defaults: { format: :html } do
+    resources :polls, defaults: { format: :html }, shallow: true
+  end
   resources :organizations, defaults: { format: :html }
 end

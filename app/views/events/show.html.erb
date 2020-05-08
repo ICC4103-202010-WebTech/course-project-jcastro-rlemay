@@ -1,4 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<body>
+  <section id="section">
+    <h1><%= @event.name %> (<%=@visibility%>)</h1>
+    <i class="far fa-image fa-7x"></i>
+    <i class="far fa-calendar-alt fa-2x"><%= link_to @date, event_polls_path(@event.id) %></i>
+    <i class="fas fa-hourglass-end fa-2x"><%= link_to @end_date, event_polls_path(@event.id) %></i>
+
+
+
+
+
+
+
+  </section>
+</body>
+
+
+

@@ -78,7 +78,7 @@ aside#other_activity {
 aside#other_activity h1{
     color: #8E7A3F;
 }
-section#recent_activity{
+section#section{
     width: 65%;
     height: auto;
     background-color: #262626;
@@ -88,14 +88,14 @@ section#recent_activity{
     border: 2px solid #8E7A3F;
     float: left;
 }
-section#recent_activity i{
+section#section i{
     float: left;
     width: auto;
 }
-section#recent_activity table{
+section#section table{
     width: auto;
 }
-section#recent_activity h1{
+section#section h1{
     color: #8E7A3F;
     font-size: xx-large;
 }

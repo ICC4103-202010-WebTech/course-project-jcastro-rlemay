@@ -1,5 +1,5 @@
 
-<section id="recent_activity">
+<section id="section">
   <h1>Recent event activity</h1>
   <i class="far fa-image fa-4x"></i>
   <table>
@@ -15,7 +15,7 @@
     <% @recent_events.each_with_index do |invitation, index|   %>
       <tr>
         <td><%= index+1 %></td>
-        <td><%= invitation.event.name %></td>
+        <td><%= link_to invitation.event.name, controller:'events', action: "show", id: invitation.event_id %></td>
         <td> <%= invitation.event.start_date %></td>
         <td><%= invitation.event.end_date %></td>
         <td><%= invitation.event.location %></td>
