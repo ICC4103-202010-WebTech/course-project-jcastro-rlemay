@@ -132,3 +132,67 @@ comme2rep = CommentReply.create(content: "Yeah i think the same!", image: "Photo
 n10 = Notification.create(message: "You have a new reply on your comment",user_id: u1.id)
 comme2rep.save!
 n10.save!
+
+# Third Event
+e3 = Event.create(name: "Horror House Party", location: "Madrid", start_date: Date.current(),
+                  end_date: Date.tomorrow(), description: " Come to get scared!",
+                  public: true, event_organizer_id: e1o.id)
+n14 = Notification.create(message: "Thanks for creating a new Event",user_id: u2.id)
+e3.save!
+n14.save!
+
+e3p = EventPage.find_by_event_id(e3.id)
+e3p.minimumGuests = 12
+e3p.maximumGuests = 150
+e3p.bannerPicture = "Event Photo"
+e3p.save!
+
+oe3 = OrganizationEvent.create(organization_id: o1.id, event_id: e3.id)
+oe3.save!
+
+ie3 = Invitation.create(message: "You are invited to my Scary party!!", user_id: u2.id, event_id: e3.id)
+ie3.save!
+
+comme3 = Comment.create(content: "I think its going to be a really scary birthday", image: "Photo of him",
+                        user_id: u2.id, event_page_id: e3p.id)
+n15 = Notification.create(message: "You have a new comment in your event",user_id: u1.id)
+comme3.save!
+n15.save!
+
+comme3rep = CommentReply.create(content: "Yeah i think the same!", image: "Photo of him happy", user_id: u1.id,
+                                comment_id: comme3.id)
+n16 = Notification.create(message: "You have a new reply on your comment",user_id: u2.id)
+comme3rep.save!
+n16.save!
+
+#Fourth Event
+e4 = Event.create(name: "Water Park Party", location: "Torres del Paine", start_date: Date.current(),
+                  end_date: Date.tomorrow(), description: " Come to get scared!",
+                  public: false, event_organizer_id: e2o.id)
+n17 = Notification.create(message: "Thanks for creating a new Event",user_id: u1.id)
+e4.save!
+n17.save!
+
+e4p = EventPage.find_by_event_id(e4.id)
+e4p.minimumGuests = 50
+e4p.maximumGuests = 70
+e4p.bannerPicture = "Event Photo"
+e4p.save!
+
+oe4 = OrganizationEvent.create(organization_id: o1.id, event_id: e4.id)
+oe4.save!
+
+ie4 = Invitation.create(message: "You are invited to my party!!", user_id: u1.id, event_id: e4.id)
+ie4.save!
+
+comme4 = Comment.create(content: "I think its going to be a really scary birthday", image: "Photo of him",
+                        user_id: u1.id, event_page_id: e4p.id)
+n18 = Notification.create(message: "You have a new comment in your event",user_id: u2.id)
+comme4.save!
+n18.save!
+
+comme4rep = CommentReply.create(content: "Yeah!", image: "Photo of him happy", user_id: u2.id,
+                                comment_id: comme4.id)
+n19 = Notification.create(message: "You have a new reply on your comment",user_id: u1.id)
+comme4rep.save!
+n19.save!
