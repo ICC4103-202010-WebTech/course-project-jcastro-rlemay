@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "profile.css" %>
 
-<h2>Your Profile</h2>
-<p>
-<ul>
-  <li><b>Name:</b> <%= @user.name %></li>
-  <li><b>Last Name:</b> <%= @user.lastName %></li>
-  <li><b>Email:</b> <%= @user.email %></li>
-  <li><b>Location:</b> <%= @user.location %></li>
-  <li><b>Address:</b> <%= @user.address %></li>
-  <li><b>Phone:</b> <%= @user.phone %></li>
-</ul>
-</p>
+<section class="profile_box">
+  <h2>Your Profile</h2>
+  <p>
+    <ul>
+      <li><b>Name:</b> <%= @user.name %></li>
+      <li><b>Last Name:</b> <%= @user.lastName %></li>
+      <li><b>Email:</b> <%= @user.email %></li>
+      <li><b>Location:</b> <%= @user.location %></li>
+      <li><b>Address:</b> <%= @user.address %></li>
+      <li><b>Phone:</b> <%= @user.phone %></li>
+    </ul>
+  </p>
+</section>
+
 <%= simple_format "\n" %>
-<%= link_to 'Home', root_path %>

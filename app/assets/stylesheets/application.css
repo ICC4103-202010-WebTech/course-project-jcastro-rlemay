@@ -1,79 +1,63 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-.recent_section{
-    width: 65%;
-    height: auto;
-    background-color: #262626;
-    color: #ffffff;
-    padding: 1%;
-    margin: 2%;
-    border: 2px solid #8E7A3F;
-    float: left;
+
+a:link {
+    color: #8E7A3F;
 }
-    .recent_header{
-        color: #8E7A3F;
-        font-size: xx-large;
-    }
-    .event_section{
-        width: 65%;
-        height: auto;
-        background-color: #262626;
-        color: #ffffff;
-        padding: 1%;
-        margin: 2%;
-        border: 2px solid #8E7A3F;
-        float: left;
-    }
-        .recent_title{
+a:hover{
+    color: #ac934e;
+}
+a:visited{
+    color: #786736;
+}
 
-        }
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
 
-        .recent_body{
-            display: flex;
-        }
-            .recent_date_box{
-                display: flex;
-                align-items: center;
-            }
-            .far fa-square fa-10x{
-                float: left;
-                width: auto;
-            }
-            .recent_poll{
-                font-size: medium;
-                margin-left: 10px;
-            }
-            .recent_details{
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 
-            }
-                .recent_event_name{
-                    color: #8E7A3F;
-                }
-                .recent_event_desc{
-                    color: white;
-                }
-                .recent_event_start{
-                    color: #8E7A3F;
-                }
-                .recent_event_end{
-                    color: #8E7A3F;
-                }
-                .recent_event_loc{
-                    color: #8E7A3F;
-                }
-                .recent_event_organizer{
-                    color: #8E7A3F;
-                }
+main {
+    background-color: #333;
+    width: 100%;
+}
+
+footer {
+    color: white;
+    background: #262626;
+    padding: 1em;
+    height: 6em;
+}
+
+td,th {
+    padding: 0.2em;
+    text-align: left;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #262626;
+    display: flex;
+    align-items: center;
+}
+.topnav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #333333;
+    color: black;
+}
+
+

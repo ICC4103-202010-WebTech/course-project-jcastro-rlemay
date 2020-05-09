@@ -5,6 +5,7 @@ class InboxesController < ApplicationController
   # GET /inboxes.json
   def index
     @inboxes = Inbox.where(user_id: params[:user_id])
+    @notifications = Notification.where(user_id: params[:user_id])
   end
 
   # GET /inboxes/1

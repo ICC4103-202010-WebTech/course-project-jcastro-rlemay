@@ -20,11 +20,17 @@ class EventsController < ApplicationController
     else
       @date = params[:start_date]
     end
+
     if params[:end_date] == nil
       @end_date = "Poll"
     else
       @end_date = params[:end_date]
     end
+
+    @invited = Invitation.where(event_id: params[:id])
+
+    eventPageid = EventPage.where(event_id: params[:id])[0].id
+    @comments = Comment.where(event_page_id: eventPageid)
   end
 
   # GET /events/new

@@ -1,19 +1,44 @@
 <p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "event_show" %>
 
 <body>
-  <section id="section">
-    <h1><%= @event.name %> (<%=@visibility%>)</h1>
-    <i class="far fa-image fa-7x"></i>
-    <i class="far fa-calendar-alt fa-2x"><%= link_to @date, event_polls_path(@event.id) %></i>
-    <i class="fas fa-hourglass-end fa-2x"><%= link_to @end_date, event_polls_path(@event.id) %></i>
+  <div class="page_holder">
+    <h1 class="event_name_header"><%= @event.name %> (<%=@visibility%>)</h1>
+    <section class="event_section">
+      <i class="far fa-square fa-10x"></i>
+      <section class="event_details">
+        <section class="event_dates">
+          <i class="far fa-calendar-alt fa-2x"><%= link_to @date, event_polls_path(@event.id) %></i>
+          <i class="fas fa-hourglass-end fa-2x"><%= link_to @end_date, event_polls_path(@event.id) %></i>
+        </section>
+        <section class="event_desc">
+          <p> Event description:</p>
+          <p> <%=@event.description %></p>
+        </section>
+      </section>
+    </section>
 
-
-
-
-
-
-
-  </section>
+    <section class="invited_users">
+      <h1> invited users </h1>
+      <% @invited.each do |invitation| %>
+        <p>
+          <section class="user">
+            <%= invitation.user.name %>
+          </section>
+        </p>
+      <% end %>
+    </section>
+    <section class="comments">
+      <h1> Comments </h1>
+      <% @comments.each do |comment| %>
+        <p>
+          <section class="comment">
+            <%= comment.content %>
+          </section>
+        </p>
+      <% end %>
+    </section>
+  </div>
 </body>
 
 

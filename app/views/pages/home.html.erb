@@ -1,35 +1,41 @@
-
+<%= stylesheet_link_tag "home.css" %>
 <section class="recent_section">
   <h1 class="recent_header">Recent event activity</h1>
   <% @recent_events.each do |invitation|   %>
     <section class="event_section">
       <section class="recent_title">
-        <p>New Event Created</p>
+        <p><b>New Event Created</b></p>
       </section>
       <section class="recent_body">
         <i class="far fa-square fa-10x"></i>
         <section class="recent_details">
-          <p class="recent_event_name"><%= link_to invitation.event.name, controller:'events', action: "show", id: invitation.event_id %></p>
+          <p class="recent_event_name"><b><%= link_to invitation.event.name, controller:'events', action: "show", id: invitation.event_id %></b></p>
           <p class="recent_event_desc"> <%= invitation.event.description %></p>
           <section class="recent_date_box">
             <% if invitation.event.start_date == nil %>
               <i class="far fa-calendar-alt fa-2x"></i>
               <p class="recent_poll"><%= link_to "poll", event_polls_path(invitation.event_id) %></p>
             <% else %>
-              <i class="far fa-calendar-alt fa-2x"><%= invitation.event.start_date %></i>
-              <i class="fas fa-hourglass-end fa-2x"><%= invitation.event.end_date %></i>
+              <i class="far fa-calendar-alt fa-1.5x"></i>
+              <a><%= invitation.event.start_date %> </a>
+              <i class="fas fa-hourglass-end fa-1.5x"></i>
+              <a><%= invitation.event.end_date %></a>
             <% end %>
           </section>
         </section>
-
       </section>
-
-
-
     </section>
-
   <% end %>
 </section>
+
 <aside class="other_activity">
   <h1 class="other_header">Other Activity</h1>
+  <% @recent_notifications.each do |notification| %>
+    <p>
+      <section class="notification_wrapper">
+    <p>You got a new notification:</p>
+    <%= notification.message %>
+    </section>
+    </p>
+  <% end %>
 </aside>
