@@ -1,6 +1,8 @@
-h2{
-    margin-left: 2%;
-    margin-right: 2%;
+
+.inbox_title{
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #8E7A3F;
 }
 
 .inbox_wrapper{
@@ -19,4 +21,12 @@ h2{
     padding-right: 1%;
     padding-bottom: 1%;
     border: 2px solid #8E7A3F;
+}
+
+.wrapper_title{
+    color: #8E7A3F;
+    font-size: 40px;
+    margin: 0;
+    margin-bottom: 1%;
+    margin-left: 2%;
 }

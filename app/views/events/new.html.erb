@@ -1,8 +1,9 @@
 <%= stylesheet_link_tag "new_event" %>
 
-<h1>New Event</h1>
+<h1 class="new_event_title">New Event</h1>
 
 <section class="new_event_wrapper">
+  <h1 class="wrapper_title">General information: </h1>
   <form class="event_form">
     <section class="new_event_name">
       <label for="fname">Event name: </label>
@@ -14,13 +15,21 @@
     </section>
     <section class="new_event_date">
       <input type="radio" id="set_date" name="set_date" value="">
-      <label for="set_date">Set a Date: </label><br>
+      <label for="set_date">Set a Date: </label>
+      <input type="date" id="start" name="trip-start"
+             value="2018-07-22"
+             min="2018-01-01" max="2018-12-31"><br>
 
       <input type="radio" id="set_poll" name="set_poll" value="">
-      <label for="set_poll">Set a Poll: </label><br>
+      <label for="set_poll">Set a Poll </label><br>
     </section>
-
   </form>
 </section>
 
-<%= render 'form', event: @event %>
+<section class="invite_wrapper">
+  <h1 class="wrapper_title">invite Friends and users: </h1>
+</section>
+
+<section class="create_button">
+  <%= render 'form', event: @event %>
+</section>

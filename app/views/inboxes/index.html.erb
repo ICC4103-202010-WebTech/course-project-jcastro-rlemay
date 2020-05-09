@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 <%= stylesheet_link_tag "inbox" %>
 
+<h1 class="inbox_title">Your Inbox</h1>
 <section class="inbox_wrapper">
-  <h2>Your Inbox</h2>
+  <h1 class="wrapper_title">Notifications:</h1>
   <% @notifications.each do |notification| %>
     <p>
       <section class="notification_wrapper">

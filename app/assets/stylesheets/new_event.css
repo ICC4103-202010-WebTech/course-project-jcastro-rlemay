@@ -1,0 +1,37 @@
+
+.new_event_title{
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #8E7A3F;
+    font-size: 40px;
+}
+.new_event_wrapper{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+}
+.wrapper_title{
+    color: #8E7A3F;
+    font-size: 40px;
+    margin: 0;
+    margin-bottom: 1%;
+}
+
+.invite_wrapper{
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 5%;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+}
+
+.create_button{
+    text-align: center;
+    margin-bottom: 2%;
+}

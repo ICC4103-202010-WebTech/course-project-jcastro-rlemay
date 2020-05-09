@@ -1,18 +1,47 @@
 <p id="notice"><%= notice %></p>
 <%= stylesheet_link_tag "profile.css" %>
 
-<section class="profile_box">
-  <h2>Your Profile</h2>
-  <p>
+<h1 class="profile_title">Your Profile</h1>
+<section class="profile_wrapper">
+  <section class="user_image_wrapper">
+    <i class="far fa-square fa-10x"></i>
+  </section>
+  <section class="user_info_wrapper">
+    <h1 class="wrapper_title"><%= @user.name %>  <%= @user.lastName %></h1>
+    <p>
     <ul>
-      <li><b>Name:</b> <%= @user.name %></li>
-      <li><b>Last Name:</b> <%= @user.lastName %></li>
+      <li><b><%= @user.name %>'s bio:</b> <%= @profile.bio %></li>
       <li><b>Email:</b> <%= @user.email %></li>
       <li><b>Location:</b> <%= @user.location %></li>
       <li><b>Address:</b> <%= @user.address %></li>
       <li><b>Phone:</b> <%= @user.phone %></li>
     </ul>
-  </p>
+    </p>
+  </section>
+  <section class="user_options_wrapper">
+    <a> Edit Profile </a>
+    <a> VIew Friends </a>
+    <a> View Events </a>
+    <a> View Organization </a>
+  </section>
 </section>
 
-<%= simple_format "\n" %>
+<h1 class="profile_title">Your Created events</h1>
+<% @events_created.each do |event| %>
+  <section class="user_events_wrapper">
+    <section class="events_upper">
+
+    </section>
+    <section class="events_details">
+      <i class="far fa-square fa-8x"></i>
+      <section class="event_text">
+        <h3><%= link_to event.name, event_path(event.id) %></h3>
+        <%= event.description %>
+      </section>
+    </section>
+    <section class="events_down">
+
+    </section>
+  </section>
+<% end %>
+

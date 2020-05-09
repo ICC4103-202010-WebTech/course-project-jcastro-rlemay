@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @profile = UserProfile.where(user_id: params[:id])[0]
+    @events_created = Event.where(event_organizer_id: params[:id])
   end
 
   # GET /users/new

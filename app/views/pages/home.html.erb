@@ -14,7 +14,7 @@
       <section class="recent_body">
         <i class="far fa-square fa-10x"></i>
         <section class="recent_details">
-          <p class="recent_event_name"><b><%= link_to invitation.event.name, controller:'events', action: "show", id: invitation.event_id %></b></p>
+          <p class="recent_event_name"><b><%= link_to invitation.event.name, event_path(invitation.event_id)%></b></p>
           <p class="recent_event_desc"> <%= invitation.event.description %></p>
           <section class="recent_date_box">
             <% if invitation.event.start_date == nil %>
