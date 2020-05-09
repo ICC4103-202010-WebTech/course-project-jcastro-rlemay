@@ -1,5 +1,26 @@
+<%= stylesheet_link_tag "new_event" %>
+
 <h1>New Event</h1>
 
-<%= render 'form', event: @event %>
+<section class="new_event_wrapper">
+  <form class="event_form">
+    <section class="new_event_name">
+      <label for="fname">Event name: </label>
+      <input type="text" id="fname" name="fname"><br><br>
+    </section>
+    <section class="new_event_desc">
+      <label for="lname">Event description: </label>
+      <input type="text" id="lname" name="lname"><br><br>
+    </section>
+    <section class="new_event_date">
+      <input type="radio" id="set_date" name="set_date" value="">
+      <label for="set_date">Set a Date: </label><br>
 
-<%= link_to 'Back', events_path %>
+      <input type="radio" id="set_poll" name="set_poll" value="">
+      <label for="set_poll">Set a Poll: </label><br>
+    </section>
+
+  </form>
+</section>
+
+<%= render 'form', event: @event %>

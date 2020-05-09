@@ -13,11 +13,18 @@
 <body>
   <header>
     <div class = "topnav">
-      <h1 class="page_name"><%= link_to "Eventer", root_path%></h1>
-      <input type="text" placeholder="Search..">
-      <h3><%= link_to "New Event", events_path %></h3>
-      <h3><%= link_to "Inbox", user_inboxes_path(1) %></h3>
-      <h3><%= link_to "Profile", controller: "users", action: "show", id: 1 %></h3>
+      <section class="header_brand">
+        <h1 class="page_name"><%= link_to "Eventer", root_path%></h1>
+      </section>
+      <section class="header_search">
+        <input type="text" placeholder="Search..">
+      </section>
+      <section class="header_rightPart">
+        <h3><%= link_to "New Event", new_event_path %></h3>
+        <h3><%= link_to "Inbox", user_inboxes_path(1) %></h3>
+        <h3><%= link_to "Profile", controller: "users", action: "show", id: 1 %></h3>
+      </section>
+
     </div>
   </header>
 
