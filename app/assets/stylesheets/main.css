@@ -78,26 +78,12 @@ aside#other_activity {
 aside#other_activity h1{
     color: #8E7A3F;
 }
-section#section{
-    width: 65%;
-    height: auto;
-    background-color: #262626;
-    color: #ffffff;
-    padding: 1%;
-    margin: 2%;
-    border: 2px solid #8E7A3F;
-    float: left;
-}
 section#section i{
     float: left;
     width: auto;
 }
 section#section table{
     width: auto;
-}
-section#section h1{
-    color: #8E7A3F;
-    font-size: xx-large;
 }
 main {
     background-color: #333;

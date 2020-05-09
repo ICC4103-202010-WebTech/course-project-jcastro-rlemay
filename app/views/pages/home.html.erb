@@ -1,30 +1,35 @@
 
-<section id="section">
-  <h1>Recent event activity</h1>
-  <i class="far fa-image fa-4x"></i>
-  <table>
-    <tr>
-      <th>Index</th>
-      <th>Name</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th>Event Organizer</th>
-    </tr>
-    <% @recent_events.each_with_index do |invitation, index|   %>
-      <tr>
-        <td><%= index+1 %></td>
-        <td><%= link_to invitation.event.name, controller:'events', action: "show", id: invitation.event_id %></td>
-        <td> <%= invitation.event.start_date %></td>
-        <td><%= invitation.event.end_date %></td>
-        <td><%= invitation.event.location %></td>
-        <td> <%= invitation.event.description %></td>
-        <td> <%= invitation.event.event_organizer.user.name %></td>
-      </tr>
-    <% end %>
-  </table>
+<section class="recent_section">
+  <h1 class="recent_header">Recent event activity</h1>
+  <% @recent_events.each do |invitation|   %>
+    <section class="event_section">
+      <section class="recent_title">
+        <p>New Event Created</p>
+      </section>
+      <section class="recent_body">
+        <i class="far fa-square fa-10x"></i>
+        <section class="recent_details">
+          <p class="recent_event_name"><%= link_to invitation.event.name, controller:'events', action: "show", id: invitation.event_id %></p>
+          <p class="recent_event_desc"> <%= invitation.event.description %></p>
+          <section class="recent_date_box">
+            <% if invitation.event.start_date == nil %>
+              <i class="far fa-calendar-alt fa-2x"></i>
+              <p class="recent_poll"><%= link_to "poll", event_polls_path(invitation.event_id) %></p>
+            <% else %>
+              <i class="far fa-calendar-alt fa-2x"><%= invitation.event.start_date %></i>
+              <i class="fas fa-hourglass-end fa-2x"><%= invitation.event.end_date %></i>
+            <% end %>
+          </section>
+        </section>
+
+      </section>
+
+
+
+    </section>
+
+  <% end %>
 </section>
-<aside id="other_activity">
-  <h1>Other Activity</h1>
+<aside class="other_activity">
+  <h1 class="other_header">Other Activity</h1>
 </aside>
