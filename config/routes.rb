@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/terms", to: "pages#terms", as: "terms"
   resources :users, defaults: { format: :html } do
     resources :inboxes, defaults: { format: :html }, shallow: true
+    resources :organizations, defaults: { format: :html }
+    resources :events, defaults: { format: :html }
   end
   resources :comments, defaults: { format: :html }
   resources :events, defaults: { format: :html } do

@@ -23,7 +23,7 @@
       <% @invited.each do |invitation| %>
         <p>
           <section class="user">
-            <%= invitation.user.name %>
+            <%= link_to invitation.user.name, user_path(invitation.user_id) %>
           </section>
         </p>
       <% end %>

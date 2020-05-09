@@ -36,6 +36,8 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    offset = rand(User.count)
+    @invite_users = User.offset(offset).take(5)
   end
 
   # GET /events/1/edit

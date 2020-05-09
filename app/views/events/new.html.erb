@@ -28,6 +28,13 @@
 
 <section class="invite_wrapper">
   <h1 class="wrapper_title">invite Friends and users: </h1>
+  <% @invite_users.each do |user| %>
+    <section class="user">
+      <i class="far fa-square fa-5x"></i>
+      <% full_name =  user.name + " " + user.lastName%>
+      <p><%= link_to full_name, user_path(user.id)%></p>
+    </section>
+  <% end %>
 </section>
 
 <section class="create_button">

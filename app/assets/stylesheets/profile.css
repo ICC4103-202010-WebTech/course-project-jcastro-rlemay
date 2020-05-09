@@ -13,12 +13,16 @@
 }
 
     .user_image_wrapper{
-        width: 10%;
+        width: fit-content;
         background-color: #262626;
         color: #ffffff;
         padding: 1%;
         border: 2px solid #8E7A3F;
-        text-align: center;
+    }
+
+    .far fa-square fa-10x{
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
     .user_info_wrapper{

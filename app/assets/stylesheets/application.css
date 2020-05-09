@@ -27,12 +27,7 @@ main {
     width: 100%;
 }
 
-footer {
-    color: white;
-    background: #262626;
-    padding: 1em;
-    height: 6em;
-}
+
 
 td,th {
     padding: 0.2em;
@@ -76,5 +71,20 @@ td,th {
             background-color: #333333;
             color: white;
         }
+
+.footer {
+    color: #8E7A3F;
+    background: #262626;
+    padding: 1em;
+    height: 6em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+    .footer_icons{
+        display: flex;
+        justify-content: space-evenly;
+        width: 20%;
+    }
 
 

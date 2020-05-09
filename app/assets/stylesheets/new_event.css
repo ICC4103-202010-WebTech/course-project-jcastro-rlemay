@@ -31,6 +31,26 @@
     border: 2px solid #8E7A3F;
 }
 
+    .user{
+        display: flex;
+        background-color: #262626;
+        color: #ffffff;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-bottom: 1%;
+        border: 2px solid #8E7A3F;
+        margin: 2%;
+
+    }
+    .invite_wrapper i{
+        margin-right: 1%;
+    }
+    .invite_wrapper p{
+        margin-top: auto;
+        margin-bottom: auto;
+        text-align: center;
+    }
+
 .create_button{
     text-align: center;
     margin-bottom: 2%;

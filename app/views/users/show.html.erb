@@ -19,10 +19,14 @@
     </p>
   </section>
   <section class="user_options_wrapper">
-    <a> Edit Profile </a>
+    <a> Edit Profile</a>
     <a> VIew Friends </a>
-    <a> View Events </a>
-    <a> View Organization </a>
+    <%= link_to "View Events", user_events_path(@user.id) %>
+    <% if @organization != nil%>
+      <%= link_to "View Organization", user_organizations_path(@organization.organization_id) %>
+    <% else %>
+      <%= link_to "Join a Organization", organizations_path %>
+    <% end %>
   </section>
 </section>
 
