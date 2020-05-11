@@ -1,0 +1,16 @@
+.title{
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #8E7A3F;
+    font-size: 40px;
+}
+
+.terms_wrapper{
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+}
+

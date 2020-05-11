@@ -3,6 +3,7 @@
     margin-left: 10%;
     margin-right: 10%;
     color: #8E7A3F;
+    font-size: 40px;
 }
 
 .profile_wrapper{
@@ -20,10 +21,10 @@
         border: 2px solid #8E7A3F;
     }
 
-    .far fa-square fa-10x{
-        margin-top: auto;
-        margin-bottom: auto;
-    }
+        .far fa-square fa-10x{
+            margin-top: auto;
+            margin-bottom: auto;
+        }
 
     .user_info_wrapper{
         width: 70%;
@@ -34,6 +35,13 @@
         padding: 1%;
         border: 2px solid #8E7A3F;
     }
+        .info{
+            margin: 2%;
+        }
+        .info_title{
+            color: #8E7A3F;
+            font-size: 25px;
+        }
 
     .user_options_wrapper{
         display: flex;

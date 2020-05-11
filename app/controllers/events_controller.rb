@@ -31,6 +31,7 @@ class EventsController < ApplicationController
 
     eventPageid = EventPage.where(event_id: params[:id])[0].id
     @comments = Comment.where(event_page_id: eventPageid)
+    @comment_replies = CommentReply.all
   end
 
   # GET /events/new

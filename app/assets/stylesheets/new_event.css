@@ -20,6 +20,36 @@
     margin: 0;
     margin-bottom: 1%;
 }
+    .event_form{
+        margin-left: 5%;
+    }
+        .new_event_name{
+            margin-bottom: 1%;
+        }
+            .name_field{
+                width: 90%;
+                margin-right: 10%;
+            }
+
+        .new_event_desc{
+            margin-bottom: 2%;
+        }
+            .desc_field{
+                resize: none;
+                font-size: 16px;
+                font-family: Arial;
+                width: 90%;
+                margin-right: 10%;
+                height: auto;
+            }
+        .new_event_date{
+        }
+            .set_date{
+                margin-bottom: 2%;
+            }
+            .set_poll{
+                margin-bottom: 1%;
+            }
 
 .invite_wrapper{
     margin-left: 15%;

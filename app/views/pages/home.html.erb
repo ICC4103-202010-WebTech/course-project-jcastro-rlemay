@@ -1,40 +1,42 @@
 <%= stylesheet_link_tag "home.css" %>
-
-<h1 class="title">Recent event activity</h1>
-<section class="recent_section">
-  <% @recent_events.each do |invitation|   %>
-    <section class="event_section">
-      <section class="recent_title">
-        <p><b>New Event Created:</b></p>
-        <section class="recent_buttons">
-          <i class="fas fa-user-plus"></i>
-          <i class="fas fa-bookmark"></i>
-          <i class="fas fa-bell"></i>
+<div class="main section">
+  <h1 class="title">Recent event activity</h1>
+  <section class="recent_section">
+    <% @recent_events.each do |invitation|   %>
+      <section class="event_section">
+        <section class="recent_title">
+          <p><b>New Event Created:</b></p>
+          <section class="recent_buttons">
+            <i class="fas fa-user-plus"></i>
+            <i class="fas fa-bookmark"></i>
+            <i class="fas fa-bell"></i>
+          </section>
         </section>
-      </section>
-      <section class="recent_body">
-        <i class="far fa-square fa-10x"></i>
-        <section class="recent_details">
-          <p class="recent_event_name"><b><%= link_to invitation.event.name, event_path(invitation.event_id)%></b></p>
-          <p class="recent_event_desc"> <%= invitation.event.description %></p>
-          <section class="recent_date_box">
-            <% if invitation.event.start_date == nil %>
-              <i class="far fa-calendar-alt fa-2x"></i>
-              <p class="recent_poll"><%= link_to "poll", event_polls_path(invitation.event_id) %></p>
-            <% else %>
-              <i class="far fa-calendar-alt fa-1.5x"></i>
-              <a class="recent_startDate"><%= invitation.event.start_date %> </a>
-              <i class="fas fa-hourglass-end fa-1.5x"></i>
-              <a class="recent_endDate"><%= invitation.event.end_date %></a>
-            <% end %>
+        <section class="recent_body">
+          <i class="far fa-square fa-10x"></i>
+          <section class="recent_details">
+            <p class="recent_event_name"><b><%= link_to invitation.event.name, event_path(invitation.event_id)%></b></p>
+            <p class="recent_event_desc"> <%= invitation.event.description %></p>
+            <section class="recent_date_box">
+              <% if invitation.event.start_date == nil %>
+                <i class="far fa-calendar-alt fa-2x"></i>
+                <a class="recent_poll"><%= link_to "poll", event_polls_path(invitation.event_id) %></a>
+              <% else %>
+                <i class="far fa-calendar-alt fa-1.5x"></i>
+                <p class="recent_startDate"><%= invitation.event.start_date %> </p>
+                <i class="fas fa-hourglass-end fa-1.5x"></i>
+                <p class="recent_endDate"><%= invitation.event.end_date %></p>
+              <% end %>
+            </section>
           </section>
         </section>
       </section>
-    </section>
-  <% end %>
-</section>
+    <% end %>
+  </section>
+</div>
 
-<aside >
+
+<div class="others">
   <h1 class="other_header">Other Activity</h1>
   <section class="other_activity">
     <% @recent_notifications.each do |notification| %>
@@ -44,4 +46,4 @@
       </section>
     <% end %>
   </section>
-</aside>
+</div>

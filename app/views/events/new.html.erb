@@ -6,22 +6,22 @@
   <h1 class="wrapper_title">General information: </h1>
   <form class="event_form">
     <section class="new_event_name">
-      <label for="fname">Event name: </label>
-      <input type="text" id="fname" name="fname"><br><br>
+      <label for="name_field"><b>Event name:</b> </label>
+      <input type="text" class="name_field" name="name_field"><br><br>
     </section>
     <section class="new_event_desc">
-      <label for="lname">Event description: </label>
-      <input type="text" id="lname" name="lname"><br><br>
+      <label for="desc_field"><b>Event description:</b> </label>
+      <textarea type="text" class="desc_field" name="desc_field"></textarea>
     </section>
     <section class="new_event_date">
-      <input type="radio" id="set_date" name="set_date" value="">
-      <label for="set_date">Set a Date: </label>
-      <input type="date" id="start" name="trip-start"
+      <input type="radio" class="set_date" name="set_date" value="">
+      <label for="set_date"><b>Set a Date:</b> </label>
+      <input type="date" class="start" name="trip-start"
              value="2018-07-22"
              min="2018-01-01" max="2018-12-31"><br>
 
-      <input type="radio" id="set_poll" name="set_poll" value="">
-      <label for="set_poll">Set a Poll </label><br>
+      <input type="radio" class="set_poll" name="set_poll" value="">
+      <label for="set_poll"><b>Set a Poll</b> </label><br>
     </section>
   </form>
 </section>
@@ -32,7 +32,7 @@
     <section class="user">
       <i class="far fa-square fa-5x"></i>
       <% full_name =  user.name + " " + user.lastName%>
-      <p><%= link_to full_name, user_path(user.id)%></p>
+      <p><b><%= link_to full_name, user_path(user.id)%></b></p>
     </section>
   <% end %>
 </section>
