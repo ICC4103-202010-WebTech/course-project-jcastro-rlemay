@@ -1,4 +1,24 @@
+<%= stylesheet_link_tag "poll" %>
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_poll_path(@poll) %> |
-<%= link_to 'Back', polls_path %>
+<h1 class="title">Event poll:</h1>
+
+<section class="poll_wrapper">
+  <i class="far fa-square fa-10x"></i>
+  <section class="data_wrapper">
+    <h2 class="poll_title">Pick which date accommodates you:</h2>
+    <p class="disclaimer">Only one answer per user</p>
+    <% @dates.each do |date|  %>
+      <p class="options">
+        <input type="radio" class="set_date" name="set_date" value="">
+        <label for="set_date"><%= Date.parse(date) %></label>
+      </p>
+    <% end %>
+  </section>
+</section>
+
+<section class="button_wrapper">
+  <button class="button">Submit answer</button>
+  <!-- render 'form', event: @event -->
+
+</section>

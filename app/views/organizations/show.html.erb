@@ -15,7 +15,7 @@
   <section class="user_options_wrapper">
     <a> Report </a>
     <a> View users </a>
-    <a> View Events </a>
+    <%= link_to "View Creator", user_path(@organization_creator.user_id) %>
   </section>
 </section>
 

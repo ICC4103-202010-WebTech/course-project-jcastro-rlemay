@@ -1,127 +1,132 @@
 
-a:link {
-    color: #8E7A3F;
+.page{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
-a:hover{
-    color: #ac934e;
-}
-a:visited{
-    color: #786736;
-}
-.title{
-    margin-left: 10%;
-    margin-right: 10%;
-    color: #8E7A3F;
-    font-size: 40px;
-}
-.recent_section{
-    width: 50%;
-    height: auto;
-    background-color: #262626;
-    color: #ffffff;
-    padding: 1%;
-    margin-bottom: 2%;
-    margin-left: 10%;
-    margin-right: 2%;
-    border: 2px solid #8E7A3F;
-    float: left;
-}
-    .event_section{
-        width: 90%;
+    .main{
+        width: 60%;
+    }
+    .title{
+        margin-left: 10%;
+        margin-right: 10%;
+        color: #8E7A3F;
+        font-size: 40px;
+    }
+
+    .recent_section{
         height: auto;
         background-color: #262626;
         color: #ffffff;
-        padding-left: 1%;
-        padding-right: 1%;
-        margin: 2%;
+        padding: 1%;
+        margin-bottom: 2%;
+        margin-left: 10%;
+        margin-right: 2%;
         border: 2px solid #8E7A3F;
         float: left;
-        display: block;
     }
-        .recent_title{
-            font-size: xx-large;
+        .event_section{
+            width: 90%;
+            height: auto;
+            background-color: #262626;
+            color: #ffffff;
+            padding-left: 1%;
+            padding-right: 1%;
+            margin: 2%;
+            border: 2px solid #8E7A3F;
+            float: left;
+            display: block;
+        }
+            .recent_title{
+                font-size: xx-large;
+                color: #8E7A3F;
+                display: flex;
+            }
+            .recent_title p{
+                margin-top: 2%;
+                margin-bottom: 0%;
+            }
+            .recent_title i{
+                margin-top: 2%;
+                margin-bottom: 0%;
+            }
+                .recent_buttons{
+                    align-self: center;
+                    margin-left: auto;
+                }
+
+            .recent_body{
+                display: flex;
+                padding-bottom: 10px;
+                align-items: center;
+            }
+                .far fa-square fa-10x{
+                    float: left;
+                    width: auto;
+                }
+
+                .recent_details{
+                    margin-left: 20px;
+                }
+
+                    .recent_event_name{
+                        color: #8E7A3F;
+                        font-size: 25px;
+                        margin-top: 0;
+                    }
+
+                    .recent_event_desc{
+                        color: white;
+                    }
+
+                    .recent_date_box{
+                        display: flex;
+                        align-items: center;
+                        margin-top: 1%;
+                    }
+
+                        .recent_date_box a{
+                            font-size: 16px;
+                            margin-left: 5px;
+                            margin-top: 0%;
+                        }
+
+                        .recent_startDate{
+                            font-size: 16px;
+                            margin-left: 3px;
+                            margin-right: 10px;
+                        }
+
+                        .recent_endDate{
+                            font-size: 16px;
+                            margin-left: 3px;
+                        }
+    .others{
+        margin-top: 0;
+        float: right;
+        width: 30%;
+    }
+        .other_header{
+            margin-right: 10%;
             color: #8E7A3F;
-            display: flex;
+            font-size: 40px;
         }
-        .recent_title p{
-            margin-top: 2%;
-            margin-bottom: 0%;
+        .other_activity{
+            height: auto;
+            background-color: #262626;
+            color: #ffffff;
+            padding: 1%;
+            margin-bottom: 2%;
+            margin-right: 10%;
+            border: 2px solid #8E7A3F;
         }
-        .recent_title i{
-            margin-top: 2%;
-            margin-bottom: 0%;
+
+        .notification_wrapper{
+            margin: 2%;
+            background-color: #262626;
+            color: #ffffff;
+            padding-left: 1%;
+            padding-right: 1%;
+            padding-bottom: 1%;
+            border: 2px solid #8E7A3F;
         }
-            .recent_buttons{
-                align-self: center;
-                margin-left: auto;
-            }
-
-        .recent_body{
-            display: flex;
-            padding-bottom: 10px;
-        }
-            .far fa-square fa-10x{
-                float: left;
-                width: auto;
-            }
-
-            .recent_details{
-                margin-left: 20px;
-            }
-
-                .recent_event_name{
-                    color: #8E7A3F;
-                }
-
-                .recent_event_desc{
-                    color: white;
-                }
-
-                .recent_date_box{
-                    display: flex;
-                    align-items: center;
-                }
-
-                    .recent_poll{
-                        font-size: medium;
-                        margin-left: 10px;
-                    }
-
-                    .recent_startDate{
-                        margin-left: 3px;
-                        margin-right: 10px;
-                    }
-
-                    .recent_endDate{
-                        margin-left: 3px;
-                    }
-.other_header{
-    margin-top: 0;
-    width: 20%;
-    height: auto;
-    color: #8E7A3F;
-    padding: 1%;
-    margin-right: 10%;
-    float: right;
-}
-.other_activity{
-    width: 20%;
-    height: auto;
-    background-color: #262626;
-    color: #ffffff;
-    padding: 1%;
-    margin-bottom: 2%;
-    margin-right: 10%;
-    border: 2px solid #8E7A3F;
-    float: right;
-}
-
-.notification_wrapper{
-    margin: 2%;
-    background-color: #262626;
-    color: #ffffff;
-    padding-left: 1%;
-    padding-right: 1%;
-    padding-bottom: 1%;
-    border: 2px solid #8E7A3F;
-}
