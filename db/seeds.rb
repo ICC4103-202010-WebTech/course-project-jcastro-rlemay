@@ -29,21 +29,68 @@ u2p.save!
 n13 = Notification.create(message: "Your Username and bio has been updated!",user_id: u2.id)
 n13.save!
 
+#                       USER 3
+
+u3 = User.create(name: "Juan", lastName: "Ruiz", password: "webtech",
+                 email: "jruiz@miuandes.cl", location: "Biblioteca",
+                 address: "Universidad de Chile", phone: "+56945274841")
+n20 = Notification.create(message: "Welcome to the Event Web Page",user_id: u3.id)
+u3.save!
+n20.save!
+
+u3p = UserProfile.find_by_user_id(u3.id)
+u3p.userName = "jruiz"
+u3p.bio = "Student of Web tech, learning ruby by now"
+u3p.save!
+n20 = Notification.create(message: "Your Username and bio has been updated!",user_id: u3.id)
+n20.save!
+
+
+#                       USER 4
+
+u4 = User.create(name: "Rodrigo", lastName: "Valenzuela", password: "webtech",
+                 email: "rvalenzuela@miuandes.cl", location: "Clínica Los Andes",
+                 address: "Independencia 1302", phone: "+56998274841")
+n21 = Notification.create(message: "Welcome to the Event Web Page",user_id: u4.id)
+u4.save!
+n21.save!
+
+u4p = UserProfile.find_by_user_id(u4.id)
+u4p.userName = "rvalenz"
+u4p.bio = "Born in 1998, best nominated dj in 2018"
+u4p.save!
+n22 = Notification.create(message: "Your Username and bio has been updated!",user_id: u4.id)
+n22.save!
+
+
 sa = SystemAdmin.create(user_id: u2.id)
 sa.save!
 
 o1 = Organization.create(name: "Organizacion")
 o1.save!
 
+o2 = Organization.create(name: "Organizacion 2")
+o2.save!
+
 o1Admin = OrganizationAdmin.create(user_id: u1.id, organization_id: o1.id)
 n3 = Notification.create(message: "Thanks for creating a new organization",user_id: u1.id)
 o1Admin.save!
 n3.save!
 
+o2Admin = OrganizationAdmin.create(user_id: u3.id, organization_id: o2.id)
+n23 = Notification.create(message: "Thanks for creating a new organization",user_id: u3.id)
+o2Admin.save!
+n23.save!
+
 o1Profile = OrganizationProfile.find_by_organization_id(o1.id)
 o1Profile.description = "Massive Event"
 o1Profile.bannerPicture = "PHOTO"
 o1Profile.save!
+
+o2Profile = OrganizationProfile.find_by_organization_id(o2.id)
+o2Profile.description = "Best Organization there'll be"
+o2Profile.bannerPicture = "PHOTO"
+o2Profile.save!
 
 om1 = OrganizationMember.create(user_id: u1.id,organization_id: o1.id)
 om2 = OrganizationMember.create(user_id: u2.id,organization_id: o1.id)
@@ -54,8 +101,19 @@ n4.save!
 om1.save!
 om2.save!
 
+o2m1 = OrganizationMember.create(user_id: u3.id,organization_id: o2.id)
+o2m2 = OrganizationMember.create(user_id: u4.id,organization_id: o2.id)
+n24 = Notification.create(message: "Welcome to the Organization",user_id: u4.id)
+u3.save!
+u4.save!
+n24.save!
+o2m1.save!
+o2m2.save!
+
+
 e1o = EventOrganizer.create(user_id: u1.id)
 e1o.save!
+
 
 e1 = Event.create(name: "Pool Party", start_date: Date.current(), end_date: Date.tomorrow(), location: "Huechuraba",
                   description: "Come to my house, and have a really fun pool party!", public: true,
@@ -179,7 +237,7 @@ e4p.maximumGuests = 70
 e4p.bannerPicture = "Event Photo"
 e4p.save!
 
-oe4 = OrganizationEvent.create(organization_id: o1.id, event_id: e4.id)
+oe4 = OrganizationEvent.create(organization_id: o2.id, event_id: e4.id)
 oe4.save!
 
 ie4 = Invitation.create(message: "You are invited to my party!!", user_id: u1.id, event_id: e4.id)
