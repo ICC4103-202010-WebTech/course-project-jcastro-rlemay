@@ -102,13 +102,9 @@ om1.save!
 om2.save!
 
 o2m1 = OrganizationMember.create(user_id: u3.id,organization_id: o2.id)
-o2m2 = OrganizationMember.create(user_id: u4.id,organization_id: o2.id)
-n24 = Notification.create(message: "Welcome to the Organization",user_id: u4.id)
 u3.save!
 u4.save!
-n24.save!
 o2m1.save!
-o2m2.save!
 
 
 e1o = EventOrganizer.create(user_id: u1.id)

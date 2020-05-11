@@ -22,7 +22,7 @@
     <a> Edit Profile</a>
     <a> VIew Friends </a>
     <% if @organization != nil%>
-      <%= link_to "View Organization", user_organization_path(@organization) %>
+      <%= link_to "View Organization", organization_path(@organization.organization_id) %>
     <% else %>
       <%= link_to "Join a Organization", organizations_path %>
     <% end %>
