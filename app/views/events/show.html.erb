@@ -8,8 +8,16 @@
       <i class="far fa-square fa-10x"></i>
       <section class="event_details">
         <section class="event_dates">
-          <i class="far fa-calendar-alt fa-2x"><%= link_to @date, event_polls_path(@event.id) %></i>
-          <i class="fas fa-hourglass-end fa-2x"><%= link_to @end_date, event_polls_path(@event.id) %></i>
+          <% if @date == "Poll" %>
+            <i class="far fa-calendar-alt fa-2x"><%= link_to @date, event_polls_path(@event.id) %></i>
+          <% else %>
+            <i class="far fa-calendar-alt fa-2x"><%= @date %></i>
+          <% end %>
+          <% if @end_date == "Poll" %>
+            <i class="fas fa-hourglass-end fa-2x"><%= link_to @end_date, event_polls_path(@event.id) %></i>
+          <% else %>
+            <i class="fas fa-hourglass-end fa-2x"><%= @end_date %></i>
+          <% end %>
         </section>
         <section class="event_desc">
           <p> Event description:</p>

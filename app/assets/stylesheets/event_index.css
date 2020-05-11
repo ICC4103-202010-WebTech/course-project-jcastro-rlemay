@@ -3,14 +3,18 @@
     margin-right: 10%;
     color: #8E7A3F;
 }
+.recent_section{
+    margin-right: 10%;
+    margin-left: 10%;
+}
 .event_section{
-    width: 90%;
+    width: 100%;
     height: auto;
     background-color: #262626;
     color: #ffffff;
     padding-left: 1%;
     padding-right: 1%;
-    margin: 2%;
+    margin-bottom: 2%;
     border: 2px solid #8E7A3F;
     float: left;
     display: block;

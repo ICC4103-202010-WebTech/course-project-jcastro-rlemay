@@ -8,24 +8,24 @@ a:hover{
 a:visited{
     color: #786736;
 }
-
+.title{
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #8E7A3F;
+    font-size: 40px;
+}
 .recent_section{
-    width: 60%;
+    width: 50%;
     height: auto;
     background-color: #262626;
     color: #ffffff;
     padding: 1%;
-    margin-top: 2%;
     margin-bottom: 2%;
-    margin-left: 5%;
-    margin-right: 3%;
+    margin-left: 10%;
+    margin-right: 2%;
     border: 2px solid #8E7A3F;
     float: left;
 }
-    .recent_header{
-        color: #8E7A3F;
-        font-size: xx-large;
-    }
     .event_section{
         width: 90%;
         height: auto;
@@ -43,7 +43,14 @@ a:visited{
             color: #8E7A3F;
             display: flex;
         }
-
+        .recent_title p{
+            margin-top: 2%;
+            margin-bottom: 0%;
+        }
+        .recent_title i{
+            margin-top: 2%;
+            margin-bottom: 0%;
+        }
             .recent_buttons{
                 align-self: center;
                 margin-left: auto;
@@ -89,15 +96,22 @@ a:visited{
                         margin-left: 3px;
                     }
 
+.other_header{
+    width: 20%;
+    height: auto;
+    color: #8E7A3F;
+    padding: 1%;
+    margin-right: 10%;
+    float: right;
+}
 .other_activity{
     width: 20%;
     height: auto;
     background-color: #262626;
     color: #ffffff;
     padding: 1%;
-    margin-top: 2%;
     margin-bottom: 2%;
-    margin-right: 3%;
+    margin-right: 10%;
     border: 2px solid #8E7A3F;
     float: right;
 }

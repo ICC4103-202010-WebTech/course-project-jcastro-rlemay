@@ -10,21 +10,21 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    if params[:public]
+    if @event.public
       @visibility = "Public"
     else
       @visibility = "Private"
     end
-    if params[:start_date] == nil
+    if @event.start_date == nil
       @date = "Poll"
     else
-      @date = params[:start_date]
+      @date = @event.start_date
     end
 
-    if params[:end_date] == nil
+    if @event.end_date == nil
       @end_date = "Poll"
     else
-      @end_date = params[:end_date]
+      @end_date = @event.end_date
     end
 
     @invited = Invitation.where(event_id: params[:id])
