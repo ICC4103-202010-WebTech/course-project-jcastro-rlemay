@@ -20,7 +20,7 @@
   </section>
   <section class="user_options_wrapper">
     <a> Edit Profile</a>
-    <a> VIew Friends </a>
+    <%= link_to "View friends", users_path %>
     <% if @organization != nil%>
       <%= link_to "View Organization", organization_path(@organization.organization_id) %>
     <% else %>

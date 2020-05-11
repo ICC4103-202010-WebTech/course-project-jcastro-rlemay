@@ -8,10 +8,11 @@ a:visited{
     color: #786736;
 }
 
-.event_name_header{
+.title{
     margin-left: 10%;
     margin-right: 10%;
     color: #8E7A3F;
+    font-size: 40px;
 }
     .event_section{
         margin-left: 10%;

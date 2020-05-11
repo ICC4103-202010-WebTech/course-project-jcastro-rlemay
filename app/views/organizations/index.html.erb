@@ -1,24 +1,18 @@
 <p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "organization_index" %>
+<h1 class="title">Organizations</h1>
 
-<h1>Organizations</h1>
+<section class="organization_wrapper">
+  <% @organizations.each do |organization| %>
+    <section class="organization">
+      <i class="far fa-square fa-5x"></i>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+      <section>
+        <p><b><%= link_to organization.name, organization_path(organization.id)%></b></p>
+        <p><b>Description: </b><%= OrganizationProfile.where(organization_id: organization.id)[0].description %></p>
+        <% admin =  OrganizationAdmin.where(organization_id: organization.id)[0]%>
+        <p><b>Creator: </b><%= admin.user.name+" "+admin.user.lastName %></p>
+      </section>
+    </section>
+  <% end %>
+</section>

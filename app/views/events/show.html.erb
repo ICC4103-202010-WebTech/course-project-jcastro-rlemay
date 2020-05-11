@@ -3,21 +3,21 @@
 
 <body>
   <div class="page_holder">
-    <h1 class="event_name_header"><%= @event.name %> (<%=@visibility%>)</h1>
+    <h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
     <section class="event_section">
       <i class="far fa-square fa-10x"></i>
       <section class="event_details">
         <section class="event_dates">
           <% if @date == "Poll" %>
             <i class="far fa-calendar-alt fa-2x"></i>
-            <%= link_to @date, event_polls_path(@event.id) %>
+            <%= link_to @date, poll_path(Poll.where(event_id: @event.id)[0]) %>
           <% else %>
             <i class="far fa-calendar-alt fa-2x"></i>
             <%= @date %>
           <% end %>
           <% if @end_date == "Poll" %>
             <i class="fas fa-hourglass-end fa-2x"></i>
-            <%= link_to @end_date, event_polls_path(@event.id) %>
+            <%= link_to @end_date, poll_path(Poll.where(event_id:@event.id)[0]) %>
           <% else %>
             <i class="fas fa-hourglass-end fa-2x"></i>
             <%= @end_date %>

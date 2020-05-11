@@ -1,25 +1,18 @@
 <p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "user_index" %>
+<h1 class="title">Users</h1>
 
-<h1>Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <section class="user_wrapper">
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <section class="user">
+        <i class="far fa-square fa-5x"></i>
+        <% full_name =  user.name + " " + user.lastName%>
+        <section>
+          <p><b><%= link_to full_name, user_path(user.id)%></b></p>
+          <p><b>Bio: </b><%= UserProfile.where(user_id: user.id)[0].bio %></p>
+          <p><b>E-mail: </b> <%= user.email %></p>
+          <p><b>Location: </b> <%= user.location %></p>
+        </section>
+      </section>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+  </section>
