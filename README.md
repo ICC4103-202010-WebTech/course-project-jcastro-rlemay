@@ -18,9 +18,9 @@
 
 - If we go to an specific event, we can see all his details, with the guests going (having a link to his user profile), and also all the comments that the event has recieved.
 
-- If we go to an specific user, we can see his profile page, which contains all his personal info, and also 3 buttons, where 2 of them are yet not implemented, and the last one who takes us to his organization if he has, and if he doesnt have one it will take us to join an organization (not implemennted yet in the view). Also in the bottom part we can see all the events that he has created with the possibility to go to the specific event page.
+- If we go to an specific user, we can see his profile page, which contains all his personal info, and also 3 buttons, where 1 of them is yet not implemented, the first button is the one that doesn't do anythin, where we'll implement an option to edit the profile, the second button, takes us to see all his friends (but for now only shows all the users created), and the last one takes us to his organization if he has, and if he doesn't have one it takes us to join an organization (shows us all the organizations there are). Also in the bottom part we can see all the events that he has created with the possibility to go to the specific event page.
 
-- If we go to the new event button in the header, we get to a new page, asking us all the relevant information to be able to create a new event containing the name, description, date if we want or a poll if we didn´t choose the date, and also showing us a maximum of 5 random persons (We will implement all his friends here). Then in the bottom part there's a button telling us to create the event, but is not working yet.
+- If we go to the new event button in the header, we get to a new page, asking us all the relevant information to be able to create a new event containing the name, description, date if we want or a poll if we didn´t choose the date, and also showing us a maximum of 5 random persons (We will implement all his friends here). Then in the bottom part there's a button telling us to create the event, but for now it doesn't do anything.
 
 - If we go to the events button in the header, we are taken to a page showing all the events created, with their respective information, and links if we want to see more details about it.
 
@@ -28,12 +28,12 @@
 
 - If we go to the profile button in the header, we are taken to our profile, where we can see all our personal information, also our events created, and also a button to our organization if we have one, and if we don't, to join an organization.
 
-- If we go to the profile's organization, we can find all the details, with a posibility to see the users, report the organization, and also see the organization creator (all not working for now), in the bottom of it, we are shown all the organization's event, with a brif description, and a link in their name to take us to the event profile. 
+- If we go to the profile's organization, we can find all the details, with a posibility to see the users, report the organization, and also see the organization creator (the report button is not doing anything yet), in the bottom of it, we are shown all the organization's event, with a brif description, and a link in their name to take us to the event profile. 
 
 
 ## Summary of features required in the assignment but pending:
 
-- Nothing by now.
+- Nothing.
 
 ## API Tests, which should include links to your Postman collection containing tests for yourAPI:
 
