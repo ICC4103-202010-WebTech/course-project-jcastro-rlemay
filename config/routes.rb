@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         resources :inboxes, shallow: true
       end
       resources :events do
-        resources :comments
+        resources :comments, shallow: true
       end
       resources :organizations
     end
