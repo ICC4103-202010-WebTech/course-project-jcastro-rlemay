@@ -1,6 +1,6 @@
-## Richard Le May - Julio Castro
+### Richard Le May - Julio Castro
 
-### Project part 1.2
+# Project part 1.2
 
 Explain what should happen model-wise if an event is deleted and guests have already cast votes. Explain how your model layer is well-behaved in this scenario.
 
@@ -14,13 +14,13 @@ Explain what should happen model-wise if a user is deleted and the user has alre
 
 - The same than the other two answers, everything that depends on this user is going to be deleted as well. In our project, if a user is deleted, then all of his/hers comments, comment replies, events, event organizers, event pages, inboxes, invitations, notifications, organizations, organization admins, organization events, organization profiles, polsl, poll notificatiosn, system admins, user profiles and votes will be deleted if they reference this specific user, with the use of the "dependent: :destroy" statement.
 
-# Queries
+## Queries
 
 To go ahead and try the queries, you need to put in the console, this command:
 - rake db:queryi , where "i" is the number of the respective query, following the course project´s document.
     i.e rake db:query1 should give you the query that gives all the events created by a certain user.
 
-# Seeds file
+## Seeds file
 
 In our seeds file we created:
 - 2 comments
@@ -43,9 +43,9 @@ In our seeds file we created:
 - 2 user profiles
 - 1 Vote
 
-### Project part 2
+# Project part 2
 
-# Summary of implemented features:
+## Summary of implemented features:
 
 -  In our website, we count with:
     - Header: With the name of our website, which links to the root page (home), with a dummy search box, to be implemented, because only recieves text, also 4 buttons just like in our wireframes model, which are:
@@ -75,8 +75,10 @@ In our seeds file we created:
 - If we go to the profile's organization, we can find all the details, with a posibility to see the users, report the organization, and also see the organization creator (all not working for now), in the bottom of it, we are shown all the organization's event, with a brif description, and a link in their name to take us to the event profile. 
 
 
-# Summary of features required in the assignment but pending:
+## Summary of features required in the assignment but pending:
 
-# API Tests, which should include links to your Postman collection containing tests for yourAPI:
+- Nothing by now.
+
+## API Tests, which should include links to your Postman collection containing tests for yourAPI:
 
 - https://www.getpostman.com/collections/83ed881b39484168f75f
