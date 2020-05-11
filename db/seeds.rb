@@ -110,7 +110,7 @@ oe2.save!
 ie2 = Invitation.create(message: "You are invited to my birthday party!!", user_id: u1.id, event_id: e2.id)
 ie2.save!
 
-e2poll = Poll.create(name: "Birthday date", possibleDates: "2020-06-06, 2020-08-06, 2020-12-06", minimumAnswers: 5,
+e2poll = Poll.create(name: "Birthday date", possibleDates: "2020-02-02 2020-04-04 2020-07-07", minimumAnswers: 5,
                      event_id: e2.id)
 e2poll.save!
 n11 = Notification.create(message: "A new poll has been created",user_id: u1.id)

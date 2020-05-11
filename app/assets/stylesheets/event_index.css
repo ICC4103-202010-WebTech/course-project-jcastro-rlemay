@@ -1,0 +1,62 @@
+.event_section{
+    width: 90%;
+    height: auto;
+    background-color: #262626;
+    color: #ffffff;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin: 2%;
+    border: 2px solid #8E7A3F;
+    float: left;
+    display: block;
+}
+.recent_title{
+    font-size: xx-large;
+    color: #8E7A3F;
+    display: flex;
+}
+
+.recent_buttons{
+    align-self: center;
+    margin-left: auto;
+}
+
+.recent_body{
+    display: flex;
+    padding-bottom: 10px;
+}
+.far fa-square fa-10x{
+    float: left;
+    width: auto;
+}
+
+.recent_details{
+    margin-left: 20px;
+}
+
+.recent_event_name{
+    color: #8E7A3F;
+}
+
+.recent_event_desc{
+    color: white;
+}
+
+.recent_date_box{
+    display: flex;
+    align-items: center;
+}
+
+.recent_poll{
+    font-size: medium;
+    margin-left: 10px;
+}
+
+.recent_startDate{
+    margin-left: 3px;
+    margin-right: 10px;
+}
+
+.recent_endDate{
+    margin-left: 3px;
+}

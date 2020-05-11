@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   resources :events, defaults: { format: :html } do
     resources :polls, defaults: { format: :html }, shallow: true
   end
-  resources :organizations, defaults: { format: :html }
+  resources :organizations, defaults: { format: :html } do
+    resources :events, defaults: { format: :html }
+  end
 end

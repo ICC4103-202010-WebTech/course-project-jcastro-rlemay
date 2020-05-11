@@ -1,25 +1,38 @@
+<%= stylesheet_link_tag "event_index" %>
 <p id="notice"><%= notice %></p>
 
 <h1>Events</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<section class="recent_section">
+  <h1 class="recent_header">Recent event activity</h1>
+  <% @events.each do |event| %>
+    <section class="event_section">
+      <section class="recent_title">
+        <p class="recent_event_name"><b><%= link_to event.name, event_path(event.id)%></b></p>
+        <section class="recent_buttons">
+          <i class="fas fa-user-plus"></i>
+          <i class="fas fa-bookmark"></i>
+          <i class="fas fa-bell"></i>
+        </section>
+      </section>
+      <section class="recent_body">
+        <i class="far fa-square fa-10x"></i>
+        <section class="recent_details">
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+          <p class="recent_event_desc"> <%= event.description %></p>
+          <section class="recent_date_box">
+            <% if event.start_date == nil %>
+              <i class="far fa-calendar-alt fa-2x"></i>
+              <p class="recent_poll"><%= link_to "poll", event_polls_path(event.id) %></p>
+            <% else %>
+              <i class="far fa-calendar-alt fa-1.5x"></i>
+              <a class="recent_startDate"><%= event.start_date %> </a>
+              <i class="fas fa-hourglass-end fa-1.5x"></i>
+              <a class="recent_endDate"><%= event.end_date %></a>
+            <% end %>
+          </section>
+        </section>
+      </section>
+    </section>
+  <% end %>
+</section>

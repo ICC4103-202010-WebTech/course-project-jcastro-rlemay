@@ -5,6 +5,7 @@ class PollsController < ApplicationController
   # GET /polls.json
   def index
     @polls = Poll.all
+    @dates = @polls[0].possibleDates.split(" ")
   end
 
   # GET /polls/1
