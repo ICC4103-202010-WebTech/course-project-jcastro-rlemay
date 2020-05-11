@@ -39,6 +39,8 @@
 
 - https://www.getpostman.com/collections/83ed881b39484168f75f
 
+
+
 # Project part 1.2
 
 Explain what should happen model-wise if an event is deleted and guests have already cast votes. Explain how your model layer is well-behaved in this scenario.
