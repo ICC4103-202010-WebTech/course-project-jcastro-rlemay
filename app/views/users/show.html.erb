@@ -21,9 +21,8 @@
   <section class="user_options_wrapper">
     <a> Edit Profile</a>
     <a> VIew Friends </a>
-    <%= link_to "View Events", user_events_path(@user.id) %>
     <% if @organization != nil%>
-      <%= link_to "View Organization", user_organizations_path(@user.id) %>
+      <%= link_to "View Organization", user_organization_path(@organization) %>
     <% else %>
       <%= link_to "Join a Organization", organizations_path %>
     <% end %>

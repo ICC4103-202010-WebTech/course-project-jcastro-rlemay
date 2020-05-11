@@ -36,18 +36,20 @@
     }
 
     .user_options_wrapper{
+        display: flex;
+        flex-direction: column;
         width: 20%;
         background-color: #262626;
         color: #ffffff;
         border: 2px solid #8E7A3F;
-        height: 100%;
     }
     .user_options_wrapper a{
         display: block;
         font-size: 17px;
-        padding: 14px 16px;
+        padding: 22px;
         text-align: center;
         border: 2px solid #8E7A3F;
+
     }
     .user_options_wrapper a:hover{
         background-color: #333333;
