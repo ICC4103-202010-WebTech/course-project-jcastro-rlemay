@@ -7,11 +7,15 @@
   <i class="far fa-square fa-10x"></i>
   <section class="data_wrapper">
     <h2 class="poll_title">Pick which date accommodates you:</h2>
-    <p class="disclaimer">Only one answer per user</p>
+    <p class="disclaimer">*Only one answer per user</p>
     <% @dates.each do |date|  %>
       <p class="options">
-        <input type="radio" class="set_date" name="set_date" value="">
-        <label for="set_date"><%= Date.parse(date) %></label>
+        <label class="container">
+          <input type="radio" checked="checked" name="radio">
+          <span class="checkmark"></span>
+          <label for="set_date"><%= Date.parse(date) %></label>
+        </label>
+
       </p>
     <% end %>
   </section>

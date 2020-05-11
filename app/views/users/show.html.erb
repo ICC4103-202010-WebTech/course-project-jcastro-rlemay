@@ -8,7 +8,6 @@
   </section>
   <section class="user_info_wrapper">
     <h1 class="wrapper_title"><%= @user.name %>  <%= @user.lastName %></h1>
-    <p>
     <ul>
       <li><b><%= @user.name %>'s bio:</b> <%= @profile.bio %></li>
       <li><b>Email:</b> <%= @user.email %></li>
@@ -16,11 +15,10 @@
       <li><b>Address:</b> <%= @user.address %></li>
       <li><b>Phone:</b> <%= @user.phone %></li>
     </ul>
-    </p>
   </section>
   <section class="user_options_wrapper">
     <a> Edit Profile</a>
-    <%= link_to "View friends", users_path %>
+    <%= link_to "View Friends", users_path %>
     <% if @organization != nil%>
       <%= link_to "View Organization", organization_path(@organization.organization_id) %>
     <% else %>
@@ -29,7 +27,7 @@
   </section>
 </section>
 
-<h1 class="profile_title">Your Created events</h1>
+<h1 class="profile_title">Your Created Events:</h1>
 <% @events_created.each do |event| %>
   <section class="user_events_wrapper">
     <section class="events_upper">

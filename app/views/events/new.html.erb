@@ -13,6 +13,22 @@
       <label for="desc_field"><b>Event description:</b> </label>
       <textarea type="text" class="desc_field" name="desc_field"></textarea>
     </section>
+
+    <section class="date">
+      <label class="container">Set a Date:
+        <input type="radio" checked="checked" name="radio">
+        <span class="checkmark"></span>
+      </label>
+      <input type="date" class="start" name="trip-start"
+             value="2018-07-22"
+             min="2018-01-01" max="2018-12-31"><br>
+    </section>
+
+    <label class="container">Set a Poll
+      <input type="radio" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    <!--
     <section class="new_event_date">
       <input type="radio" class="set_date" name="set_date" value="">
       <label for="set_date"><b>Set a Date:</b> </label>
@@ -23,11 +39,12 @@
       <input type="radio" class="set_poll" name="set_poll" value="">
       <label for="set_poll"><b>Set a Poll</b> </label><br>
     </section>
+    -->
   </form>
 </section>
 
 <section class="invite_wrapper">
-  <h1 class="wrapper_title">invite Friends and users: </h1>
+  <h1 class="wrapper_title">Invite Friends and Users: </h1>
   <% @invite_users.each do |user| %>
     <section class="user">
       <i class="far fa-square fa-5x"></i>

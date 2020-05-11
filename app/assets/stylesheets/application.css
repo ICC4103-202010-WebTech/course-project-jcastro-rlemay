@@ -3,12 +3,15 @@ a:link {
     color: #8E7A3F;
     text-decoration: none;
 }
-a:hover{
-    color: #ac934e;
-}
+
 a:visited{
     color: #786736;
 }
+
+a:hover{
+    color: #ac934e;
+}
+
 
 html, body {
     min-height: 100%;

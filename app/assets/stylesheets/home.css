@@ -52,6 +52,15 @@
                         align-self: center;
                         margin-left: auto;
                     }
+                        i:hover{
+                            color: #ac934e;
+                        }
+                        i:active{
+                            color: #8E7A3F;
+                        }
+                        .fa-square::before{
+                            color: white;
+                        }
 
                 .recent_body{
                     display: flex;

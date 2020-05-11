@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 <%= stylesheet_link_tag "profile.css" %>
 
-<h1 class="profile_title"><%= @organization.name %>'s profile</h1>
+<h1 class="profile_title"><%= @organization.name %>'s Profile</h1>
 <section class="profile_wrapper">
   <section class="user_image_wrapper">
     <i class="far fa-square fa-10x"></i>
   </section>
   <section class="user_info_wrapper">
     <section class="info">
-      <p class="info_title"><b><%= @organization.name %>'s description:</b> </p>
+      <p class="info_title"><b><%= @organization.name %>'s Description:</b> </p>
       <p><%= @profile.description %></p>
     </section>
   </section>
@@ -19,7 +19,7 @@
   </section>
 </section>
 
-<h1 class="profile_title">This Organization's events</h1>
+<h1 class="profile_title">This Organization's Events:</h1>
 <% @organization_events.each do |event| %>
   <section class="user_events_wrapper">
     <section class="events_upper">

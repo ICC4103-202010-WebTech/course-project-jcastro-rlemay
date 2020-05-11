@@ -20,13 +20,13 @@
           <p class="recent_event_desc"> <%= event.description %></p>
           <section class="recent_date_box">
             <% if event.start_date == nil %>
-              <i class="far fa-calendar-alt fa-2x"></i>
-              <p class="recent_poll"><%= link_to "poll", event_polls_path(event.id) %></p>
+              <i class="far fa-calendar-alt fa-1.5x"></i>
+              <p class="recent_poll"><%= link_to "Poll", poll_path( Poll.where(event_id:event.id)[0]) %></p>
             <% else %>
               <i class="far fa-calendar-alt fa-1.5x"></i>
-              <a class="recent_startDate"><%= event.start_date %> </a>
+              <p class="recent_startDate"><%= event.start_date %> </p>
               <i class="fas fa-hourglass-end fa-1.5x"></i>
-              <a class="recent_endDate"><%= event.end_date %></a>
+              <p class="recent_endDate"><%= event.end_date %></p>
             <% end %>
           </section>
         </section>

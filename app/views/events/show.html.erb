@@ -15,11 +15,9 @@
             <i class="far fa-calendar-alt fa-2x"></i>
             <%= @date %>
           <% end %>
-          <% if @end_date == "Poll" %>
+          <% if @end_date != "Poll" %>
             <i class="fas fa-hourglass-end fa-2x"></i>
-            <%= link_to @end_date, poll_path(Poll.where(event_id:@event.id)[0]) %>
-          <% else %>
-            <i class="fas fa-hourglass-end fa-2x"></i>
+
             <%= @end_date %>
           <% end %>
         </section>
@@ -31,7 +29,7 @@
     </section>
 
     <section class="invite_wrapper">
-      <h1 class="wrapper_title">invited users: </h1>
+      <h1 class="wrapper_title">Invited Users: </h1>
       <% @invited.each do |invitation| %>
         <section class="user">
           <i class="far fa-square fa-5x"></i>
@@ -42,7 +40,7 @@
     </section>
 
     <section class="comments_wrapper">
-      <h1 class="wrapper_title"> Comments </h1>
+      <h1 class="wrapper_title"> Comments: </h1>
       <% @comments.each do |comment| %>
         <section class="comment_box">
           <section class="user_comment">

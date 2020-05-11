@@ -66,10 +66,10 @@ n22.save!
 sa = SystemAdmin.create(user_id: u2.id)
 sa.save!
 
-o1 = Organization.create(name: "Organizacion")
+o1 = Organization.create(name: "Organization 1")
 o1.save!
 
-o2 = Organization.create(name: "Organizacion 2")
+o2 = Organization.create(name: "Organization 2")
 o2.save!
 
 o1Admin = OrganizationAdmin.create(user_id: u1.id, organization_id: o1.id)
