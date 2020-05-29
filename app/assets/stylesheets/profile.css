@@ -14,7 +14,7 @@
 }
 
     .user_image_wrapper{
-        width: fit-content;
+        /*width: fit-content;*/
         background-color: #262626;
         color: #ffffff;
         padding: 1%;

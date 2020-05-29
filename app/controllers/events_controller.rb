@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    if @event.public
+    if @event.is_public
       @visibility = "Public"
     else
       @visibility = "Private"
@@ -94,6 +94,6 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :description, :public, :event_organizer_id)
+                                      :description, :is_public, :event_organizer_id)
     end
 end

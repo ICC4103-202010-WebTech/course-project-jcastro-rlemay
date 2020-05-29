@@ -112,7 +112,7 @@ e1o.save!
 
 
 e1 = Event.create(name: "Pool Party", start_date: Date.current(), end_date: Date.tomorrow(), location: "Huechuraba",
-                  description: "Come to my house, and have a really fun pool party!", public: true,
+                  description: "Come to my house, and have a really fun pool party!", is_public: true,
                   event_organizer_id: e1o.id)
 n5 = Notification.create(message: "Thanks for creating a new Event",user_id: u1.id)
 e1.save!
@@ -147,7 +147,7 @@ e2o = EventOrganizer.create(user_id: u2.id)
 e2o.save!
 
 e2 = Event.create(name: "Birthday Party", location: "Huechuraba", description: " Its my birthday party!",
-                  public: false, event_organizer_id: e2o.id)
+                  is_public: false, event_organizer_id: e2o.id)
 n8 = Notification.create(message: "Thanks for creating a new Event",user_id: u2.id)
 e2.save!
 n8.save!
@@ -190,7 +190,7 @@ n10.save!
 # Third Event
 e3 = Event.create(name: "Horror House Party", location: "Madrid", start_date: Date.current(),
                   end_date: Date.tomorrow(), description: " Come to get scared!",
-                  public: true, event_organizer_id: e1o.id)
+                  is_public: true, event_organizer_id: e1o.id)
 n14 = Notification.create(message: "Thanks for creating a new Event",user_id: u2.id)
 e3.save!
 n14.save!
@@ -222,7 +222,7 @@ n16.save!
 #Fourth Event
 e4 = Event.create(name: "Water Park Party", location: "Torres del Paine", start_date: Date.current(),
                   end_date: Date.tomorrow(), description: " Come to get scared!",
-                  public: false, event_organizer_id: e2o.id)
+                  is_public: false, event_organizer_id: e2o.id)
 n17 = Notification.create(message: "Thanks for creating a new Event",user_id: u1.id)
 e4.save!
 n17.save!

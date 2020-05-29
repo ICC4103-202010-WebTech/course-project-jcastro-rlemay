@@ -6,7 +6,7 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.date :end_date
       t.string :location
       t.text :description
-      t.boolean :public
+      t.boolean :is_public
       t.belongs_to :event_organizer
 
       t.timestamps

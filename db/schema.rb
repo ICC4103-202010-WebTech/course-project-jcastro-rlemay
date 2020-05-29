@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_213214) do
     t.date "end_date"
     t.string "location"
     t.text "description"
-    t.boolean "public"
+    t.boolean "is_public"
     t.integer "event_organizer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
