@@ -1,5 +1,15 @@
 namespace :db do
-
+  task :populate_fake_data => :environment do
+    # If you are curious, you may check out the file
+    # RAILS_ROOT/test/factories.rb to see how fake
+    # model data is created using the Faker and
+    # FactoryBot gems.
+    puts "Populating database"
+    # 10 event venues is reasonable...
+    create_list(:user, 20)
+    # 50 customers with orders should be alright
+    create_list(:event_organizer_with_events, 10)
+  end
   task :query1 => :environment do
     puts("Query 1: Get all events created by certain user.")
     result1 = Event.where("event_organizer_id" => 1)
