@@ -17,7 +17,7 @@
     </ul>
   </section>
   <section class="user_options_wrapper">
-    <a> Edit Profile</a>
+    <%= link_to "Edit Profile", edit_user_path %>
     <%= link_to "View Friends", users_path %>
     <% if @organization != nil%>
       <%= link_to "View Organization", organization_path(@organization.organization_id) %>
