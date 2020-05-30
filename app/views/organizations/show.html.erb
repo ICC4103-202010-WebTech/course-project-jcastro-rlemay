@@ -13,7 +13,7 @@
     </section>
   </section>
   <section class="user_options_wrapper">
-    <a> Report </a>
+    <%= link_to "Edit Organization", edit_organization_path %>
     <%= link_to "View users", users_path %>
     <%= link_to "View Creator", user_path(@organization_creator.user_id) %>
   </section>

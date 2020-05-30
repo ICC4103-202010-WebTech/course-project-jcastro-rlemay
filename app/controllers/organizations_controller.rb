@@ -28,6 +28,7 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
+    @organization.flyer.attach(params[:flyer])
 
     respond_to do |format|
       if @organization.save
@@ -44,7 +45,9 @@ class OrganizationsController < ApplicationController
   # PATCH/PUT /organizations/1.json
   def update
     respond_to do |format|
-      if @organization.update(organization_params)
+      if @organization.update(name: organization_params[:name]) and
+          @profile.update(description: organization_params[:description],
+                          bannerPicture: organization_params[:bannerPicture])
         format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
         format.json { render :show, status: :ok, location: @organization }
       else
@@ -68,10 +71,12 @@ class OrganizationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
+      @profile = OrganizationProfile.where(organization_id: params[:id])[0]
     end
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.fetch(:organization, {}).permit(:id, :name, :members)
+      params.fetch(:organization, {}).permit(:id, :name, :members, :flyer,
+                                             :description,:bannerPicture)
     end
 end

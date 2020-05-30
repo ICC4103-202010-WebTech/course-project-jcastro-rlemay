@@ -4,43 +4,21 @@
 
 <section class="new_event_wrapper">
   <h1 class="wrapper_title">General information: </h1>
-  <form class="event_form">
+  <%= form_with model: @user do |form| %>
     <section class="new_event_name">
       <label for="name_field"><b>Event name:</b> </label>
-      <input type="text" class="name_field" name="name_field"><br><br>
+      <%= form.text_field :name, class: "form-control" %><br><br>
     </section>
     <section class="new_event_desc">
       <label for="desc_field"><b>Event description:</b> </label>
-      <textarea type="text" class="desc_field" name="desc_field"></textarea>
+      <%= form.text_field :description, class: "form-control" %><br><br>
     </section>
 
-    <section class="date">
-      <label class="container">Set a Date:
-        <input type="radio" checked="checked" name="radio">
-        <span class="checkmark"></span>
-      </label>
-      <input type="date" class="start" name="trip-start"
-             value="2018-07-22"
-             min="2018-01-01" max="2018-12-31"><br>
-    </section>
-
-    <label class="container">Set a Poll
-      <input type="radio" name="radio">
-      <span class="checkmark"></span>
-    </label>
-    <!--
-    <section class="new_event_date">
-      <input type="radio" class="set_date" name="set_date" value="">
-      <label for="set_date"><b>Set a Date:</b> </label>
-      <input type="date" class="start" name="trip-start"
-             value="2018-07-22"
-             min="2018-01-01" max="2018-12-31"><br>
-
-      <input type="radio" class="set_poll" name="set_poll" value="">
-      <label for="set_poll"><b>Set a Poll</b> </label><br>
-    </section>
-    -->
-  </form>
+    <%= radio_button_tag(:start_date, "child") %>
+    <%= select_date Date.today, prefix: :start_date %><br><br>
+    <%= radio_button_tag(:poll, "child") %>
+    <%= label_tag(:poll, "Set a Poll") %>
+  <% end %>
 </section>
 
 <section class="invite_wrapper">
