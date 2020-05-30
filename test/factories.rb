@@ -33,8 +33,6 @@ FactoryBot.define do
     x = Event.where(:start_date => nil)
     name { x.name + " poll" }
     dates = ""
-
-    t.text { Faker::Date}
   end
   factory :poll_notification do
 

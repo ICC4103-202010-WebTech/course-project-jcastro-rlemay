@@ -1,6 +1,37 @@
-<h1>Editing User</h1>
+<div class="row ml-0 mt-3">
+  <h2>Edit User</h2>
+</div>
 
-<%= render 'form', user: @user %>
+<div class="row ml-0 mt-2">
+  <p>Please enter the required information to edit the User:</p>
+</div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class="row ml-0">
+  <%= form_with model: @user do |form| %>
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :lastName %>
+      <%= form.text_field :lastName, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :location %>
+      <%= form.text_field :location, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :address %>
+      <%= form.text_field :address, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :bio %>
+      <%= form.text_field :bio,:placeholder => @profile.bio, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Edit", class: ["btn", "btn-primary"] %>
+      <%= link_to "Back", :back, class: ["btn", "btn-secondary"] %>
+    </div>
+  <% end %>
+</div>

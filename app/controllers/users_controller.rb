@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @profile = UserProfile.where(user_id: params[:id])[0]
     @events_created = Event.where(event_organizer_id: params[:id])
     @organization = OrganizationMember.where(user_id: params[:id])[0]
   end
@@ -45,13 +44,17 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(name: user_params[:name], lastName: user_params[:lastName],
+                      location: user_params[:location],
+                      address: user_params[:address]) and
+          @profile.update(bio: user_params[:bio])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
@@ -69,11 +72,12 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      @profile = UserProfile.where(user_id: params[:id])[0]
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
       params.fetch(:user, {}).permit(:id, :name, :lastName, :password, :email,
-                                     :location, :address, :phone)
+                                     :location, :address, :phone, :bio)
     end
 end

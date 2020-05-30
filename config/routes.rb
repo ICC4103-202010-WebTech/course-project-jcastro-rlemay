@@ -25,4 +25,12 @@ Rails.application.routes.draw do
   resources :organizations, defaults: { format: :html } do
     resources :events, defaults: { format: :html }
   end
+
+  namespace :admin do
+    resources :events do
+      resources :comments, shallow: true
+    end
+    resources :organizations
+  end
+
 end
