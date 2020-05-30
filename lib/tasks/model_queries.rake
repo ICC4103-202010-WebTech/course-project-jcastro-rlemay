@@ -5,10 +5,9 @@ namespace :db do
     # model data is created using the Faker and
     # FactoryBot gems.
     puts "Populating database"
-    # 10 event venues is reasonable...
     create_list(:user, 20)
-    # 50 customers with orders should be alright
     create_list(:event_organizer_with_events, 10)
+    create_list(:organization, 3)
   end
   task :query1 => :environment do
     puts("Query 1: Get all events created by certain user.")

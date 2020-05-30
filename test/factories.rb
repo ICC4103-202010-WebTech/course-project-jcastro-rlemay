@@ -6,7 +6,7 @@ FactoryBot.define do
   factory :user do
     name { Faker::FunnyName.name }
     lastName { Faker::Name.last_name }
-    password { Faker::Code.sin }
+    password { Faker::Internet.password }
     email {Faker::Internet.safe_email}
     location {Faker::Nation.capital_city}
     address {Faker::Address.full_address}
@@ -29,7 +29,6 @@ FactoryBot.define do
   end
 
   factory :event do
-
     factory :event_without_poll do
       name { Faker::Esport.event }
       start_date { Faker::Date.between(from: Date.today, to: Date.today + 6.months) }
@@ -37,30 +36,74 @@ FactoryBot.define do
       location { Faker::Address.street_address }
       description { Faker::Lorem.sentence }
       is_public { Faker::Boolean.boolean }
+
+      transient do
+        invitations_count { rand(1..5) }
+        comments_count { rand(2..10)}
+      end
+
+      after(:create) do |event, evaluator|
+        create_list(:invitation, evaluator.invitations_count, event: event)
+      end
     end
     factory :event_with_poll do
       name { Faker::Esport.event }
       location { Faker::Address.street_address }
       description { Faker::Lorem.sentence }
       is_public { Faker::Boolean.boolean }
+      transient do
+        invitations_count { rand(1..5) }
+        comments_count { rand(2..10)}
+      end
       after(:create) do |event, evaluator|
-        create_list(:poll, 1,event: event, name: event.name+" poll")
+        create_list(:poll, 1 ,event: event, name: event.name+" poll")
+        create_list(:invitation, evaluator.invitations_count, event: event)
+        create_list(:comment, evaluator.comments_count, event_page_id: event.id)
       end
     end
-
   end
 
-
-
   factory :invitation do
-    message { Faker::Lorem.sentence}
-    user_id { User.offset(rand(User.count)).first.id }
-    event_id { Event.offset(rand(Event.count)).first.id }
+    message { Faker::Lorem.sentence }
+    user { User.offset(rand(User.count)).first }
   end
 
   factory :poll do
-    minimumAnswers { Faker::Number.within(range: 5..20)}
+    minimumAnswers { Faker::Number.within(range: 5..20) }
     possibleDates { Faker::Date.in_date_period(year: 2021).to_s + " " + Faker::Date.in_date_period(year: 2021).to_s+ " " + Faker::Date.in_date_period(year: 2021).to_s}
   end
 
+  factory :comment do
+    content { Faker::Lorem.sentence }
+    user { User.offset(rand(User.count)).first }
+    transient do
+      replies_count {rand(0..2)}
+    end
+    after(:create) do |comment, evaluator|
+      create_list(:comment_reply, evaluator.replies_count,comment: comment)
+    end
+  end
+
+  factory :comment_reply do
+    content { Faker::Lorem.sentence }
+    user { User.offset(rand(User.count)).first }
+  end
+
+  factory :organization do
+    name { Faker::Company.industry + " " + Faker::Company.suffix }
+    transient do
+      replies_count {rand(0..2)}
+    end
+    after(:create) do |organization, evaluator|
+      create_list(:organization_admin, 1, organization: organization)
+      create_list(:organization_member, evaluator.replies_count, organization: organization)
+    end
+  end
+
+  factory :organization_admin do
+    user { User.offset(rand(User.count)).first }
+  end
+  factory :organization_member do
+    user { User.offset(rand(User.count)).first }
+  end
 end
