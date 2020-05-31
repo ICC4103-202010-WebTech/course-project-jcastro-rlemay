@@ -17,7 +17,10 @@
         <h1 class="page_name"><%= link_to "Eventer", root_path%></h1>
       </section>
       <section class="header_search">
-        <input type="text" placeholder="Search..">
+        <%= form_with(url: "/search", method: "get") do %>
+          <%= text_field_tag(:query) %>
+          <%= submit_tag("Search") %>
+        <% end %>
       </section>
       <section class="header_rightPart">
         <h3><%= link_to "New Event", new_event_path %></h3>

@@ -104,6 +104,18 @@ FactoryBot.define do
 
   factory :organization_member do
     user { User.offset(rand(User.count)).first }
+    after(:create) do |user, evaluator|
+      if EventOrganizer.where(user_id: user.id)[0] != nil
+        id_organizer = EventOrganizer.where(user_id: user.id)[0].id
+        Event.where(event_organizer_id: id_organizer).each do |event|
+          create(:organization_event, organization: user.organization, event: event)
+        end
+      end
+    end
+  end
+
+  factory :organization_event do
+
   end
 
 end
