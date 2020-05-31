@@ -90,11 +90,11 @@ FactoryBot.define do
   factory :organization do
     name { Faker::Company.industry + " " + Faker::Company.suffix }
     transient do
-      replies_count {rand(0..2)}
+      members_count {rand(0..2)}
     end
     after(:create) do |organization, evaluator|
       create_list(:organization_admin, 1, organization: organization)
-      create_list(:organization_member, evaluator.replies_count, organization: organization)
+      create_list(:organization_member, evaluator.members_count, organization: organization)
     end
   end
 
@@ -104,11 +104,11 @@ FactoryBot.define do
 
   factory :organization_member do
     user { User.offset(rand(User.count)).first }
-    after(:create) do |user, evaluator|
-      if EventOrganizer.where(user_id: user.id)[0] != nil
-        id_organizer = EventOrganizer.where(user_id: user.id)[0].id
+    after(:create) do |member, evaluator|
+      if EventOrganizer.where(user_id: member.id)[0] != nil
+        id_organizer = EventOrganizer.where(user_id: member.id)[0].id
         Event.where(event_organizer_id: id_organizer).each do |event|
-          create(:organization_event, organization: user.organization, event: event)
+          create(:organization_event, organization: member.organization, event: event)
         end
       end
     end
