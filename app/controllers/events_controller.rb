@@ -48,7 +48,19 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    if params[:date] == "not poll"
+      x = params[:start_date]
+      x = x[:year] + "-" + x[:month] + "-" + x[:day]
+      y = params[:end_date]
+      y = y[:year] + "-" + y[:month] + "-" + y[:day]
+    else
+      x = nil
+      y = nil
+    end
+
+    @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
+                       description: event_params[:description],
+                       event_organizer: EventOrganizer.find(1))
 
     respond_to do |format|
       if @event.save

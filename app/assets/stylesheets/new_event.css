@@ -159,3 +159,15 @@
         margin-bottom: 2%;
         padding: 1%;
     }
+
+    .button_with_link{
+        border: 2px solid #8E7A3F;
+        background: #8E7A3F;
+        color: white;
+        margin-bottom: 2%;
+        padding: 1%;
+    }
+
+    .date_wrapper{
+        margin-left: 20px;
+    }
