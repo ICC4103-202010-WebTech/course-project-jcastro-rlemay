@@ -56,6 +56,7 @@ class EventsController < ApplicationController
     else
       x = nil
       y = nil
+
     end
 
     @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
@@ -64,6 +65,13 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        if x == nil
+          @poll = Poll.new(
+              name: params[:event][:poll_attributes][:name],
+              possibleDates: params[:event][:poll_attributes][:possibleDates],
+              minimumAnswers: params[:event][:poll_attributes][:minimumAnswers].to_i, event_id: @event.id)
+          @poll.save!
+        end
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -106,6 +114,7 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :description, :is_public, :event_organizer_id)
+                                      :description, :is_public, :event_organizer_id,
+                                      poll_attributes: [:name, :possibleDates, :minimumAnswers])
     end
 end

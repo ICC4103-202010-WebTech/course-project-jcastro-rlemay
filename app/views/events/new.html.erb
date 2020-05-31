@@ -24,7 +24,23 @@
         <%= radio_button_tag(:date, "is poll") %>
         <%= label_tag("Set a Poll") %>
       </section>
-
+    <div class="form-group">
+      <p> Create a Poll: </p>
+      <%= form.fields_for :poll_attributes do |poll| %>
+        <div class="form-group">
+          <%= poll.label :name %>
+          <%= poll.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= poll.label :possibleDates %>
+          <%= poll.text_field :possibleDates, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= poll.label :minimumAnswers %>
+          <%= poll.number_field :minimumAnswers, class: "form-control" %>
+        </div>
+      <% end %>
+    </div>
   </section>
 
   <section class="invite_wrapper">

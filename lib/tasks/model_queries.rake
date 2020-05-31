@@ -4,6 +4,7 @@ namespace :db do
     # RAILS_ROOT/test/factories.rb to see how fake
     # model data is created using the Faker and
     # FactoryBot gems.
+    :seed
     puts "Populating database"
     create_list(:user, 30)
     create_list(:event_organizer_with_events, 10)

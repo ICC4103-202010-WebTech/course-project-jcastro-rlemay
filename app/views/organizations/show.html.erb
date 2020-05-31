@@ -19,7 +19,7 @@
   </section>
 </section>
 
-<h1 class="profile_title">This Organization's Events:</h1>
+<h1 class="profile_title">This Organization's Public Events:</h1>
 <% @organization_events.each do |event| %>
   <section class="user_events_wrapper">
     <section class="events_upper">
@@ -28,8 +28,8 @@
     <section class="events_details">
       <i class="far fa-square fa-8x"></i>
       <section class="event_text">
-        <h3><%= link_to event.event.name, event_path(event.id) %></h3>
-        <%= event.event.description %>
+        <h3><%= link_to event.name, event_path(event.id) %></h3>
+        <%= event.description %>
       </section>
     </section>
     <section class="events_down">
