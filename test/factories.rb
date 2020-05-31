@@ -13,6 +13,7 @@ FactoryBot.define do
     phone {Faker::PhoneNumber.cell_phone}
   end
 
+
   factory :event_organizer do
     user {User.offset(rand(User.count)).first}
     factory :event_organizer_with_events do
@@ -26,17 +27,17 @@ FactoryBot.define do
         create_list(:event_with_poll, evaluator.event_with_poll_count, event_organizer: event_organizer)
       end
     end
+
   end
 
   factory :event do
+    name { Faker::Esport.event }
+    location { Faker::Address.street_address }
+    description { Faker::Lorem.sentence }
+    is_public { Faker::Boolean.boolean }
     factory :event_without_poll do
-      name { Faker::Esport.event }
       start_date { Faker::Date.between(from: Date.today, to: Date.today + 6.months) }
       end_date { Faker::Date.between(from: start_date, to: start_date + 6.months) }
-      location { Faker::Address.street_address }
-      description { Faker::Lorem.sentence }
-      is_public { Faker::Boolean.boolean }
-
       transient do
         invitations_count { rand(1..5) }
         comments_count { rand(2..10)}
@@ -47,10 +48,6 @@ FactoryBot.define do
       end
     end
     factory :event_with_poll do
-      name { Faker::Esport.event }
-      location { Faker::Address.street_address }
-      description { Faker::Lorem.sentence }
-      is_public { Faker::Boolean.boolean }
       transient do
         invitations_count { rand(1..5) }
         comments_count { rand(2..10)}
@@ -62,6 +59,7 @@ FactoryBot.define do
       end
     end
   end
+
 
   factory :invitation do
     message { Faker::Lorem.sentence }
@@ -103,7 +101,9 @@ FactoryBot.define do
   factory :organization_admin do
     user { User.offset(rand(User.count)).first }
   end
+
   factory :organization_member do
     user { User.offset(rand(User.count)).first }
   end
+
 end
