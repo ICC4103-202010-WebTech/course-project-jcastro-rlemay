@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_one :user_profile, dependent: :destroy
-  after_create :build_user_profile
+  before_create :build_user_profile
   has_one :inbox, dependent: :destroy
   before_create :build_inbox
   has_one :organization_member
