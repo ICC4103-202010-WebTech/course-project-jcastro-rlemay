@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <%= stylesheet_link_tag "event_show" %>
 
 <h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
@@ -45,7 +44,12 @@
 
 <section class="comments_wrapper">
   <h1 class="wrapper_title"> Comments: </h1>
-
+  <div class="form-group">
+    <%= form_with model: @comment do |form| %>
+      <%= form.text_area :content, class: "form-control", placeholder: "Write a comment..."%>
+      <%= form.submit "Send", class: ["btn", "btn-primary"] %>
+    <% end %>
+  </div>
   <% @comments.each do |comment| %>
     <section class="comment_box">
       <section class="user_comment">

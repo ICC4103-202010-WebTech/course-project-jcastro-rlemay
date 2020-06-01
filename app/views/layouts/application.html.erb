@@ -4,7 +4,7 @@
   <title>CourseProjectJcastroRlemay</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/bb30ccd945.js" crossorigin="anonymous"></script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -31,12 +31,12 @@
 
     </div>
     <% if notice.present? %>
-      <div class="row ml-0 mt-3" role="alert">
+      <div class="" role="alert">
         <div id="notice" class="alert alert-success"><%= notice %></div>
       </div>
     <% end %>
     <% if alert.present? %>
-      <div class="row ml-0 mt-3" role="alert">
+      <div class="" role="alert">
         <div id="alert" class="alert alert-danger"><%= alert %></div>
       </div>
     <% end %>
