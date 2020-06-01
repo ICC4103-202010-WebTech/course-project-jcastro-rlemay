@@ -19,7 +19,7 @@
       <section class="header_search">
         <%= form_with(url: "/search", method: "get") do %>
           <%= text_field_tag(:query) %>
-          <%= link_to submit_tag("Search"), search_path %>
+          <%= submit_tag("Search") %>
         <% end %>
       </section>
       <section class="header_rightPart">

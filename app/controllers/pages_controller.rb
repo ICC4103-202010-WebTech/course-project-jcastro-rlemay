@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 
   end
   def search
+    print("holaaaaaaaaaaaaa", params)
     @user_with_name = User.where("name LIKE ? or lastName LIKE ?", "%"+params[:query].to_s+"%", "%"+params[:query].to_s+"%").limit(5)
     @user_name = UserProfile.where("userName LIKE ?", "%"+params[:query].to_s+"%").limit(5)
     @organization = Organization.where("name LIKE ?", "%"+params[:query].to_s+"%").limit(5)
