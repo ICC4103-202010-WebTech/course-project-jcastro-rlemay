@@ -6,7 +6,7 @@
 <h1 class="subtitle">users:</h1>
 
 <section class="user_wrapper">
-  <%= render :partial => "users/user_list", collection: @users_by_name, as: @users %>
+  <%= render :partial => 'users/user_list', collection: @users_by_name, as: :user %>
 </section>
 
 <table style="color: white">
@@ -18,7 +18,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @user_name.each do |user|%>
+  <% @users_by_username.each do |user|%>
     <tr>
       <th><%= user.userName %></th>
       <th><%= user.bio%></th>
@@ -36,7 +36,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @organization.each do |organization|%>
+  <% @organizations_by_name.each do |organization|%>
     <tr>
       <th><%= organization.name %></th>
       <th><%= organization.members%></th>
@@ -59,7 +59,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @event_title.each do |event|%>
+  <% @events_by_title.each do |event|%>
     <tr>
       <th><%= event.name %></th>
       <th><%= event.start_date%></th>
@@ -85,7 +85,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @event_desc.each do |event|%>
+  <% @events_by_desc.each do |event|%>
     <tr>
       <th><%= event.name %></th>
       <th><%= event.start_date%></th>

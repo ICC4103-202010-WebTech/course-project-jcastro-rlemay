@@ -3,5 +3,5 @@
 <h1 class="title">Users</h1>
 
   <section class="user_wrapper">
-    <%= render "user_list" %>
+    <%= render :partial => 'user_list', collection: @users, as: :user %>
   </section>

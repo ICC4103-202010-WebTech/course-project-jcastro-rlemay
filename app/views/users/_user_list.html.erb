@@ -1,5 +1,4 @@
-<% @users.each do |user| %>
-  <section class="user">
+ <section class="user">
     <i class="far fa-square fa-5x"></i>
     <% full_name =  user.name + " " + user.lastName%>
     <section>
@@ -9,4 +8,3 @@
       <p><b>Location: </b> <%= user.location %></p>
     </section>
   </section>
-<% end %>
