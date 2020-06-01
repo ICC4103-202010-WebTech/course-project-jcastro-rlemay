@@ -5,135 +5,42 @@
 
 <h1 class="subtitle">Users by name:</h1>
 
-<section class="user_wrapper">
+<section class="wrapper">
   <%= render :partial => 'users/user_list', collection: @users_by_name, as: :user %>
 </section>
 
 <h1 class="subtitle">Users by username:</h1>
 
-<section class="user_wrapper">
+<section class="wrapper">
   <%= render :partial => 'users/user_list', collection: @users_by_username, as: :user %>
 </section>
 
-<table style="color: white">
-  <thead>
-  <br><br><%= "Organizations:" %>
-  <tr>
-    <th>Name</th>
-    <th>Members</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @organizations_by_name.each do |organization|%>
-    <tr>
-      <th><%= organization.name %></th>
-      <th><%= organization.members%></th>
-    </tr>
-    </tbody>
-  <% end %>
-</table>
+<h1 class="subtitle">Organizations by name:</h1>
 
+<section class="wrapper">
+  <%= render :partial => 'organizations/organization_list', collection: @organizations_by_name, as: :organization %>
+</section>
 
-<table style="color: white">
-  <thead>
-  <br><br><%= "Events by Name:" %>
-  <tr>
-    <th>Name</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Location</th>
-    <th>Description</th>
-    <th>Public</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @events_by_title.each do |event|%>
-    <tr>
-      <th><%= event.name %></th>
-      <th><%= event.start_date%></th>
-      <th><%= event.end_date%></th>
-      <th><%= event.location%></th>
-      <th><%= event.description%></th>
-      <th><%= event.is_public%></th>
-    </tr>
-    </tbody>
-  <% end %>
-  </table>
+<h1 class="subtitle">Events by name:</h1>
 
-<table style="color: white">
-  <thead>
-  <br><br><%= "Events by Description:" %>
-  <tr>
-    <th>Name</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Location</th>
-    <th>Description</th>
-    <th>Public</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @events_by_desc.each do |event|%>
-    <tr>
-      <th><%= event.name %></th>
-      <th><%= event.start_date%></th>
-      <th><%= event.end_date%></th>
-      <th><%= event.location%></th>
-      <th><%= event.description%></th>
-      <th><%= event.is_public%></th>
-    </tr>
-    </tbody>
-  <% end %>
-  </table>
+<section class="wrapper">
+  <%= render :partial => 'events/events_list', collection: @events_by_title, as: :event %>
+</section>
 
-<table style="color: white">
-  <thead>
-  <br><br><%= "Events by Creator:" %>
-  <tr>
-    <th>Name</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Location</th>
-    <th>Description</th>
-    <th>Public</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @event_by_creator.each do |event|%>
-    <tr>
-      <th><%= event.name %></th>
-      <th><%= event.start_date%></th>
-      <th><%= event.end_date%></th>
-      <th><%= event.location%></th>
-      <th><%= event.description%></th>
-      <th><%= event.is_public%></th>
-    </tr>
-    </tbody>
-  <% end %>
-  </table>
+<h1 class="subtitle">Events by description:</h1>
 
-<table style="color: white">
-  <thead>
-  <br><br><%= "Events by Organization:" %>
-  <tr>
-    <th>Name</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Location</th>
-    <th>Description</th>
-    <th>Public</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @event_by_organization.each do |event|%>
-    <tr>
-      <th><%= event.name %></th>
-      <th><%= event.start_date%></th>
-      <th><%= event.end_date%></th>
-      <th><%= event.location%></th>
-      <th><%= event.description%></th>
-      <th><%= event.is_public%></th>
-    </tr>
-    </tbody>
-  <% end %>
-  </table>
+<section class="wrapper">
+  <%= render :partial => 'events/events_list', collection: @events_by_desc, as: :event %>
+</section>
+
+<h1 class="subtitle">Events by Creator:</h1>
+
+<section class="wrapper">
+  <%= render :partial => 'events/events_list', collection: @events_by_creator, as: :event %>
+</section>
+
+<h1 class="subtitle">Events by organization name:</h1>
+
+<section class="wrapper">
+  <%= render :partial => 'events/events_list', collection: @events_by_organization, as: :event %>
+</section>

@@ -13,8 +13,8 @@ class PagesController < ApplicationController
     @organizations_by_name = Organization.where("name LIKE ?", "%"+params[:query].to_s+"%").limit(5)
     @events_by_title = Event.where("name LIKE ?", "%"+params[:query].to_s+"%").limit(5)
     @events_by_desc = Event.where("description LIKE ?", "%"+params[:query].to_s+"%").limit(5)
-    @event_by_creator = Event.where(event_organizer_id: User.where("name LIKE ? or lastName LIKE ?", "%"+params[:query].to_s+"%", "%"+params[:query].to_s+"%").ids).limit(5)
-    @event_by_organization = Event.find(OrganizationEvent.where(organization_id: Organization.where("name LIKE ?", "%"+params[:query].to_s+"%").ids).pluck(:event_id))
+    @events_by_creator = Event.where(event_organizer_id: User.where("name LIKE ? or lastName LIKE ?", "%"+params[:query].to_s+"%", "%"+params[:query].to_s+"%").ids).limit(5)
+    @events_by_organization = Event.find(OrganizationEvent.where(organization_id: Organization.where("name LIKE ?", "%"+params[:query].to_s+"%").ids).pluck(:event_id))
   end
 
 end

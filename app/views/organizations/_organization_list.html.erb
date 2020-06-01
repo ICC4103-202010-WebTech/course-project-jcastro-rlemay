@@ -1,0 +1,10 @@
+<section class="organization">
+  <i class="far fa-square fa-5x"></i>
+
+  <section>
+    <p><b><%= link_to organization.name, organization_path(organization.id)%></b></p>
+    <p><b>Description: </b><%= OrganizationProfile.where(organization_id: organization.id)[0].description %></p>
+    <% admin =  OrganizationAdmin.where(organization_id: organization.id)[0]%>
+    <p><b>Creator: </b><%= admin.user.name+" "+admin.user.lastName %></p>
+  </section>
+</section>

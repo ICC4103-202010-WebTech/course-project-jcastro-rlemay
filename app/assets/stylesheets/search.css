@@ -1,5 +1,5 @@
 
-.user_wrapper{
+.wrapper{
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 5%;
@@ -29,3 +29,97 @@
             margin-top: auto;
             margin-bottom: auto;
         }
+
+    .organization{
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-bottom: 3%;
+        display: flex;
+        background-color: #262626;
+        color: #ffffff;
+        padding: 1%;
+        border: 2px solid #8E7A3F;
+        align-items: center;
+    }
+        .organization i{
+            margin-right: 1%;
+        }
+        .organization p{
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+    .event_section{
+        margin-left: 3%;
+        margin-right: 3%;
+        margin-bottom: 3%;
+        margin_top: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: #262626;
+        color: #ffffff;
+        padding: 1%;
+        padding-top: 0;
+        border: 2px solid #8E7A3F;
+        align-items: center;
+    }
+        .recent_title{
+            width: 100%;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: xx-large;
+            color: #8E7A3F;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+            .recent_event_name{
+                color: #8E7A3F;
+            }
+            .recent_buttons{
+                align-self: center;
+                margin-left: auto;
+            }
+                i:hover{
+                    color: #ac934e;
+                }
+                i:active{
+                    color: #8E7A3F;
+                }
+
+
+        .recent_body{
+            width: 100%;
+            display: flex;
+            padding-bottom: 10px;
+            margin-top: 0;
+            display: flex;
+            justify-content: start;
+        }
+            .far fa-square fa-10x{
+                float: left;
+                width: auto;
+            }
+            .recent_details{
+                margin-left: 20px;
+                padding-top: 2%;
+            }
+                .recent_event_desc{
+                    color: white;
+                }
+                .recent_date_box{
+                    display: flex;
+                    align-items: center;
+                }
+                    .recent_startDate{
+                        margin-left: 3px;
+                        margin-right: 10px;
+                    }
+
+                    .recent_endDate{
+                        margin-left: 3px;
+                    }
+            .recent_poll{
+                font-size: large;
+                margin-left: 3px;
+            }
