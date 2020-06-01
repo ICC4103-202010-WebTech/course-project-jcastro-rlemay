@@ -3,16 +3,5 @@
 <h1 class="title">Users</h1>
 
   <section class="user_wrapper">
-    <% @users.each do |user| %>
-      <section class="user">
-        <i class="far fa-square fa-5x"></i>
-        <% full_name =  user.name + " " + user.lastName%>
-        <section>
-          <p><b><%= link_to full_name, user_path(user.id)%></b></p>
-          <p><b>Bio: </b><%= UserProfile.where(user_id: user.id)[0].bio %></p>
-          <p><b>E-mail: </b> <%= user.email %></p>
-          <p><b>Location: </b> <%= user.location %></p>
-        </section>
-      </section>
-    <% end %>
+    <%= render "user_list" %>
   </section>

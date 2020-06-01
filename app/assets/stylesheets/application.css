@@ -89,4 +89,16 @@ td,th {
         width: 20%;
     }
 
+.title{
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #8E7A3F;
+    font-size: 40px;
+}
+.subtitle{
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #8E7A3F;
+    font-size: 25px;
+}
 
