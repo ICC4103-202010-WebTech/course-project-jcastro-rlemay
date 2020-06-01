@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   def search
     print("holaaaaaaaaaaaaa", params)
     @users_by_name = User.where("name LIKE ? or lastName LIKE ?", "%"+params[:query].to_s+"%", "%"+params[:query].to_s+"%").limit(5)
-    @users_by_username = UserProfile.where("userName LIKE ?", "%"+params[:query].to_s+"%").limit(5)
+    @users_by_username = User.where(id: UserProfile.where("userName LIKE ?", "%"+params[:query].to_s+"%").pluck(:user_id)).limit(5)
     @organizations_by_name = Organization.where("name LIKE ?", "%"+params[:query].to_s+"%").limit(5)
     @events_by_title = Event.where("name LIKE ?", "%"+params[:query].to_s+"%").limit(5)
     @events_by_desc = Event.where("description LIKE ?", "%"+params[:query].to_s+"%").limit(5)

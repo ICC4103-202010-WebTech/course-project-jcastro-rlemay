@@ -3,29 +3,17 @@
 <h1 class="title">Searching</h1>
 
 
-<h1 class="subtitle">users:</h1>
+<h1 class="subtitle">Users by name:</h1>
 
 <section class="user_wrapper">
   <%= render :partial => 'users/user_list', collection: @users_by_name, as: :user %>
 </section>
 
-<table style="color: white">
-  <thead>
-  <br><br><%= "Users by UserName:" %>
-  <tr>
-    <th>UserName</th>
-    <th>Biography</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @users_by_username.each do |user|%>
-    <tr>
-      <th><%= user.userName %></th>
-      <th><%= user.bio%></th>
-    </tr>
-    </tbody>
-  <% end %>
-  </table>
+<h1 class="subtitle">Users by username:</h1>
+
+<section class="user_wrapper">
+  <%= render :partial => 'users/user_list', collection: @users_by_username, as: :user %>
+</section>
 
 <table style="color: white">
   <thead>
