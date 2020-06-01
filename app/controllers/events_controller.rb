@@ -36,9 +36,11 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    print("ENTROOOO")
     @event = Event.new
     offset = rand(User.count)
     @invite_users = User.offset(offset).take(5)
+    print("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAa", @invite_users)
   end
 
   # GET /events/1/edit
@@ -75,6 +77,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
+        flash[:alert] = "Could not create event!"
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -86,6 +89,13 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
+        if params[:is_public] == "not public"
+          @event.is_public = false
+          @event.save!
+        elsif params[:is_public] == "public"
+          @event.is_public = true
+          @event.save!
+        end
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else

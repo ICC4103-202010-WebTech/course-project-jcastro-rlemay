@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_213214) do
     t.string "name"
     t.text "possibleDates"
     t.integer "minimumAnswers"
+    t.integer "currentAnswers", default: 0
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -14,27 +14,57 @@ a:visited{
     color: #8E7A3F;
     font-size: 40px;
 }
-    .event_section{
-        margin-left: 10%;
-        margin-right: 10%;
-        margin-bottom: 5%;
-        height: auto;
-        vertical-align: center;
+.event_image_wrapper{
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    text-align: center;
+}
+    .far fa-square fa-10x{
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+.event_section{
+    display: flex;
+    margin-bottom: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+    .event_details{
+        width: 80%;
+        margin-right: 2%;
         background-color: #262626;
         color: #ffffff;
         padding: 1%;
         border: 2px solid #8E7A3F;
-        display: flex;
-
-        align-items: center;
     }
-        .event_details{
-            display: block;
-            margin-left: 1%;
+        .event_dates i{
+            font-size: medium;
         }
-            .event_dates i{
-                font-size: medium;
-            }
+    .event_options_wrapper{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        background-color: #262626;
+        color: #8E7A3F;
+        border: 2px solid #8E7A3F;
+    }
+    .event_options_wrapper a{
+        display: block;
+        font-size: 17px;
+        padding: 22px;
+        text-align: center;
+        border: 2px solid #8E7A3F;
+
+    }
+    .event_options_wrapper a:hover{
+        background-color: #333333;
+        color: white;
+    }
 
 
 .invite_wrapper{

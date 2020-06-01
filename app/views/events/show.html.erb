@@ -1,72 +1,75 @@
 <p id="notice"><%= notice %></p>
 <%= stylesheet_link_tag "event_show" %>
 
-<body>
-  <div class="page_holder">
-    <h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
-    <section class="event_section">
-      <i class="far fa-square fa-10x"></i>
-      <section class="event_details">
-        <section class="event_dates">
-          <% if @date == "Poll" %>
-            <i class="far fa-calendar-alt fa-2x"></i>
-            <%= link_to @date, poll_path(Poll.where(event_id: @event.id)[0]) %>
-          <% else %>
-            <i class="far fa-calendar-alt fa-2x"></i>
-            <%= @date %>
-          <% end %>
-          <% if @end_date != "Poll" %>
-            <i class="fas fa-hourglass-end fa-2x"></i>
+<h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
+<section class="event_image_wrapper">
+  <i class="far fa-square fa-10x"></i>
+</section>
+<section class="event_section">
+  <section class="event_details">
+    <section class="event_dates">
+      <% if @date == "Poll" %>
+        <i class="far fa-calendar-alt fa-2x"></i>
+        <%= link_to @date, poll_path(Poll.where(event_id: @event.id)[0]) %>
+      <% else %>
+        <i class="far fa-calendar-alt fa-2x"></i>
+        <%= @date %>
+      <% end %>
+      <% if @end_date != "Poll" %>
+        <i class="fas fa-hourglass-end fa-2x"></i>
+        <%= @end_date %>
+      <% end %>
+    </section>
+    <section class="event_desc">
+      <p> Event description:</p>
+      <p> <%=@event.description %></p>
+    </section>
+  </section>
+  <section class="event_options_wrapper">
+    <%= link_to "Edit Event", edit_event_path %>
+    <%= link_to "View Event Pictures", edit_event_path %>
+    <%= link_to "View Event Files", edit_event_path %>
+  </section>
+</section>
 
-            <%= @end_date %>
-          <% end %>
-        </section>
-        <section class="event_desc">
-          <p> Event description:</p>
-          <p> <%=@event.description %></p>
-        </section>
+<section class="invite_wrapper">
+  <h1 class="wrapper_title">Invited Users: </h1>
+  <% @invited.each do |invitation| %>
+    <section class="user">
+      <i class="far fa-square fa-5x"></i>
+      <% full_name =  invitation.user.name + " " + invitation.user.lastName%>
+      <p><b><%= link_to full_name, user_path(invitation.user.id)%></b></p>
+    </section>
+  <% end %>
+</section>
+
+<section class="comments_wrapper">
+  <h1 class="wrapper_title"> Comments: </h1>
+
+  <% @comments.each do |comment| %>
+    <section class="comment_box">
+      <section class="user_comment">
+        <i class="far fa-square fa-5x"></i>
+        <% full_name =  comment.user.name + " " + comment.user.lastName%>
+        <p><b><%= link_to full_name, user_path(comment.user.id)%></b></p>
       </section>
-    </section>
-
-    <section class="invite_wrapper">
-      <h1 class="wrapper_title">Invited Users: </h1>
-      <% @invited.each do |invitation| %>
-        <section class="user">
-          <i class="far fa-square fa-5x"></i>
-          <% full_name =  invitation.user.name + " " + invitation.user.lastName%>
-          <p><b><%= link_to full_name, user_path(invitation.user.id)%></b></p>
-        </section>
-      <% end %>
-    </section>
-
-    <section class="comments_wrapper">
-      <h1 class="wrapper_title"> Comments: </h1>
-      <% @comments.each do |comment| %>
-        <section class="comment_box">
-          <section class="user_comment">
-            <i class="far fa-square fa-5x"></i>
-            <% full_name =  comment.user.name + " " + comment.user.lastName%>
-            <p><b><%= link_to full_name, user_path(comment.user.id)%></b></p>
-          </section>
-          <p class="comment"><%= comment.content %></p>
-          <section class="reply_box">
-            <% replies = @comment_replies.where(comment_id: comment.id) %>
-            <% if replies != nil%>
-              <% replies.each do |reply| %>
-                <section class="user_reply">
-                  <i class="far fa-square fa-5x"></i>
-                  <% full_name =  reply.user.name + " " + reply.user.lastName%>
-                  <p><b><%= link_to full_name, user_path(reply.user.id)%></b></p>
-                </section>
-                <p class="reply"><%= reply.content %></p>
-              <% end %>
+      <p class="comment"><%= comment.content %></p>
+      <% replies = @comment_replies.where(comment_id: comment.id) %>
+      <% if replies != []%>
+        <section class="reply_box">
+            <% replies.each do |reply| %>
+              <section class="user_reply">
+                <i class="far fa-square fa-5x"></i>
+                <% full_name =  reply.user.name + " " + reply.user.lastName%>
+                <p><b><%= link_to full_name, user_path(reply.user.id)%></b></p>
+              </section>
+              <p class="reply"><%= reply.content %></p>
             <% end %>
-          </section>
         </section>
       <% end %>
     </section>
-  </div>
-</body>
+  <% end %>
+</section>
 
 
 

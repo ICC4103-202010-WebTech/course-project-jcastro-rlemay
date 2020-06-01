@@ -41,16 +41,21 @@ class PollsController < ApplicationController
   # PATCH/PUT /polls/1
   # PATCH/PUT /polls/1.json
   def update
-    respond_to do |format|
-      if @poll.update(poll_params)
-        format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
-        format.json { render :show, status: :ok, location: @poll }
+
+      @vote = Vote.new(answerDate: params[:start_date], poll_id: @poll.id, user_id: 1)
+      if @vote.save
+        if @poll.update(currentAnswers: @poll.currentAnswers + 1)
+          redirect_to @poll.event, notice: 'Vote was created.'
+        else
+          render :edit
+          render json: @poll.errors, status: :unprocessable_entity
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @poll.errors, status: :unprocessable_entity }
+        flash[:alert] = "You already voted!"
+        redirect_to @poll.event
+
       end
     end
-  end
 
   # DELETE /polls/1
   # DELETE /polls/1.json
@@ -70,6 +75,7 @@ class PollsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def poll_params
-      params.fetch(:poll, {}).permit(:id, :name, :possibleDates, :minimumAnswers, :event_id)
+      params.fetch(:poll, {}).permit(:id, :name, :possibleDates, :minimumAnswers,
+                                     :currentAnswers ,:event_id)
     end
 end

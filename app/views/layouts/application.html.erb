@@ -30,7 +30,18 @@
       </section>
 
     </div>
+    <% if notice.present? %>
+      <div class="row ml-0 mt-3" role="alert">
+        <div id="notice" class="alert alert-success"><%= notice %></div>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="row ml-0 mt-3" role="alert">
+        <div id="alert" class="alert alert-danger"><%= alert %></div>
+      </div>
+    <% end %>
   </header>
+
 
   <main>
     <%= yield %>

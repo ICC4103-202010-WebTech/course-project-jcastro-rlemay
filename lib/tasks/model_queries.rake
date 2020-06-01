@@ -1,10 +1,11 @@
 namespace :db do
+  task :set => :environment do
+    Rake::Task["db:drop:all"].invoke
+    Rake::Task["db:migrate"].invoke
+    Rake::Task["db:populate_fake_data"].invoke
+  end
   task :populate_fake_data => :environment do
-    # If you are curious, you may check out the file
-    # RAILS_ROOT/test/factories.rb to see how fake
-    # model data is created using the Faker and
-    # FactoryBot gems.
-    :seed
+    Rake::Task["db:seed"].invoke
     puts "Populating database"
     create_list(:user, 30)
     create_list(:event_organizer_with_events, 10)

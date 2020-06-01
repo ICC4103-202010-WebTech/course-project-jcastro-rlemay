@@ -3,26 +3,25 @@
 
 <h1 class="title">Event poll:</h1>
 
-<section class="poll_wrapper">
-  <i class="far fa-square fa-10x"></i>
-  <section class="data_wrapper">
-    <h2 class="poll_title">Pick which date accommodates you:</h2>
-    <p class="disclaimer">*Only one answer per user</p>
-    <% @dates.each do |date| %>
-      <p class="options">
-        <label class="container">
-          <input type="radio" checked="checked" name="radio">
-          <span class="checkmark"></span>
-          <label for="set_date"><%= Date.parse(date) %></label>
-        </label>
-
-      </p>
-    <% end %>
+<%= form_with model: @poll  do |form| %>
+  <section class="poll_wrapper">
+    <i class="far fa-square fa-10x"></i>
+    <section class="data_wrapper">
+      <h2 class="poll_title">Pick which date accommodates you:</h2>
+      <p class="disclaimer">*Only one answer per user (end date will be 1 week from selected answer)</p>
+        <% @dates.each do |date| %>
+          <p class="options">
+            <label class="container">
+              <%= radio_button_tag(:start_date, date) %>
+              <span class="checkmark"></span>
+              <label for="set_date"><%= Date.parse(date) %></label>
+            </label>
+          </p>
+        <% end %>
+    </section>
   </section>
-</section>
 
-<section class="button_wrapper">
-  <button class="button">Submit answer</button>
-  <!-- render 'form', event: @event -->
-
-</section>
+  <section class="button_wrapper">
+    <%= form.submit "Vote", class: "button" %>
+  </section>
+<%end %>
