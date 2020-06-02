@@ -2,8 +2,8 @@
 
 <h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
 <section class="event_image_wrapper">
-  <% if @event.event_page.user_banner_picture.attached? %>
-    <%= image_tag(@event.event_page.user_banner_picture, width: "400px") %>
+  <% if @event_page.event_banner_picture.attached? %>
+    <%= image_tag(@event.event_page.event_banner_picture, width: "400px") %>
   <%else %>
     <i class="far fa-square fa-10x"></i>
   <% end %>

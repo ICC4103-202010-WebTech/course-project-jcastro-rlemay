@@ -36,11 +36,9 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    print("ENTROOOO")
     @event = Event.new
     offset = rand(User.count)
     @invite_users = User.offset(offset).take(5)
-    print("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAa", @invite_users)
   end
 
   # GET /events/1/edit
@@ -64,10 +62,10 @@ class EventsController < ApplicationController
     @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
                        description: event_params[:description],
                        event_organizer: EventOrganizer.find(1))
-
     respond_to do |format|
       if @event.save
-        @event.event_page.event_banner_picture.attach(params[:event_banner_picture])
+        @event.event_page.event_banner_picture.attach(event_params[:picture])
+        print("AAAAAAAAAA", )
         @event.event_page.save
         if x == nil
           @poll = Poll.new(
@@ -127,7 +125,7 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :description, :is_public, :event_organizer_id, :event_banner_picture,
+                                      :description, :is_public, :event_organizer_id, :picture,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers])
     end
 end
