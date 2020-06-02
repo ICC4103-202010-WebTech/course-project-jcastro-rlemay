@@ -9,7 +9,13 @@
     </section>
   </section>
   <section class="recent_body">
-    <i class="far fa-square fa-10x"></i>
+    <section class="event_image_wrapper">
+      <% if event.event_page.event_banner_picture.attached? %>
+        <%= image_tag(event.event_page.event_banner_picture, width: "400px") %>
+      <%else %>
+        <i class="far fa-square fa-10x"></i>
+      <% end %>
+    </section>
     <section class="recent_details">
 
       <p class="recent_event_desc"> <%= event.description %></p>
