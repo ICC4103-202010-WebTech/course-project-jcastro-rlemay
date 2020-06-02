@@ -14,13 +14,13 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :description %>
-      <%= form.text_field :description, :placeholder => @profile.description, class: "form-control" %>
+      <%= form.label :banner_picture, "Set Banner Picture" %>
+      <%= form.file_field :banner_picture %>
     </div>
 
     <div class="form-group">
-      <%= form.label :bannerPicture %>
-      <%= form.text_field :bannerPicture,:placeholder => @profile.bannerPicture, class: "form-control" %>
+      <%= form.label :description %>
+      <%= form.text_field :description, :placeholder => @profile.description, class: "form-control" %>
     </div>
 
     <div class="form-group">

@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       if @user.update(name: user_params[:name], lastName: user_params[:lastName],
                       location: user_params[:location],
                       address: user_params[:address]) and
-          @profile.update(bio: user_params[:bio])
+          @profile.update(bio: user_params[:bio], profile_picture: user_params[:profile_picture])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -77,6 +77,6 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.fetch(:user, {}).permit(:id, :name, :lastName, :password, :email,
-                                     :location, :address, :phone, :bio)
+                                     :location, :address, :phone, :bio, :profile_picture)
     end
 end

@@ -4,7 +4,11 @@
 <h1 class="profile_title">Your Profile</h1>
 <section class="profile_wrapper">
   <section class="user_image_wrapper">
-    <i class="far fa-square fa-10x"></i>
+    <% if @profile.profile_picture.attached? %>
+      <%= image_tag(@profile.profile_picture, width: "200px") %>
+    <%else %>
+      <i class="far fa-square fa-10x"></i>
+    <% end %>
   </section>
   <section class="user_info_wrapper">
     <h1 class="wrapper_title"><%= @user.name %>  <%= @user.lastName %></h1>

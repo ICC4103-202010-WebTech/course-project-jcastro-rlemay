@@ -1,5 +1,11 @@
 <section class="organization">
-  <i class="far fa-square fa-5x"></i>
+  <i class="mr-10">
+    <% if organization.organization_profile.banner_picture.attached? %>
+      <%= image_tag(organization.organization_profile.banner_picture, width: "100px") %>
+    <%else %>
+      <%= image_tag("organization.jpeg", width: "100px", background: "#55595c", color: "#eceeef") %>
+    <% end %>
+  </i>
 
   <section>
     <p><b><%= link_to organization.name, organization_path(organization.id)%></b></p>

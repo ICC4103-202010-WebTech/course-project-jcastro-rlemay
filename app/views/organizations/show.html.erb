@@ -1,10 +1,13 @@
-<p id="notice"><%= notice %></p>
 <%= stylesheet_link_tag "profile.css" %>
 
 <h1 class="profile_title"><%= @organization.name %>'s Profile</h1>
 <section class="profile_wrapper">
   <section class="user_image_wrapper">
-    <i class="far fa-square fa-10x"></i>
+    <% if @profile.banner_picture.attached? %>
+      <%= image_tag(@profile.banner_picture, width: "200px") %>
+    <%else %>
+      <i class="far fa-square fa-10x"></i>
+    <% end %>
   </section>
   <section class="user_info_wrapper">
     <section class="info">

@@ -1,5 +1,11 @@
  <section class="user">
-    <i class="far fa-square fa-5x"></i>
+   <i class="mr-10">
+     <% if user.user_profile.profile_picture.attached? %>
+         <%= image_tag(user.user_profile.profile_picture, width: "100px") %>
+     <%else %>
+       <%= image_tag("profile.png", width: "100px", background: "#55595c", color: "#eceeef") %>
+     <% end %>
+   </i>
     <% full_name =  user.name + " " + user.lastName%>
     <section>
       <p><b><%= link_to full_name, user_path(user.id)%></b></p>

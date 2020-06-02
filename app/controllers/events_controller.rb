@@ -64,9 +64,8 @@ class EventsController < ApplicationController
                        event_organizer: EventOrganizer.find(1))
     respond_to do |format|
       if @event.save
-        @event.event_page.event_banner_picture.attach(event_params[:picture])
-        print("AAAAAAAAAA", )
-        @event.event_page.save
+        @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+        @event_page.save
         if x == nil
           @poll = Poll.new(
               name: params[:event][:poll_attributes][:name],
@@ -88,7 +87,10 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update(event_params)
+      if @event.update(name: event_params[:name], location: event_params[:location],
+                       description: event_params[:description])
+        @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+        @event_page.save
         if params[:is_public] == "not public"
           @event.is_public = false
           @event.save!
@@ -125,7 +127,7 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :description, :is_public, :event_organizer_id, :picture,
+                                      :description, :is_public, :event_organizer_id, :event_banner_picture,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers])
     end
 end

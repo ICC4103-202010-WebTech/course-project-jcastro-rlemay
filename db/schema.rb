@@ -140,7 +140,6 @@ ActiveRecord::Schema.define(version: 2020_06_02_004807) do
 
   create_table "organization_profiles", force: :cascade do |t|
     t.text "description"
-    t.string "bannerPicture"
     t.integer "organization_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

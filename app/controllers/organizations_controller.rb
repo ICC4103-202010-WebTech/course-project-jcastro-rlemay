@@ -29,7 +29,6 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-    @organization.flyer.attach(params[:flyer])
 
     respond_to do |format|
       if @organization.save
@@ -48,7 +47,7 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       if @organization.update(name: organization_params[:name]) and
           @profile.update(description: organization_params[:description],
-                          bannerPicture: organization_params[:bannerPicture])
+                          banner_picture: organization_params[:banner_picture])
         format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
         format.json { render :show, status: :ok, location: @organization }
       else
@@ -77,7 +76,7 @@ class OrganizationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.fetch(:organization, {}).permit(:id, :name, :members, :flyer,
-                                             :description,:bannerPicture)
+      params.fetch(:organization, {}).permit(:id, :name, :members, :banner_picture,
+                                             :description)
     end
 end

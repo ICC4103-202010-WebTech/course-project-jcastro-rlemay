@@ -84,12 +84,10 @@ n23.save!
 
 o1Profile = OrganizationProfile.find_by_organization_id(o1.id)
 o1Profile.description = "Massive Event"
-o1Profile.bannerPicture = "PHOTO"
 o1Profile.save!
 
 o2Profile = OrganizationProfile.find_by_organization_id(o2.id)
 o2Profile.description = "Best Organization there'll be"
-o2Profile.bannerPicture = "PHOTO"
 o2Profile.save!
 
 om1 = OrganizationMember.create(user_id: u1.id,organization_id: o1.id)
@@ -121,7 +119,6 @@ n5.save!
 e1p = EventPage.find_by_event_id(e1.id)
 e1p.minimumGuests = 10
 e1p.maximumGuests = 1000
-e1p.bannerPicture = "Event Photo"
 e1p.save!
 
 oe1 = OrganizationEvent.create(organization_id: o1.id, event_id: e1.id)
@@ -155,7 +152,6 @@ n8.save!
 e2p = EventPage.find_by_event_id(e2.id)
 e2p.minimumGuests = 5
 e2p.maximumGuests = 80
-e2p.bannerPicture = "Event Photo"
 e2p.save!
 
 oe2 = OrganizationEvent.create(organization_id: o1.id, event_id: e2.id)
@@ -198,7 +194,6 @@ n14.save!
 e3p = EventPage.find_by_event_id(e3.id)
 e3p.minimumGuests = 12
 e3p.maximumGuests = 150
-e3p.bannerPicture = "Event Photo"
 e3p.save!
 
 oe3 = OrganizationEvent.create(organization_id: o1.id, event_id: e3.id)
@@ -230,7 +225,6 @@ n17.save!
 e4p = EventPage.find_by_event_id(e4.id)
 e4p.minimumGuests = 50
 e4p.maximumGuests = 70
-e4p.bannerPicture = "Event Photo"
 e4p.save!
 
 oe4 = OrganizationEvent.create(organization_id: o2.id, event_id: e4.id)
