@@ -67,6 +67,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        @event.event_page.event_banner_picture.attach(params[:event_banner_picture])
+        @event.event_page.save
         if x == nil
           @poll = Poll.new(
               name: params[:event][:poll_attributes][:name],
@@ -119,12 +121,13 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+      @event_page = EventPage.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :description, :is_public, :event_organizer_id,
+                                      :description, :is_public, :event_organizer_id, :event_banner_picture,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers])
     end
 end

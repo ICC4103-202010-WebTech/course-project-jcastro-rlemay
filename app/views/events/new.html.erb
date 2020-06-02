@@ -14,6 +14,10 @@
         <label for="desc_field"><b>Event description:</b> </label>
         <%= form.text_field :description, class: "form-control" %><br><br>
       </section>
+      <div class="form-group">
+        <%= form.label :user_banner_picture, "Set Event Photo" %>
+        <%= form.file_field :user_banner_picture %>
+      </div>
       <h4> Set the date: </h4>
       <section class="date_wrapper">
         <%= radio_button_tag(:date, "not poll") %>
