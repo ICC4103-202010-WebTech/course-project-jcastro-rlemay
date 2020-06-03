@@ -23,6 +23,14 @@ Rails.application.routes.draw do
   resources :comments, defaults: { format: :html }
   resources :events, defaults: { format: :html } do
     resources :polls, defaults: { format: :html }, shallow: true
+    member do
+      get "photos"
+      patch "photos"
+      get "videos"
+      patch "videos"
+      get "files"
+      patch "files"
+    end
   end
   resources :organizations, defaults: { format: :html } do
     resources :events, defaults: { format: :html }

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files]
 
   # GET /events
   # GET /events.json
@@ -86,6 +86,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    print("ENTRO AL UPDATE")
     respond_to do |format|
       if @event.update(name: event_params[:name], location: event_params[:location],
                        description: event_params[:description])
@@ -117,6 +118,30 @@ class EventsController < ApplicationController
     end
   end
 
+  def photos
+    if params[:photos] != nil
+      @event_page.photos.attach(params[:photos])
+      @event_page.save
+      redirect_to photos_event_path, notice: 'Uploaded photos to event.'
+    end
+  end
+
+  def videos
+    if params[:videos] != nil
+      @event_page.videos.attach(params[:videos])
+      @event_page.save
+      redirect_to videos_event_path, notice: 'Uploaded videos to event.'
+    end
+  end
+
+  def files
+    if params[:files] != nil
+      @event_page.files.attach(params[:files])
+      @event_page.save
+      redirect_to files_event_path, notice: 'Uploaded files to event.'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -128,6 +153,7 @@ class EventsController < ApplicationController
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
                                       :description, :is_public, :event_organizer_id, :event_banner_picture,
-                                      poll_attributes: [:name, :possibleDates, :minimumAnswers])
+                                      poll_attributes: [:name, :possibleDates, :minimumAnswers],
+                                      videos:[], photos:[], files:[])
     end
 end
