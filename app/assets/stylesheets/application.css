@@ -12,8 +12,11 @@ a:hover{
     color: #ac934e;
 }
 
+html{
+    height: 100%;
+}
 
-html, body {
+body {
     min-height: 100%;
     width: 100%;
     padding: 0;
@@ -28,6 +31,7 @@ body {
 
 main {
     background-color: #333;
+    min-height: 100vh;
     width: 100%;
 }
 
@@ -42,13 +46,17 @@ td,th {
     overflow: hidden;
     background-color: #262626;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-evenly;
 }
 
     .header_brand{
         margin-left: auto;
     }
+        .page_name{
+            font-size: 40px;
+            display: block;
+        }
 
     .header_search{
         margin-left: 10%;
