@@ -1,6 +1,20 @@
 <%= stylesheet_link_tag "event_show" %>
+<div class="d-flex align-items-center bd-highlight mb-3">
+  <h1 class="title mr-auto p-2 bd-highlight"><%= @event.name %> (<%=@visibility%>)</h1>
+  <div class="trash p-2 bd-highlight"><%= link_to(
+                                             content_tag(
+                                                 :i,
+                                                 nil,
+                                                 class: 'fa fa-trash-o fa-3x'
+                                             ),
+                                             admin_event_path(@event.id),
+                                             method: :delete
+                                         )
+  %></div>
 
-<h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
+
+</div>
+
 <section class="event_image_wrapper">
   <% if @event_page.event_banner_picture.attached? %>
     <%= image_tag(@event.event_page.event_banner_picture, width: "200px") %>
@@ -37,7 +51,7 @@
     </section>
   </section>
   <section class="event_options_wrapper">
-    <%= link_to "Edit Event", edit_event_path %>
+    <%= link_to "Edit Event", edit_admin_event_path %>
     <%= link_to "View Event Pictures", photos_event_path %>
     <%= link_to "View Event Files", files_event_path %>
     <%= link_to "View Event Videos", videos_event_path %>
@@ -63,14 +77,45 @@
       <%= form.submit "Send", class: ["btn", "btn-primary"] %>
     <% end %>
   </div>
-  <% @comments.each do |comment| %>
+  <% @comments.each_with_index do |comment, i| %>
     <section class="comment_box">
       <section class="user_comment">
         <i class="far fa-square fa-5x"></i>
         <% full_name =  comment.user.name + " " + comment.user.lastName%>
         <p><b><%= link_to full_name, user_path(comment.user.id)%></b></p>
+        <div class="trash float-right p-2 bd-highlight"><%= link_to(
+                                                    content_tag(
+                                                        :i,
+                                                        nil,
+                                                        class: 'fa fa-trash-o'
+                                                    ),
+                                                    admin_comment_path(comment.id),
+                                                    method: :delete
+                                                )
+        %></div>
+        <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
       </section>
-      <p class="comment"><%= comment.content %></p>
+      <div id="real_comment<%=i%>"><p class="comment"><%= comment.content %></p></div>
+      <div id="edit_comment<%=i%>" class="edit_comment">
+        <%= form_with url: admin_comment_path(comment), method: :patch do |form| %>
+          <%= form.text_area :content, class: "form-control", placeholder: comment.content%>
+          <%= form.submit "Send", class: ["btn", "btn-primary"] %>
+        <% end %>
+      </div>
+      <script>
+          function myFunction(p) {
+              var real_comment = document.getElementById("real_comment"+String(p));
+              var edit_comment = document.getElementById("edit_comment"+String(p));
+
+              if (real_comment.style.display === "none") {
+                  real_comment.style.display = "inline";
+                  edit_comment.style.display = "none";
+              } else {
+                  real_comment.style.display = "none";
+                  edit_comment.style.display = "inline";
+              }
+          }
+      </script>
       <% replies = @comment_replies.where(comment_id: comment.id) %>
       <% if replies != []%>
         <section class="reply_box">
@@ -87,6 +132,8 @@
     </section>
   <% end %>
 </section>
+
+
 
 
 

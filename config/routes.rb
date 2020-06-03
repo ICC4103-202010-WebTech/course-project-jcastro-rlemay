@@ -37,10 +37,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    post "events/:id", to: "comments#create", as: "new_comment"
     resources :events do
       resources :comments, shallow: true
     end
     resources :organizations
+    resources :comments
   end
 
 end

@@ -1,6 +1,18 @@
 <%= stylesheet_link_tag "profile.css" %>
+<div class="d-flex align-items-center bd-highlight mb-3">
+  <h1 class="profile_title mr-auto p-2 bd-highlight"><%= @organization.name %>'s Profile</h1>
+  <div class="trash p-2 bd-highlight"><%= link_to(
+                                              content_tag(
+                                                  :i,
+                                                  nil,
+                                                  class: 'fa fa-trash-o fa-3x'
+                                              ),
+                                              admin_organization_path(@organization.id),
+                                              method: :delete
+                                          )
+  %></div>
+</div>
 
-<h1 class="profile_title"><%= @organization.name %>'s Profile</h1>
 <section class="profile_wrapper">
   <section class="user_image_wrapper">
     <% if @profile.banner_picture.attached? %>
@@ -16,7 +28,7 @@
     </section>
   </section>
   <section class="user_options_wrapper">
-    <%= link_to "Edit Organization", edit_organization_path %>
+    <%= link_to "Edit Organization", edit_admin_organization_path %>
     <%= link_to "View users", users_path %>
     <%= link_to "View Creator", user_path(@organization_creator.user_id) %>
   </section>

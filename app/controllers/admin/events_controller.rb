@@ -113,8 +113,8 @@ class Admin::EventsController < ApplicationController
           @event.is_public = true
           @event.save!
         end
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
+        format.html { redirect_to admin_event_path(@event), notice: 'Event was successfully updated.' }
+
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -127,7 +127,7 @@ class Admin::EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to admin_events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

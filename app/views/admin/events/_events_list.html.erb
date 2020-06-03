@@ -1,14 +1,23 @@
 
 <section class="event_section">
   <section class="recent_title">
-    <p class="recent_event_name"><b><%= link_to event.name, event_path(event.id)%></b></p>
+    <p class="recent_event_name"><b><%= link_to event.name, admin_event_path(event.id)%></b></p>
     <section class="recent_buttons">
       <i class="fas fa-user-plus"></i>
       <i class="fas fa-bookmark"></i>
       <i class="fas fa-bell"></i>
-      <%= button_to "delete", event_path(event.id),
-                    :method => :delete %>
-      <i class="fas fa-trash-alt"></i>
+      <%= link_to(
+              content_tag(
+                  :i,
+                  nil,
+                  class: 'fa fa-trash-o'
+              ),
+              admin_event_path(event.id),
+              method: :delete
+          )
+      %>
+
+
     </section>
   </section>
   <section class="recent_body">

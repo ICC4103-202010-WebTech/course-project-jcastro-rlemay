@@ -14,6 +14,14 @@ a:visited{
     color: #8E7A3F;
     font-size: 40px;
 }
+.trash{
+    margin-left: 50%;
+    color: #8E7A3F;
+}
+.pencil{
+
+    color: #8E7A3F;
+}
 .event_image_wrapper{
     background-color: #262626;
     color: #ffffff;
@@ -127,6 +135,9 @@ a:visited{
         }
             .user_comment i{
                 margin-right: 1%;
+            }
+            .edit_comment{
+                display: none;
             }
         .comment{
             margin-left: 10%;

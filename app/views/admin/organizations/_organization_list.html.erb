@@ -1,0 +1,30 @@
+<section class="organization d-flex flex-row justify-content-between ">
+  <div class="d-flex flex-row">
+    <i class="mr-10">
+      <% if organization.organization_profile.banner_picture.attached? %>
+        <%= image_tag(organization.organization_profile.banner_picture, width: "100px") %>
+      <%else %>
+        <%= image_tag("organization.jpeg", width: "100px", background: "#55595c", color: "#eceeef") %>
+      <% end %>
+    </i>
+
+    <div>
+      <p><b><%= link_to organization.name, admin_organization_path(organization.id)%></b></p>
+      <p><b>Description: </b><%= OrganizationProfile.where(organization_id: organization.id)[0].description %></p>
+      <% admin =  OrganizationAdmin.where(organization_id: organization.id)[0]%>
+      <p><b>Creator: </b><%= admin.user.name+" "+admin.user.lastName %></p>
+    </div>
+  </div>
+  <div>
+    <%= link_to(
+            content_tag(
+                :i,
+                nil,
+                class: 'fa fa-trash-o fa-lg'
+            ),
+            admin_organization_path(organization.id),
+            method: :delete
+        )
+    %>
+  </div>
+</section>

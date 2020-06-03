@@ -1,5 +1,39 @@
-<h1>New Organization</h1>
+<%= stylesheet_link_tag "new_form" %>
 
-<%= render 'form', organization: @organization %>
+<h1 class="title">New Organization</h1>
 
-<%= link_to 'Back', organizations_path %>
+<%= form_with model: [:admin,@organization]  do |form| %>
+  <section class="new_event_wrapper">
+    <h1 class="wrapper_title">General information: </h1>
+
+    <section class="new_event_name">
+      <label for="name_field"><b>Organization name:</b> </label>
+      <%= form.text_field :name, class: "form-control" %><br><br>
+    </section>
+    <section class="new_event_desc">
+      <label for="desc_field"><b>Organization description:</b> </label>
+      <%= form.text_field :description, class: "form-control" %><br><br>
+    </section>
+    <div class="form-group">
+      <%= form.label :banner_picture, "Set Organization Photo" %>
+      <%= form.file_field :banner_picture %>
+    </div>
+  </section>
+
+  <section class="invite_wrapper">
+    <h1 class="wrapper_title">Invite Friends and Users: </h1>
+    <% @invite_users.each do |user| %>
+      <section class="user">
+        <i class="far fa-square fa-5x"></i>
+        <% full_name =  user.name + " " + user.lastName%>
+        <p><b><%= link_to full_name, user_path(user.id)%></b></p>
+      </section>
+    <% end %>
+  </section>
+
+  <section class="button_wrapper">
+    <%= form.submit "Create Organization", class: "button" %>
+    <%= link_to "Back", root_path, :style=> 'color:white;', class: "button_with_link" %>
+  </section>
+
+<% end %>
