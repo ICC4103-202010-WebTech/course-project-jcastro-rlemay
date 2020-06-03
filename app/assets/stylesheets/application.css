@@ -12,8 +12,11 @@ a:hover{
     color: #ac934e;
 }
 
+html{
+    height: 100%;
+}
 
-html, body {
+body {
     min-height: 100%;
     width: 100%;
     padding: 0;
@@ -28,6 +31,7 @@ body {
 
 main {
     background-color: #333;
+    min-height: 100vh;
     width: 100%;
 }
 
