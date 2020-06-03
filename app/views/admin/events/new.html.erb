@@ -1,0 +1,66 @@
+<%= stylesheet_link_tag "new_event" %>
+
+<h1 class="title">New Event</h1>
+
+<%= form_with model: @event  do |form| %>
+  <section class="new_event_wrapper">
+    <h1 class="wrapper_title">General information: </h1>
+
+      <section class="new_event_name">
+        <label for="name_field"><b>Event name:</b> </label>
+        <%= form.text_field :name, class: "form-control" %><br><br>
+      </section>
+      <section class="new_event_desc">
+        <label for="desc_field"><b>Event description:</b> </label>
+        <%= form.text_field :description, class: "form-control" %><br><br>
+      </section>
+      <div class="form-group">
+        <%= form.label :picture, "Set Event Photo" %>
+        <%= form.file_field :picture %>
+      </div>
+      <h4> Set the date: </h4>
+      <section class="date_wrapper">
+        <%= radio_button_tag(:date, "not poll") %>
+        <h7> Start date:</h7>
+        <%= select_date Date.today, prefix: :start_date %>
+        <h7> End date:</h7>
+        <%= select_date Date.today, prefix: :end_date %><br><br>
+        <%= radio_button_tag(:date, "is poll") %>
+        <%= label_tag("Set a Poll") %>
+      </section>
+    <div class="form-group">
+      <p> Create a Poll: </p>
+      <%= form.fields_for :poll_attributes do |poll| %>
+        <div class="form-group">
+          <%= poll.label :name %>
+          <%= poll.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= poll.label :possibleDates %>
+          <%= poll.text_field :possibleDates, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= poll.label :minimumAnswers %>
+          <%= poll.number_field :minimumAnswers, class: "form-control" %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <section class="invite_wrapper">
+    <h1 class="wrapper_title">Invite Friends and Users: </h1>
+    <% @invite_users.each do |user| %>
+      <section class="user">
+        <i class="far fa-square fa-5x"></i>
+        <% full_name =  user.name + " " + user.lastName%>
+        <p><b><%= link_to full_name, user_path(user.id)%></b></p>
+      </section>
+    <% end %>
+  </section>
+
+  <section class="button_wrapper">
+    <%= form.submit "Create Event", class: "button" %>
+    <%= link_to "Back", root_path, :style=> 'color:white;', class: "button_with_link" %>
+  </section>
+
+<% end %>

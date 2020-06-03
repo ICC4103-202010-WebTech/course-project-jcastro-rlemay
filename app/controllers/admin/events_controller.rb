@@ -1,5 +1,5 @@
-class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+class Admin::EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files]
 
   # GET /events
   # GET /events.json
@@ -48,13 +48,35 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
+    if params[:date] == "not poll"
+      x = params[:start_date]
+      x = x[:year] + "-" + x[:month] + "-" + x[:day]
+      y = params[:end_date]
+      y = y[:year] + "-" + y[:month] + "-" + y[:day]
+    else
+      x = nil
+      y = nil
 
+    end
+
+    @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
+                       description: event_params[:description],
+                       event_organizer: EventOrganizer.find(1))
     respond_to do |format|
       if @event.save
+        @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+        @event_page.save
+        if x == nil
+          @poll = Poll.new(
+              name: params[:event][:poll_attributes][:name],
+              possibleDates: params[:event][:poll_attributes][:possibleDates],
+              minimumAnswers: params[:event][:poll_attributes][:minimumAnswers].to_i, event_id: @event.id)
+          @poll.save!
+        end
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
+        flash[:alert] = "Could not create event!"
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -64,8 +86,33 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    print("ENTRO AL UPDATE", event_params[:photos])
     respond_to do |format|
-      if @event.update(event_params)
+      if @event.update(name: event_params[:name], location: event_params[:location],
+                       description: event_params[:description])
+        if event_params[:event_banner_picture] != nil
+          @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+          @event_page.save
+        end
+        if event_params[:photos] != nil
+          @event_page.photos.attach(event_params[:photos])
+          @event_page.save
+        end
+        if event_params[:videos] != nil
+          @event_page.videos.attach(event_params[:videos])
+          @event_page.save
+        end
+        if event_params[:files] != nil
+          @event_page.files.attach(event_params[:files])
+          @event_page.save
+        end
+        if params[:is_public] == "not public"
+          @event.is_public = false
+          @event.save!
+        elsif params[:is_public] == "public"
+          @event.is_public = true
+          @event.save!
+        end
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -85,15 +132,42 @@ class EventsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
+  def photos
+    if params[:photos] != nil
+      @event_page.photos.attach(params[:photos])
+      @event_page.save
+      redirect_to photos_event_path, notice: 'Uploaded photos to event.'
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :description, :is_public, :event_organizer_id)
+  def videos
+    if params[:videos] != nil
+      @event_page.videos.attach(params[:videos])
+      @event_page.save
+      redirect_to videos_event_path, notice: 'Uploaded videos to event.'
     end
+  end
+
+  def files
+    if params[:files] != nil
+      @event_page.files.attach(params[:files])
+      @event_page.save
+      redirect_to files_event_path, notice: 'Uploaded files to event.'
+    end
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+    @event_page = EventPage.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
+                                    :description, :is_public, :event_organizer_id, :event_banner_picture,
+                                    poll_attributes: [:name, :possibleDates, :minimumAnswers],
+                                    videos:[], photos:[], files:[])
+  end
 end

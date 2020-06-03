@@ -1,0 +1,92 @@
+<%= stylesheet_link_tag "event_show" %>
+
+<h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
+<section class="event_image_wrapper">
+  <% if @event_page.event_banner_picture.attached? %>
+    <%= image_tag(@event.event_page.event_banner_picture, width: "200px") %>
+  <%else %>
+    <%= image_tag("event.png", width: "200px", background: "#55595c", color: "#eceeef") %>
+  <% end %>
+</section>
+<section class="event_section">
+  <section class="event_details">
+    <section class="event_location">
+      <p> Created at: <%=@event.created_at %></p>
+    </section>
+    <br>
+    <section class="event_dates">
+      <% if @date == "Poll" %>
+        <i class="far fa-calendar-alt fa-2x"></i>
+        <%= link_to @date, poll_path(Poll.where(event_id: @event.id)[0]) %>
+      <% else %>
+        <i class="far fa-calendar-alt fa-2x"></i>
+        <%= @date %>
+      <% end %>
+      <% if @end_date != "Poll" %>
+        <i class="fas fa-hourglass-end fa-2x"></i>
+        <%= @end_date %>
+      <% end %>
+    </section>
+    <section class="event_desc">
+      <p> Event description:</p>
+      <p> <%=@event.description %></p>
+    </section>
+    <section class="event_location">
+      <p> Event location:</p>
+      <p> <%=@event.location %></p>
+    </section>
+  </section>
+  <section class="event_options_wrapper">
+    <%= link_to "Edit Event", edit_event_path %>
+    <%= link_to "View Event Pictures", photos_event_path %>
+    <%= link_to "View Event Files", files_event_path %>
+    <%= link_to "View Event Videos", videos_event_path %>
+  </section>
+</section>
+
+<section class="invite_wrapper">
+  <h1 class="wrapper_title">Invited Users: </h1>
+  <% @invited.each do |invitation| %>
+    <section class="user">
+      <i class="far fa-square fa-5x"></i>
+      <% full_name =  invitation.user.name + " " + invitation.user.lastName%>
+      <p><b><%= link_to full_name, user_path(invitation.user.id)%></b></p>
+    </section>
+  <% end %>
+</section>
+
+<section class="comments_wrapper">
+  <h1 class="wrapper_title"> Comments: </h1>
+  <div class="form-group">
+    <%= form_with model: @comment do |form| %>
+      <%= form.text_area :content, class: "form-control", placeholder: "Write a comment..."%>
+      <%= form.submit "Send", class: ["btn", "btn-primary"] %>
+    <% end %>
+  </div>
+  <% @comments.each do |comment| %>
+    <section class="comment_box">
+      <section class="user_comment">
+        <i class="far fa-square fa-5x"></i>
+        <% full_name =  comment.user.name + " " + comment.user.lastName%>
+        <p><b><%= link_to full_name, user_path(comment.user.id)%></b></p>
+      </section>
+      <p class="comment"><%= comment.content %></p>
+      <% replies = @comment_replies.where(comment_id: comment.id) %>
+      <% if replies != []%>
+        <section class="reply_box">
+            <% replies.each do |reply| %>
+              <section class="user_reply">
+                <i class="far fa-square fa-5x"></i>
+                <% full_name =  reply.user.name + " " + reply.user.lastName%>
+                <p><b><%= link_to full_name, user_path(reply.user.id)%></b></p>
+              </section>
+              <p class="reply"><%= reply.content %></p>
+            <% end %>
+        </section>
+      <% end %>
+    </section>
+  <% end %>
+</section>
+
+
+

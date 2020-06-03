@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag "profile.css" %>
+
+<h1 class="profile_title"><%= @organization.name %>'s Profile</h1>
+<section class="profile_wrapper">
+  <section class="user_image_wrapper">
+    <% if @profile.banner_picture.attached? %>
+      <%= image_tag(@profile.banner_picture, width: "200px") %>
+    <%else %>
+      <i class="far fa-square fa-10x"></i>
+    <% end %>
+  </section>
+  <section class="user_info_wrapper">
+    <section class="info">
+      <p class="info_title"><b><%= @organization.name %>'s Description:</b> </p>
+      <p><%= @profile.description %></p>
+    </section>
+  </section>
+  <section class="user_options_wrapper">
+    <%= link_to "Edit Organization", edit_organization_path %>
+    <%= link_to "View users", users_path %>
+    <%= link_to "View Creator", user_path(@organization_creator.user_id) %>
+  </section>
+</section>
+
+<h1 class="profile_title">This Organization's Public Events:</h1>
+<% @organization_events.each do |event| %>
+  <section class="user_events_wrapper">
+    <section class="events_upper">
+
+    </section>
+    <section class="events_details">
+      <i class="far fa-square fa-8x"></i>
+      <section class="event_text">
+        <h3><%= link_to event.name, event_path(event.id) %></h3>
+        <%= event.description %>
+      </section>
+    </section>
+    <section class="events_down">
+
+    </section>
+  </section>
+<% end %>
