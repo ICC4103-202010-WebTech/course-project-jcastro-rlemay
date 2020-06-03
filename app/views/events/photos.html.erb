@@ -11,7 +11,7 @@
       <%= form.submit "Upload", class: ["btn", "btn-primary"] %>
     </div>
   <% end %>
-
+  <h3 class="title">Event Photos uploaded:</h3>
   <% if @event_page.photos.attached?  %>
     <% @event_page.photos.each do |photo| %>
       <%= image_tag(photo, width: "200px") %>

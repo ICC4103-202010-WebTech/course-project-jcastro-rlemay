@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @events_created = Event.where(event_organizer_id: params[:id])
     @organization = OrganizationMember.where(user_id: params[:id])[0]
+    @events_invited = Event.find(Invitation.where(user_id: params[:id]).pluck(:event_id))
   end
 
   # GET /users/new

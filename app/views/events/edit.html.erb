@@ -17,8 +17,16 @@
       <%= form.file_field :event_banner_picture %>
     </div>
     <div class="form-group">
+      <%= form.label :photos, "Set Event Photos" %>
+      <%= form.file_field :photos, multiple: true %>
+    </div>
+    <div class="form-group">
+      <%= form.label :videos, "Set Event Videos" %>
+      <%= form.file_field :videos, multiple: true %>
+    </div>
+    <div class="form-group">
       <%= form.label :files, "Set Event Files" %>
-      <%= form.file_field :files %>
+      <%= form.file_field :files, multiple: true %>
     </div>
     <div class="form-group">
       <%= form.label :description %>

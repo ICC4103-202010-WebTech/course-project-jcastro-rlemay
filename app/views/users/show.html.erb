@@ -49,4 +49,23 @@
     </section>
   </section>
 <% end %>
+<br><br>
+<h1 class="profile_title">Events you were invited:</h1>
+<% @events_invited.each do |event| %>
+  <section class="user_events_wrapper">
+    <section class="events_upper">
+
+    </section>
+    <section class="events_details">
+      <i class="far fa-square fa-8x"></i>
+      <section class="event_text">
+        <h3><%= link_to event.name, event_path(event.id) %></h3>
+        <%= event.description %>
+      </section>
+    </section>
+    <section class="events_down">
+
+    </section>
+  </section>
+<% end %>
 

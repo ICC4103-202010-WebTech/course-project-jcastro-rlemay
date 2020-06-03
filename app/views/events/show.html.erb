@@ -10,6 +10,10 @@
 </section>
 <section class="event_section">
   <section class="event_details">
+    <section class="event_location">
+      <p> Created at: <%=@event.created_at %></p>
+    </section>
+    <br>
     <section class="event_dates">
       <% if @date == "Poll" %>
         <i class="far fa-calendar-alt fa-2x"></i>
@@ -26,6 +30,10 @@
     <section class="event_desc">
       <p> Event description:</p>
       <p> <%=@event.description %></p>
+    </section>
+    <section class="event_location">
+      <p> Event location:</p>
+      <p> <%=@event.location %></p>
     </section>
   </section>
   <section class="event_options_wrapper">

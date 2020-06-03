@@ -86,12 +86,26 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    print("ENTRO AL UPDATE")
+    print("ENTRO AL UPDATE", event_params[:photos])
     respond_to do |format|
       if @event.update(name: event_params[:name], location: event_params[:location],
                        description: event_params[:description])
-        @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
-        @event_page.save
+        if event_params[:event_banner_picture] != nil
+          @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+          @event_page.save
+        end
+        if event_params[:photos] != nil
+          @event_page.photos.attach(event_params[:photos])
+          @event_page.save
+        end
+        if event_params[:videos] != nil
+          @event_page.videos.attach(event_params[:videos])
+          @event_page.save
+        end
+        if event_params[:files] != nil
+          @event_page.files.attach(event_params[:files])
+          @event_page.save
+        end
         if params[:is_public] == "not public"
           @event.is_public = false
           @event.save!
