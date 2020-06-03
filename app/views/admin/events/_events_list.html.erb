@@ -1,0 +1,38 @@
+
+<section class="event_section">
+  <section class="recent_title">
+    <p class="recent_event_name"><b><%= link_to event.name, event_path(event.id)%></b></p>
+    <section class="recent_buttons">
+      <i class="fas fa-user-plus"></i>
+      <i class="fas fa-bookmark"></i>
+      <i class="fas fa-bell"></i>
+      <%= button_to "delete", event_path(event.id),
+                    :method => :delete %>
+      <i class="fas fa-trash-alt"></i>
+    </section>
+  </section>
+  <section class="recent_body">
+    <section class="event_image_wrapper">
+      <% if event.event_page.event_banner_picture.attached? %>
+        <%= image_tag(event.event_page.event_banner_picture, width: "100px") %>
+      <%else %>
+        <%= image_tag("event.png", width: "100px", background: "#55595c", color: "#eceeef") %>
+      <% end %>
+    </section>
+    <section class="recent_details">
+
+      <p class="recent_event_desc"> <%= event.description %></p>
+      <section class="recent_date_box">
+        <% if event.start_date == nil %>
+          <i class="far fa-calendar-alt fa-1.5x"></i>
+          <p class="recent_poll"><%= link_to "Poll", poll_path( Poll.where(event_id:event.id)[0]) %></p>
+        <% else %>
+          <i class="far fa-calendar-alt fa-1.5x"></i>
+          <p class="recent_startDate"><%= event.start_date %> </p>
+          <i class="fas fa-hourglass-end fa-1.5x"></i>
+          <p class="recent_endDate"><%= event.end_date %></p>
+        <% end %>
+      </section>
+    </section>
+  </section>
+</section>
