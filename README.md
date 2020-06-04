@@ -4,24 +4,24 @@
 ## Summary of implemented features:
 - Here we will explain how to get to all the specific points in the project assignment:
     1) System Adminstration.<br/>
-        1.1. Perform CRUD operations on Organizations.<br/>
+        - 1.1. Perform CRUD operations on Organizations.<br/>
             - This can only be done by the administrator, so, the only way you can get to the administrator is by writing yourself in the url: "http://127.0.0.1:3000/admin", and you will be taken to the main view of the admin, and there you have to select "Manage Organizations", here you will be taken to all the organizations that are created and in the top right corner of the body, there's an Plus Button, where you can create an organization.<br/>
             - To edit an organization, you have to click in a specific organization, and in the right of the body there's a button called "Edit Organization", where it'll take you to edit this specific organization.<br/>
             - The read part, i don't think i need to explain how to get there, because when you pressed the name of an organization, you were shown the Organization, with all his specific attributes.<br/>
             - To delete an organization, you can do it in 2 different parts, in the page where all the organizations where (just clicking the trash icon will get you to delete it) or in the organization itself where in the top right of the body is a trash button to delete it.<br/><br/>
-        1.2 Perform CRUD operations on Events.<br/>
+        - 1.2 Perform CRUD operations on Events.<br/>
             - This can only be done just like with the organizations CRUD, but the only difference is that everyone can create an event, so if you want to create one you can do it being an admin (and writing the specific path), or just clicking in the navbar the "New Event" button.
                 - To create an event you have two options, specify the date you want for the event, or have the option to create a poll, where you have to set the possible dates in this format "DD-MM-YYYY" and with a space between the dates, just like this, "DD-MM-YYYY DD-MM-YYYY"<br/>
             - To edit an event, you can only do it with admin privilegies, so you have to write the same url given in the 1.1.1 section, and in here you can edit, read and delete events the same way than with organizations, but the difference is that here you have to press the "Manage Events button.<br/>
             - The read of the events, organizations and comments also can be achieved just by being a user with no special privilegies.<br/><br/>
-        1.3 Perform CRUD operations on Event comments.<br/>
+        - 1.3 Perform CRUD operations on Event comments.<br/>
             - To read events you need to go to the event page of any event, and there you can see all the comments that the event has, also here you can create a comment, just by writing in the "write a comment" section, and when you are done, you just press the send button.<br/>
             - To edit a comment or delete one, you have to have administrator privileges, so just like in comments and organization, you have to go into the url specified in the 1.1.1 section, and then go to the "Manage Events button", select the event you want to see the comments, and then you'll have 2 options in a specific comment, the pencil button, which allows you to edit the comment, and the trash button which allows you to delete the comment with all his replies.<br/><br/>
     2) User Profile.<br/>
-        2.1 View user profile.<br/>
+        - 2.1 View user profile.<br/>
             - To see the user profile you just have to click in the navbar button called "profile", and there you can see the user with all his attributes.<br/>
-        2.2 The edit user, for now is public, so for now anyone who wants can edit a user, we left it like that because we were thinking in the future, and the a user obviously should be able to edit his own user, so, it's better for now to leave it this way.<br/>
-        2.3 In the same profile you can see the events you were invited and your created events (2.4).<br/><br/>
+        - 2.2 The edit user, for now is public, so for now anyone who wants can edit a user, we left it like that because we were thinking in the future, and the a user obviously should be able to edit his own user, so, it's better for now to leave it this way.<br/>
+        - 2.3 In the same profile you can see the events you were invited and your created events (2.4).<br/><br/>
     3) Organization.<br/>
         - You can go to the organization by going to a user profile and in the right you'll have a button which says "View Organization" or "Join a Organization", if it's the first one, it'll take you to the organization profile, and if it's the second possible button, it'll take you to a list of all the organizations there are, and you can press an specific one and see his profile (for now the join a organization is not joining anyone to an organization).<br/>
         - Anyone can manage an organization page, just by clicking the "edit organization" button you can edit all of its attributes.<br/>
