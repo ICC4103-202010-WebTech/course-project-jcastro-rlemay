@@ -147,10 +147,13 @@ class EventsController < ApplicationController
   end
 
   def invites
-    @pagy, @invites = pagy(User.all)
+    invited = Invitation.where(event_id: @event).pluck(:user_id)
+    print(invited)
+    @pagy, @invites = pagy(User.where.not(id: invited))
     if event_params[:invitation] != nil
-      @invitation = Invitation.new(user_id: us.to_i, event_id: @event.id, message: "You were invited to an event!")
+      @invitation = Invitation.new(user_id: event_params[:invitation], event_id: @event.id, message: "You were invited to an event!")
       if @invitation.save
+        redirect_to invites_event_path, notice: @invitation.user.name+ " "+ @invitation.user.lastName + " was invited"
       else
       end
     end
@@ -191,7 +194,7 @@ class EventsController < ApplicationController
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
                                       :minimumGuests, :maximumGuests, :description, :is_public,
-                                      :event_organizer_id, :event_banner_picture, :invites,
+                                      :event_organizer_id, :event_banner_picture, :invitation,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
                                       videos:[], photos:[], files:[])
     end

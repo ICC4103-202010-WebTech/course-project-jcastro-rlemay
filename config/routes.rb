@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       get "files"
       patch "files"
       get "invites"
-      patch "invites"
+      post "invites"
     end
   end
   resources :organizations, defaults: { format: :html } do
