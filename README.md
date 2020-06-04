@@ -3,77 +3,53 @@
 
 ## Summary of implemented features:
 - Here we will explain how to get to all the specific points in the project assignment:
-    1) System Adminstration:
-        1.1. Perform CRUD operations on Organizations.
-            - This can only be done by the administrator, so, the only way you can get to the administrator is by writing yourself in the url: "http://127.0.0.1:3000/admin", and you will be taken to the main view of the admin, and there you have to select "Manage Organizations", here you will be taken to all the organizations that are created and in the top right corner of the body, there's an Plus Button, where you can create an organization.
-
-            - To edit an organization, you have to click in a specific organization, and in the right of the body there's a button called "Edit Organization", where it'll take you to edit this specific organization.
-
-            - The read part, i don't think i need to explain how to get there, because when you pressed the name of an organization, you were shown the Organization, with all his specific attributes.
-
-            - To delete an organization, you can do it in 2 different parts, in the page where all the organizations where (just clicking the trash icon will get you to delete it) or in the organization itself where in the top right of the body is a trash button to delete it.
-
-        1.2 Perform CRUD operations on Events.
+    1) System Adminstration.<br/>
+        1.1. Perform CRUD operations on Organizations.<br/>
+            - This can only be done by the administrator, so, the only way you can get to the administrator is by writing yourself in the url: "http://127.0.0.1:3000/admin", and you will be taken to the main view of the admin, and there you have to select "Manage Organizations", here you will be taken to all the organizations that are created and in the top right corner of the body, there's an Plus Button, where you can create an organization.<br/>
+            - To edit an organization, you have to click in a specific organization, and in the right of the body there's a button called "Edit Organization", where it'll take you to edit this specific organization.<br/>
+            - The read part, i don't think i need to explain how to get there, because when you pressed the name of an organization, you were shown the Organization, with all his specific attributes.<br/>
+            - To delete an organization, you can do it in 2 different parts, in the page where all the organizations where (just clicking the trash icon will get you to delete it) or in the organization itself where in the top right of the body is a trash button to delete it.<br/><br/>
+        1.2 Perform CRUD operations on Events.<br/>
             - This can only be done just like with the organizations CRUD, but the only difference is that everyone can create an event, so if you want to create one you can do it being an admin (and writing the specific path), or just clicking in the navbar the "New Event" button.
-                - To create an event you have two options, specify the date you want for the event, or have the option to create a poll, where you have to set the possible dates in this format "DD-MM-YYYY" and with a space between the dates, just like this, "DD-MM-YYYY DD-MM-YYYY"
-            - To edit an event, you can only do it with admin privilegies, so you have to write the same url given in the 1.1.1 section, and in here you can edit, read and delete events the same way than with organizations, but the difference is that here you have to press the "Manage Events button.
-            - The read of the events, organizations and comments also can be achieved just by being a user with no special privilegies.
-
-        1.3 Perform CRUD operations on Event comments.
-            - To read events you need to go to the event page of any event, and there you can see all the comments that the event has, also here you can create a comment, just by writing in the "write a comment" section, and when you are done, you just press the send button.
-            - To edit a comment or delete one, you have to have administrator privileges, so just like in comments and organization, you have to go into the url specified in the 1.1.1 section, and then go to the "Manage Events button", select the event you want to see the comments, and then you'll have 2 options in a specific comment, the pencil button, which allows you to edit the comment, and the trash button which allows you to delete the comment with all his replies.
-
-    2) User Profile:
-        2.1 View user profile.
-            - To see the user profile you just have to click in the navbar button called "profile", and there you can see the user with all his attributes.
-
-        2.2 The edit user, for now is public, so for now anyone who wants can edit a user, we left it like that because we were thinking in the future, and the a user obviously should be able to edit his own user, so, it's better for now to leave it this way.
-
-        2.3 In the same profile you can see the events you were invited and your created events (2.4).
-
-    3) Organization.
-        - You can go to the organization by going to a user profile and in the right you'll have a button which says "View Organization" or "Join a Organization", if it's the first one, it'll take you to the organization profile, and if it's the second possible button, it'll take you to a list of all the organizations there are, and you can press an specific one and see his profile (for now the join a organization is not joining anyone to an organization).
-        
-        - Anyone can manage an organization page, just by clicking the "edit organization" button you can edit all of its attributes.
-
-        - The profile of the organization shows its public events in the bottom part of the body.
-
-    4) Events.
-        4.1 View events.
-            - 4.1.1. In the event profile, which you can get by pressing the name of an event, ypu can see all his attributes, incluiding his title, description, lcoation, and creation date.
-
-            - 4.1.2. In the event page in the right of the body, there's a button called "View Event Pictures", which takes you to all the pictures that the event has, and also gives you the possibility to add more pictures if you want.
-
-            - 4.1.3. In the event page in the right of the body, there's a button called "View Event Files", which takes you to all the files that the event has, and also gives you the possibility to add more files if you want, we only accept pdf files, because we think is the most common file in events.
-
-            - 4.1.4. In the event page in the right of the body, there's a button called "View Event Videos", which takes you to all the videos that the event has, and also gives you the possibility to add more videos if you want.
-
-        4.2 Start event vote.
-            - This was explained before, but you can create the event and gives you the option to create a poll by clicking the radio button.
-
-        4.3 Configure event date vote.
-            - To configure the event date vote, is just after clicking the radio button, where you can configure all the possible dates, and then finally create the poll by clicking the "Create Event" button.
-
-        4.4 Vote for event date.
-            - You can vote for an event date in the events that shows you that there's a poll available (a button that says "poll"), you can only vote once in every event, so don't try to vote again, because you'll not be able.
-
-        4.5 Invite guests.
-            - To invite guest, you have to go to the event profile, and go to the "Invited Users section" and press the "+" button and it'll take you to a list of all the users there are and you can invite anyone you want, and after inviting him he'll be erased from that list, so you can't invite someone who's already invited.
-
-        4.6 Delete event.
-            - This and the 4.7 section where explained in the 1.2 section.
-
-        4.8 Add comment.
-            - This was explained in the 1.3 section.
-
-        4.9 View comments.
-            - As said before, you can see all the comments that an event has in the events page.
-
-    5) Search.
+                - To create an event you have two options, specify the date you want for the event, or have the option to create a poll, where you have to set the possible dates in this format "DD-MM-YYYY" and with a space between the dates, just like this, "DD-MM-YYYY DD-MM-YYYY"<br/>
+            - To edit an event, you can only do it with admin privilegies, so you have to write the same url given in the 1.1.1 section, and in here you can edit, read and delete events the same way than with organizations, but the difference is that here you have to press the "Manage Events button.<br/>
+            - The read of the events, organizations and comments also can be achieved just by being a user with no special privilegies.<br/><br/>
+        1.3 Perform CRUD operations on Event comments.<br/>
+            - To read events you need to go to the event page of any event, and there you can see all the comments that the event has, also here you can create a comment, just by writing in the "write a comment" section, and when you are done, you just press the send button.<br/>
+            - To edit a comment or delete one, you have to have administrator privileges, so just like in comments and organization, you have to go into the url specified in the 1.1.1 section, and then go to the "Manage Events button", select the event you want to see the comments, and then you'll have 2 options in a specific comment, the pencil button, which allows you to edit the comment, and the trash button which allows you to delete the comment with all his replies.<br/><br/>
+    2) User Profile.<br/>
+        2.1 View user profile.<br/>
+            - To see the user profile you just have to click in the navbar button called "profile", and there you can see the user with all his attributes.<br/>
+        2.2 The edit user, for now is public, so for now anyone who wants can edit a user, we left it like that because we were thinking in the future, and the a user obviously should be able to edit his own user, so, it's better for now to leave it this way.<br/>
+        2.3 In the same profile you can see the events you were invited and your created events (2.4).<br/><br/>
+    3) Organization.<br/>
+        - You can go to the organization by going to a user profile and in the right you'll have a button which says "View Organization" or "Join a Organization", if it's the first one, it'll take you to the organization profile, and if it's the second possible button, it'll take you to a list of all the organizations there are, and you can press an specific one and see his profile (for now the join a organization is not joining anyone to an organization).<br/>
+        - Anyone can manage an organization page, just by clicking the "edit organization" button you can edit all of its attributes.<br/>
+        - The profile of the organization shows its public events in the bottom part of the body.<br/><br/>
+    4) Events.<br/>
+        4.1 View events.<br/>
+            - 4.1.1. In the event profile, which you can get by pressing the name of an event, ypu can see all his attributes, incluiding his title, description, lcoation, and creation date.<br/>
+            - 4.1.2. In the event page in the right of the body, there's a button called "View Event Pictures", which takes you to all the pictures that the event has, and also gives you the possibility to add more pictures if you want.<br/>
+            - 4.1.3. In the event page in the right of the body, there's a button called "View Event Files", which takes you to all the files that the event has, and also gives you the possibility to add more files if you want, we only accept pdf files, because we think is the most common file in events.<br/>
+            - 4.1.4. In the event page in the right of the body, there's a button called "View Event Videos", which takes you to all the videos that the event has, and also gives you the possibility to add more videos if you want.<br/>
+        4.2 Start event vote.<br/>
+            - This was explained before, but you can create the event and gives you the option to create a poll by clicking the radio button.<br/>
+        4.3 Configure event date vote.<br/>
+            - To configure the event date vote, is just after clicking the radio button, where you can configure all the possible dates, and then finally create the poll by clicking the "Create Event" button.<br/>
+        4.4 Vote for event date.<br/>
+            - You can vote for an event date in the events that shows you that there's a poll available (a button that says "poll"), you can only vote once in every event, so don't try to vote again, because you'll not be able.<br/>
+        4.5 Invite guests.<br/>
+            - To invite guest, you have to go to the event profile, and go to the "Invited Users section" and press the "+" button and it'll take you to a list of all the users there are and you can invite anyone you want, and after inviting him he'll be erased from that list, so you can't invite someone who's already invited.<br/>
+        4.6 Delete event.<br/>
+            - This and the 4.7 section where explained in the 1.2 section.<br/>
+        4.8 Add comment.<br/>
+            - This was explained in the 1.3 section.<br/>
+        4.9 View comments.<br/>
+            - As said before, you can see all the comments that an event has in the events page.<br/><br/>
+    5) Search.<br/>
         - All this points will be resumed, because you can get them all the same way.
-            - In the navbar there's a search form where you can search anything requested in the section 5, and when you press the "search" button you'll be taken to a new page with all of the results.
-
-            - This results can filtered, with the "search by" label, where you choose the results you want to get. 
+            - In the navbar there's a search form where you can search anything requested in the section 5, and when you press the "search" button you'll be taken to a new page with all of the results.<br/>
+            - This results can filtered, with the "search by" label, where you choose the results you want to get. <br/>
 
 
 
