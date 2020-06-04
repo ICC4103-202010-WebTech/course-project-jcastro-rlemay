@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files, :invites]
 
   # GET /events
   # GET /events.json
@@ -146,6 +146,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def invites
+    @pagy, @invites = pagy(User.all)
+    if event_params[:invitation] != nil
+      @invitation = Invitation.new(user_id: us.to_i, event_id: @event.id, message: "You were invited to an event!")
+      if @invitation.save
+      else
+      end
+    end
+  end
+
   def photos
     if params[:photos] != nil
       @event_page.photos.attach(params[:photos])
@@ -181,7 +191,7 @@ class EventsController < ApplicationController
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
                                       :minimumGuests, :maximumGuests, :description, :is_public,
-                                      :event_organizer_id, :event_banner_picture,
+                                      :event_organizer_id, :event_banner_picture, :invites,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
                                       videos:[], photos:[], files:[])
     end

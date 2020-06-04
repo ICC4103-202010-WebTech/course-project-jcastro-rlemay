@@ -12,7 +12,8 @@
         <%= form.submit "Search", class: ["btn", "btn-primary"] %>
       </div>
       <div class="form-inline">
-        <% categories_array = ["user by name",
+        <% categories_array = [nil,
+                               "user by name",
                                "user by username",
                                "organization by name",
                                "event by title",
@@ -20,7 +21,7 @@
                                "event by creator",
                                "event by organization"].map{|ev| [ev]} %>
         <%= form.label :tags, "Search by: " %>
-        <%= form.select :tags,  options_for_select(categories_array)%>
+        <%= form.select :tags,  options_for_select(categories_array, params[:tags])%>
       </div>
     <% end %>
   </div>
@@ -31,7 +32,7 @@
 
 </section>
 
-<% if params[:tags] == "user by name" or params[:tags] == nil %>
+<% if params[:tags] == "user by name" or params[:tags] == nil or params[:tags] == ""%>
   <h1 class="subtitle">Users by name:</h1>
 
   <section class="wrapper">
@@ -39,7 +40,7 @@
   </section>
 <% end %>
 
-<% if params[:tags] == "user by username" or params[:tags] == nil %>
+<% if params[:tags] == "user by username" or params[:tags] == nil or params[:tags] == ""%>
   <h1 class="subtitle">Users by username:</h1>
 
   <section class="wrapper">
@@ -47,7 +48,7 @@
   </section>
 <% end %>
 
-<% if params[:tags] == "organization by name" or params[:tags] == nil %>
+<% if params[:tags] == "organization by name" or params[:tags] == nil or params[:tags] == ""%>
   <h1 class="subtitle">Organizations by name:</h1>
 
   <section class="wrapper">
@@ -55,7 +56,7 @@
   </section>
 <% end %>
 
-<% if params[:tags] == "event by title" or params[:tags] == nil %>
+<% if params[:tags] == "event by title" or params[:tags] == nil or params[:tags] == ""%>
   <h1 class="subtitle">Events by name:</h1>
 
   <section class="wrapper">
@@ -63,7 +64,7 @@
   </section>
 <% end %>
 
-<% if params[:tags] == "event by description" or params[:tags] == nil %>
+<% if params[:tags] == "event by description" or params[:tags] == nil or params[:tags] == ""%>
   <h1 class="subtitle">Events by description:</h1>
 
   <section class="wrapper">
@@ -71,7 +72,7 @@
   </section>
 <% end %>
 
-<% if params[:tags] == "event by creator" or params[:tags] == nil %>
+<% if params[:tags] == "event by creator" or params[:tags] == nil or params[:tags] == ""%>
   <h1 class="subtitle">Events by Creator:</h1>
 
   <section class="wrapper">
@@ -79,7 +80,7 @@
   </section>
 <% end %>
 
-<% if params[:tags] == "event by organization" or params[:tags] == nil %>
+<% if params[:tags] == "event by organization" or params[:tags] == nil or params[:tags] == ""%>
   <h1 class="subtitle">Events by organization name:</h1>
   <section class="wrapper">
     <%= render :partial => 'events/events_list', collection: @events_by_organization, as: :event %>

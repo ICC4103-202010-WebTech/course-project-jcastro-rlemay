@@ -46,6 +46,16 @@
 
 <section class="invite_wrapper">
   <h1 class="wrapper_title">Invited Users: </h1>
+  <%= link_to(
+          content_tag(
+              :i,
+              nil,
+              class: 'fas fa-plus fa-lg'
+          ),
+          invites_event_path,
+          method: :get
+      )
+  %>
   <% @invited.each do |invitation| %>
     <section class="user">
       <i class="far fa-square fa-5x"></i>

@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag "new_form" %>
+
+<%= form_with model: @event, url:"/invites", method: :post  do |form| %>
+  <section class="invite_wrapper">
+    <h1 class="wrapper_title">Invite Friends and Users: </h1>
+    <% @invites.each_with_index do |user, i| %>
+      <section class="user">
+        <div>
+          <i class="far fa-square fa-5x"></i>
+          <% full_name =  user.name + " " + user.lastName%>
+          <p><b><%= link_to full_name, user_path(user.id)%></b></p>
+        </div>
+        <%= link_to(
+                content_tag(
+                    :i,
+                    nil,
+                    class: 'fas fa-plus fa-lg'
+                ),
+                invite_path,
+                method: :post
+            )
+        %>
+      </section>
+    <% end %>
+    <div class="row ml-2 mt-0">
+      <%== render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
+    </div>
+  </section>
+
+<% end %>
