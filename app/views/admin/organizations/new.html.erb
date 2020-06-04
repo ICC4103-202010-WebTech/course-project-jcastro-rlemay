@@ -20,20 +20,9 @@
     </div>
   </section>
 
-  <section class="invite_wrapper">
-    <h1 class="wrapper_title">Invite Friends and Users: </h1>
-    <% @invite_users.each do |user| %>
-      <section class="user">
-        <i class="far fa-square fa-5x"></i>
-        <% full_name =  user.name + " " + user.lastName%>
-        <p><b><%= link_to full_name, user_path(user.id)%></b></p>
-      </section>
-    <% end %>
-  </section>
 
   <section class="button_wrapper">
     <%= form.submit "Create Organization", class: "button" %>
-    <%= link_to "Back", root_path, :style=> 'color:white;', class: "button_with_link" %>
   </section>
 
 <% end %>
