@@ -52,9 +52,23 @@ a:visited{
         padding: 1%;
         border: 2px solid #8E7A3F;
     }
+        .event_dates{
+            margin-bottom: 2%;
+        }
         .event_dates i{
             font-size: medium;
+            margin-bottom: 2%;
         }
+        .event_desc p{
+            margin-bottom: 0;
+        }
+        .event_location{
+            margin-top: 2%;
+
+        }
+            .event_location p{
+                margin-bottom: 0;
+            }
     .event_options_wrapper{
         display: flex;
         flex-direction: column;
@@ -135,6 +149,9 @@ a:visited{
             display: flex;
             align-items: center;
         }
+            .user_comment p{
+                flex-grow: 1;
+            }
             .user_comment i{
                 margin-right: 1%;
             }
@@ -145,7 +162,6 @@ a:visited{
             margin-left: 10%;
         }
         .trash{
-            margin-left: 50%;
             color: #8E7A3F;
         }
     .reply_box{
