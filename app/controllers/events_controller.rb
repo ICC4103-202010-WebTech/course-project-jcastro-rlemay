@@ -148,7 +148,7 @@ class EventsController < ApplicationController
 
   def invites
     invited = Invitation.where(event_id: @event).pluck(:user_id)
-    print(invited)
+    invited << @event.event_organizer_id
     @pagy, @invites = pagy(User.where.not(id: invited))
     if event_params[:invitation] != nil
       @invitation = Invitation.new(user_id: event_params[:invitation], event_id: @event.id, message: "You were invited to an event!")
@@ -184,13 +184,11 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
       @event_page = EventPage.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
                                       :minimumGuests, :maximumGuests, :description, :is_public,
