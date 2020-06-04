@@ -27,24 +27,24 @@
         - Anyone can manage an organization page, just by clicking the "edit organization" button you can edit all of its attributes.<br/>
         - The profile of the organization shows its public events in the bottom part of the body.<br/><br/>
     4) Events.<br/>
-        4.1 View events.<br/>
+        - 4.1 View events.<br/>
             - 4.1.1. In the event profile, which you can get by pressing the name of an event, ypu can see all his attributes, incluiding his title, description, lcoation, and creation date.<br/>
             - 4.1.2. In the event page in the right of the body, there's a button called "View Event Pictures", which takes you to all the pictures that the event has, and also gives you the possibility to add more pictures if you want.<br/>
             - 4.1.3. In the event page in the right of the body, there's a button called "View Event Files", which takes you to all the files that the event has, and also gives you the possibility to add more files if you want, we only accept pdf files, because we think is the most common file in events.<br/>
             - 4.1.4. In the event page in the right of the body, there's a button called "View Event Videos", which takes you to all the videos that the event has, and also gives you the possibility to add more videos if you want.<br/>
-        4.2 Start event vote.<br/>
+        - 4.2 Start event vote.<br/>
             - This was explained before, but you can create the event and gives you the option to create a poll by clicking the radio button.<br/>
-        4.3 Configure event date vote.<br/>
+        - 4.3 Configure event date vote.<br/>
             - To configure the event date vote, is just after clicking the radio button, where you can configure all the possible dates, and then finally create the poll by clicking the "Create Event" button.<br/>
-        4.4 Vote for event date.<br/>
+        - 4.4 Vote for event date.<br/>
             - You can vote for an event date in the events that shows you that there's a poll available (a button that says "poll"), you can only vote once in every event, so don't try to vote again, because you'll not be able.<br/>
-        4.5 Invite guests.<br/>
+        - 4.5 Invite guests.<br/>
             - To invite guest, you have to go to the event profile, and go to the "Invited Users section" and press the "+" button and it'll take you to a list of all the users there are and you can invite anyone you want, and after inviting him he'll be erased from that list, so you can't invite someone who's already invited.<br/>
-        4.6 Delete event.<br/>
+        - 4.6 Delete event.<br/>
             - This and the 4.7 section where explained in the 1.2 section.<br/>
-        4.8 Add comment.<br/>
+        - 4.8 Add comment.<br/>
             - This was explained in the 1.3 section.<br/>
-        4.9 View comments.<br/>
+        - 4.9 View comments.<br/>
             - As said before, you can see all the comments that an event has in the events page.<br/><br/>
     5) Search.<br/>
         - All this points will be resumed, because you can get them all the same way.
