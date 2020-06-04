@@ -6,41 +6,59 @@
   <section class="new_event_wrapper">
     <h1 class="wrapper_title">General information: </h1>
 
-      <section class="new_event_name">
-        <label for="name_field"><b>Event name:</b> </label>
-        <%= form.text_field :name, class: "form-control" %>
-      </section>
-      <section class="new_event_desc">
-        <label for="desc_field"><b>Event description:</b> </label>
-        <%= form.text_field :description, class: "form-control" %>
-      </section>
-      <section class="new_event_desc">
-        <label for="desc_field"><b>Event Location:</b> </label>
-        <%= form.text_field :location, class: "form-control" %>
-      </section>
-      <div class="form-group">
-        <label for="desc_field"><b>Minimum Guests:</b> </label>
-        <%= form.number_field :minimumGuests, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <label for="desc_field"><b>Maximum Guests:</b> </label>
-        <%= form.number_field :maximumGuests, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= form.label :event_banner_picture, "Set Event Photo" %>
-        <%= form.file_field :event_banner_picture %>
-      </div>
-      <h4> Set the date: </h4>
-      <section class="date_wrapper">
-        <%= radio_button_tag(:date, "not poll", true) %>
-        <h7> Start date:</h7>
-        <%= select_date Date.today, prefix: :start_date %>
-        <h7> End date:</h7>
-        <%= select_date Date.today, prefix: :end_date %><br><br>
-        <%= radio_button_tag(:date, "is poll") %>
-        <%= label_tag("Set a Poll") %>
-      </section>
+    <section class="new_event_name">
+      <label for="name_field"><b>Event name:</b> </label>
+      <%= form.text_field :name, class: "form-control" %>
+    </section>
+    <section class="new_event_desc">
+      <label for="desc_field"><b>Event description:</b> </label>
+      <%= form.text_field :description, class: "form-control" %>
+    </section>
+    <section class="new_event_desc">
+      <label for="desc_field"><b>Event Location:</b> </label>
+      <%= form.text_field :location, class: "form-control" %>
+    </section>
     <div class="form-group">
+      <label for="desc_field"><b>Minimum Guests:</b> </label>
+      <%= form.number_field :minimumGuests, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="desc_field"><b>Maximum Guests:</b> </label>
+      <%= form.number_field :maximumGuests, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :event_banner_picture, "Set Event Photo" %>
+      <%= form.file_field :event_banner_picture %>
+    </div>
+    <h4> Set the date: </h4>
+    <section class="date_wrapper">
+      <p>
+        <u onclick="show_poll(false)"><%= radio_button_tag(:date, "not poll", true) %></u>
+        <%= label_tag("Select a date:") %>
+        <h7 id="date_wrap" class="date_picker"> Start date:
+          <%= select_date Date.today, prefix: :start_date %>
+          End date:
+          <%= select_date Date.today, prefix: :end_date %><br><br>
+        </h7>
+      </p>
+      <u onclick="show_poll(true)"><%= radio_button_tag(:date, "is poll") %></u>
+      <%= label_tag("Set a Poll:") %>
+    </section>
+    <script>
+        function show_poll(b){
+            var poll = document.getElementById("poll_wrap");
+            var date = document.getElementById("date_wrap");
+            if(b){
+                poll.style.display = "inline";
+                date.style.display = "none";
+            }
+            else{
+                poll.style.display = "none";
+                date.style.display = "inline";
+            }
+        }
+    </script>
+    <div id="poll_wrap" class="poll_wrapper form-group">
       <p> Create a Poll: </p>
       <%= form.fields_for :poll_attributes do |poll| %>
         <div class="form-group">
@@ -59,20 +77,9 @@
     </div>
   </section>
 
-  <section class="invite_wrapper">
-    <h1 class="wrapper_title">Invite Friends and Users: </h1>
-    <% @invite_users.each do |user| %>
-      <section class="user">
-        <i class="far fa-square fa-5x"></i>
-        <% full_name =  user.name + " " + user.lastName%>
-        <p><b><%= link_to full_name, user_path(user.id)%></b></p>
-      </section>
-    <% end %>
-  </section>
 
   <section class="button_wrapper">
     <%= form.submit "Create Event", class: "button" %>
-    <%= link_to "Back", root_path, :style=> 'color:white;', class: "button_with_link" %>
   </section>
 
 <% end %>

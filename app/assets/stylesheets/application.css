@@ -118,3 +118,13 @@ td,th {
     font-size: 25px;
 }
 
+.section_wrapper{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+}
+

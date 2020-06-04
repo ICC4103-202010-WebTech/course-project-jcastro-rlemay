@@ -19,8 +19,6 @@ class Admin::OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
-    offset = rand(User.count)
-    @invite_users = User.offset(offset).take(5)
   end
 
   # GET /organizations/1/edit

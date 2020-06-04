@@ -146,6 +146,19 @@ class Admin::EventsController < ApplicationController
     end
   end
 
+  def invites
+    invited = Invitation.where(event_id: @event).pluck(:user_id)
+    invited << @event.event_organizer_id
+    @pagy, @invites = pagy(User.where.not(id: invited))
+    if event_params[:invitation] != nil
+      @invitation = Invitation.new(user_id: event_params[:invitation], event_id: @event.id, message: "You were invited to an event!")
+      if @invitation.save
+        redirect_to invites_event_path, notice: @invitation.user.name+ " "+ @invitation.user.lastName + " was invited"
+      else
+      end
+    end
+  end
+
   def photos
     if params[:photos] != nil
       @event_page.photos.attach(params[:photos])

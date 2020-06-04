@@ -177,3 +177,7 @@
     .date_wrapper{
         margin-left: 20px;
     }
+
+    .poll_wrapper{
+        display: none;
+    }
