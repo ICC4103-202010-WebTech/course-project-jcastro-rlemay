@@ -6,8 +6,11 @@
     1) System Adminstration:
         1.1. Perform CRUD operations on Organizations.
             - This can only be done by the administrator, so, the only way you can get to the administrator is by writing yourself in the url: "http://127.0.0.1:3000/admin", and you will be taken to the main view of the admin, and there you have to select "Manage Organizations", here you will be taken to all the organizations that are created and in the top right corner of the body, there's an Plus Button, where you can create an organization.
+
             - To edit an organization, you have to click in a specific organization, and in the right of the body there's a button called "Edit Organization", where it'll take you to edit this specific organization.
+
             - The read part, i don't think i need to explain how to get there, because when you pressed the name of an organization, you were shown the Organization, with all his specific attributes.
+
             - To delete an organization, you can do it in 2 different parts, in the page where all the organizations where (just clicking the trash icon will get you to delete it) or in the organization itself where in the top right of the body is a trash button to delete it.
 
         1.2 Perform CRUD operations on Events.
@@ -20,7 +23,7 @@
             - To read events you need to go to the event page of any event, and there you can see all the comments that the event has, also here you can create a comment, just by writing in the "write a comment" section, and when you are done, you just press the send button.
             - To edit a comment or delete one, you have to have administrator privileges, so just like in comments and organization, you have to go into the url specified in the 1.1.1 section, and then go to the "Manage Events button", select the event you want to see the comments, and then you'll have 2 options in a specific comment, the pencil button, which allows you to edit the comment, and the trash button which allows you to delete the comment with all his replies.
 
-    2). User Profile:
+    2) User Profile:
         2.1 View user profile.
             - To see the user profile you just have to click in the navbar button called "profile", and there you can see the user with all his attributes.
 
