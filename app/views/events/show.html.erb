@@ -45,17 +45,19 @@
 </section>
 
 <section class="invite_wrapper">
-  <h1 class="wrapper_title">Invited Users: </h1>
-  <%= link_to(
-          content_tag(
-              :i,
-              nil,
-              class: 'fas fa-plus fa-lg'
-          ),
-          invites_event_path,
-          method: :get
-      )
-  %>
+  <div class="container d-flex align-items-center justify-content-between">
+    <h1 class="wrapper_title">Invited Users: </h1>
+    <%= link_to(
+            content_tag(
+                :i,
+                nil,
+                class: 'fas fa-plus fa-lg fa-2x'
+            ),
+            invites_event_path,
+            method: :get
+        )
+    %>
+  </div>
   <% @invited.each do |invitation| %>
     <section class="user">
       <i class="far fa-square fa-5x"></i>
