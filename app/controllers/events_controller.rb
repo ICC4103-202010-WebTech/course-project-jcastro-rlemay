@@ -119,6 +119,14 @@ class EventsController < ApplicationController
           @event.is_public = true
           @event.save!
         end
+        if event_params[:minimumGuests] != ""
+          @event_page.minimumGuests = event_params[:minimumGuests]
+          @event_page.save
+        end
+        if event_params[:maximumGuests] != ""
+          @event_page.maximumGuests = event_params[:maximumGuests]
+          @event_page.save
+        end
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else

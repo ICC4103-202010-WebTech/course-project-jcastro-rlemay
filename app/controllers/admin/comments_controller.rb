@@ -39,7 +39,6 @@ class Admin::CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    print("PROBANDOOO", params)
     respond_to do |format|
       if @comment.update(content: params[:content])
         format.html { redirect_to admin_event_path(@comment.event), notice: 'Comment was successfully updated.' }

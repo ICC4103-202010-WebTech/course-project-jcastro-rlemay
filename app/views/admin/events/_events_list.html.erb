@@ -29,7 +29,6 @@
       <% end %>
     </section>
     <section class="recent_details">
-
       <p class="recent_event_desc"><b>Description:</b> <%= event.description %></p>
       <section class="recent_date_box">
         <% if event.start_date == nil %>
@@ -42,6 +41,8 @@
           <p class="recent_endDate"><b>End date:</b> <%= event.end_date %></p>
         <% end %>
       </section>
+      <% name= event.event_organizer.user.name+" "+event.event_organizer.user.lastName %>
+      <p class="recent_creator"><b>Created by: <%= link_to name, user_path(event.event_organizer.user) %></b></p>
     </section>
   </section>
 </section>

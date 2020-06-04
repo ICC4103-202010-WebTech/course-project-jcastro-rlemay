@@ -75,15 +75,15 @@ class Admin::OrganizationsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_organization
-    @organization = Organization.find(params[:id])
-    @profile = OrganizationProfile.where(organization_id: params[:id])[0]
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_organization
+      @organization = Organization.find(params[:id])
+      @profile = OrganizationProfile.where(organization_id: params[:id])[0]
+    end
 
-  # Only allow a list of trusted parameters through.
-  def organization_params
-    params.fetch(:organization, {}).permit(:id, :name, :members, :banner_picture,
-                                           :description)
-  end
+    # Only allow a list of trusted parameters through.
+    def organization_params
+      params.fetch(:organization, {}).permit(:id, :name, :members, :banner_picture,
+                                             :description)
+    end
 end

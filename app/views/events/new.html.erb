@@ -32,7 +32,7 @@
       </div>
       <h4> Set the date: </h4>
       <section class="date_wrapper">
-        <%= radio_button_tag(:date, "not poll", checked: true) %>
+        <%= radio_button_tag(:date, "not poll", true) %>
         <h7> Start date:</h7>
         <%= select_date Date.today, prefix: :start_date %>
         <h7> End date:</h7>

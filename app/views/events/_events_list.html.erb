@@ -20,13 +20,13 @@
       <p class="recent_event_desc"><b>Description:</b> <%= event.description %></p>
       <section class="recent_date_box">
         <% if event.start_date == nil %>
-            <i class="mt-1 far fa-calendar-alt fa-1.5x"></i>
-            <p class="recent_startDate">Date not set yet, vote for it! Go to <b><%= link_to "Poll", poll_path( Poll.where(event_id:event.id)[0]) %></b></p>
+          <i class="mt-1 far fa-calendar-alt fa-1.5x"></i>
+          <p class="recent_startDate">Date not set yet, vote for it! Go to <b><%= link_to "Poll", poll_path( Poll.where(event_id:event.id)[0]) %></b></p>
         <% else %>
-            <i class="mt-1 far fa-calendar-alt fa-1.5x mb-0"></i>
-            <p class="recent_startDate"><b>Start date:</b> <%= event.start_date %> </p>
-            <i class="mt-1 fas fa-hourglass-end fa-1.5x mb-0"></i>
-            <p class="recent_endDate"><b>End date:</b> <%= event.end_date %></p>
+          <i class="mt-1 far fa-calendar-alt fa-1.5x mb-0"></i>
+          <p class="recent_startDate"><b>Start date:</b> <%= event.start_date %> </p>
+          <i class="mt-1 fas fa-hourglass-end fa-1.5x mb-0"></i>
+          <p class="recent_endDate"><b>End date:</b> <%= event.end_date %></p>
         <% end %>
       </section>
       <% name= event.event_organizer.user.name+" "+event.event_organizer.user.lastName %>

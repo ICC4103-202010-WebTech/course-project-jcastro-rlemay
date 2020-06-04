@@ -26,12 +26,12 @@
               <p class="recent_event_desc">Event Description: <%= invitation.event.description %></p>
               <section class="recent_date_box">
                 <% if invitation.event.start_date == nil %>
-                  <i class="far fa-calendar-alt fa-1.8x"></i>
+                  <i class="mt-1 mr-1 far fa-calendar-alt fa-1.8x"></i>
                   <p><%= link_to "Poll Link", poll_path( Poll.where(event_id:invitation.event_id)[0]) %></p>
                 <% else %>
-                  <i class="far fa-calendar-alt fa-1.8x"></i>
+                  <i class="mt-1 far fa-calendar-alt fa-1.8x"></i>
                   <p class="recent_startDate"><%= invitation.event.start_date %> </p>
-                  <i class="fas fa-hourglass-end fa-1.8x"></i>
+                  <i class="mt-1 fas fa-hourglass-end fa-1.8x"></i>
                   <p class="recent_endDate"><%= invitation.event.end_date %></p>
                 <% end %>
               </section>
