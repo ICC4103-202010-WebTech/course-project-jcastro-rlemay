@@ -37,9 +37,17 @@
       <%= form.text_field :location, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= radio_button_tag(:is_public, "public") %>
+      <label for="desc_field"><b>Minimum Guests:</b> </label>
+      <%= form.number_field :minimumGuests, :placeholder => @event_page.minimumGuests, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="desc_field"><b>Maximum Guests:</b> </label>
+      <%= form.number_field :maximumGuests, :placeholder => @event_page.maximumGuests, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= radio_button_tag(:is_public, "public", "yes") %>
       <h7>Public</h7><br>
-      <%= radio_button_tag(:is_public, "not public") %>
+      <%= radio_button_tag(:is_public, "not public", "no")%>
       <h7>Private</h7><br>
     </div>
     <div class="form-group">

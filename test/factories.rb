@@ -45,6 +45,7 @@ FactoryBot.define do
 
       after(:create) do |event, evaluator|
         create_list(:invitation, evaluator.invitations_count, event: event)
+        create_list(:comment, evaluator.comments_count, event_page_id: event.id)
       end
     end
     factory :event_with_poll do

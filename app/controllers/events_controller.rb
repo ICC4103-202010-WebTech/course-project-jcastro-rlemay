@@ -61,10 +61,16 @@ class EventsController < ApplicationController
 
     @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
                        description: event_params[:description],
-                       event_organizer: EventOrganizer.find(1))
+                       event_organizer: EventOrganizer.find(1), location: event_params[:location])
     respond_to do |format|
       if @event.save
-        @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+        @event_page = @event.event_page
+        if event_params[:event_banner_picture] != nil
+          @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+          @event_page.save
+        end
+        @event_page.minimumGuests = event_params[:minimumGuests]
+        @event_page.maximumGuests = event_params[:maximumGuests]
         @event_page.save
         if x == nil
           @poll = Poll.new(
@@ -166,7 +172,8 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :description, :is_public, :event_organizer_id, :event_banner_picture,
+                                      :minimumGuests, :maximumGuests, :description, :is_public,
+                                      :event_organizer_id, :event_banner_picture,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
                                       videos:[], photos:[], files:[])
     end

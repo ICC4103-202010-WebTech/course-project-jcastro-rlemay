@@ -14,10 +14,12 @@ a:visited{
     color: #8E7A3F;
     font-size: 40px;
 }
-.trash{
-    margin-left: 50%;
+.trash_start{
+    margin-left: 10%;
+    margin-right: 10%;
     color: #8E7A3F;
 }
+
 .pencil{
 
     color: #8E7A3F;
@@ -141,6 +143,10 @@ a:visited{
             }
         .comment{
             margin-left: 10%;
+        }
+        .trash{
+            margin-left: 50%;
+            color: #8E7A3F;
         }
     .reply_box{
         margin: 2%;
