@@ -14,7 +14,13 @@
             </section>
           </section>
           <section class="recent_body">
-            <i class="far fa-square fa-10x"></i>
+            <section class="event_image_wrapper">
+              <% if invitation.event.event_page.event_banner_picture.attached? %>
+                <%= image_tag(event.event_page.event_banner_picture, width: "120px") %>
+              <%else %>
+                <%= image_tag("event.png", width: "120px", background: "#55595c", color: "#eceeef") %>
+              <% end %>
+            </section>
             <section class="recent_details">
               <p class="recent_event_name"><b><%= link_to invitation.event.name, event_path(invitation.event_id)%></b></p>
               <p class="recent_event_desc">Event Description: <%= invitation.event.description %></p>

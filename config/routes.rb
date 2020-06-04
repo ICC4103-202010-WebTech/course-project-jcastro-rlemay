@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   get "/terms", to: "pages#terms", as: "terms"
-  post "/search", to: "pages#search", as: "search"
+  get "/search", to: "pages#search", as: "search"
   post "/events/:id", to: "comments#create", as: "comment"
   resources :users, defaults: { format: :html } do
     resources :inboxes, defaults: { format: :html }, shallow: true

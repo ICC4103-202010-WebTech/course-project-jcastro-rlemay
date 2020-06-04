@@ -40,14 +40,16 @@
                     font-size: xx-large;
                     color: #8E7A3F;
                     display: flex;
+                    padding-top: 2%;
+                    padding-bottom: 1%;
                 }
                 .recent_title p{
-                    margin-top: 2%;
                     margin-bottom: 0%;
                 }
                 .recent_title i{
                     margin-top: 2%;
                     margin-bottom: 0%;
+
                 }
                     .recent_buttons{
                         align-self: center;
@@ -62,53 +64,48 @@
                         .fa-square::before{
                             color: white;
                         }
-
-                .recent_body{
-                    display: flex;
-                    padding-bottom: 10px;
-                    align-items: center;
+            .recent_body{
+                width: 100%;
+                display: flex;
+                padding-bottom: 10px;
+                margin-top: 0;
+                margin-left: 1%;
+                margin-right: 1%;
+                margin-bottom: 1%;
+                display: flex;
+                justify-content: start;
+                align-content: center;
+            }
+                .event_image_wrapper i{
+                    border-radius: 100px;
                 }
-                    .far fa-square fa-10x{
-                        float: left;
-                        width: auto;
+                .recent_details{
+                    margin-left: 20px;
+                    padding-top: 0;
+                }
+                    .recent_event_desc{
+                        color: white;
                     }
-
-                    .recent_details{
-                        margin-left: 20px;
+                    .recent_date_box{
+                        display: flex;
+                        align-items: center;
                     }
-
-                        .recent_event_name{
-                            color: #8E7A3F;
-                            font-size: 25px;
-                            margin-top: 0;
+                        .recent_poll{
+                            font-size: large;
+                            margin-left: 3px;
+                            margin-bottom: 0;
                         }
 
-                        .recent_event_desc{
-                            color: white;
+                        .recent_startDate{
+                            margin-left: 3px;
+                            margin-right: 10px;
+                            margin-bottom: 0;
                         }
 
-                        .recent_date_box{
-                            display: flex;
-                            align-items: center;
-                            margin-top: 1%;
+                        .recent_endDate{
+                            margin-left: 3px;
+                            margin-bottom: 0;
                         }
-
-                            .recent_date_box a{
-                                font-size: 16px;
-                                margin-left: 5px;
-                                margin-top: 0%;
-                            }
-
-                            .recent_startDate{
-                                font-size: 16px;
-                                margin-left: 3px;
-                                margin-right: 10px;
-                            }
-
-                            .recent_endDate{
-                                font-size: 16px;
-                                margin-left: 3px;
-                            }
     .others{
         margin-top: 0;
         float: right;

@@ -1,4 +1,16 @@
 
+
+.query_wrapper{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    height: auto;
+    background-color: #262626;
+    color: #ffffff;
+    border: 2px solid #8E7A3F;
+    align-items: center;
+}
+
 .wrapper{
     margin-left: 10%;
     margin-right: 10%;
@@ -111,15 +123,19 @@
                     display: flex;
                     align-items: center;
                 }
+                    .recent_poll{
+                        font-size: large;
+                        margin-left: 3px;
+                        margin-bottom: 0;
+                    }
+
                     .recent_startDate{
                         margin-left: 3px;
                         margin-right: 10px;
+                        margin-bottom: 0;
                     }
 
                     .recent_endDate{
                         margin-left: 3px;
+                        margin-bottom: 0;
                     }
-            .recent_poll{
-                font-size: large;
-                margin-left: 3px;
-            }

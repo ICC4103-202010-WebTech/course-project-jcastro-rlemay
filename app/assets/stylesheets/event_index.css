@@ -50,7 +50,6 @@
             }
             .recent_details{
                 margin-left: 20px;
-                padding-top: 2%;
             }
                 .recent_event_desc{
                     color: white;
@@ -62,13 +61,16 @@
                     .recent_poll{
                         font-size: large;
                         margin-left: 3px;
+                        margin-bottom: 0;
                     }
 
                     .recent_startDate{
                         margin-left: 3px;
                         margin-right: 10px;
+                        margin-bottom: 0;
                     }
 
                     .recent_endDate{
                         margin-left: 3px;
+                        margin-bottom: 0;
                     }
