@@ -50,13 +50,18 @@
             }
             .recent_details{
                 margin-left: 20px;
+                display: flex;
+                flex-direction: column;
+                align-content: space-evenly;
             }
                 .recent_event_desc{
                     color: white;
+                    margin-bottom: 2%;
                 }
                 .recent_date_box{
                     display: flex;
-                    align-items: center;
+                    flex-direction: row;
+                    margin-bottom: 2%;
                 }
                     .recent_poll{
                         font-size: large;

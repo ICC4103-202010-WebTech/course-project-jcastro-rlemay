@@ -5,11 +5,15 @@
     margin-right: 10%;
     margin-bottom: 2%;
     height: auto;
+    padding: 2%;
     background-color: #262626;
     color: #ffffff;
     border: 2px solid #8E7A3F;
     align-items: center;
 }
+    .query_field{
+
+    }
 
 .wrapper{
     margin-left: 10%;
@@ -114,14 +118,18 @@
             }
             .recent_details{
                 margin-left: 20px;
-                padding-top: 2%;
+                display: flex;
+                flex-direction: column;
+                align-content: space-evenly;
             }
                 .recent_event_desc{
                     color: white;
+                    margin-bottom: 2%;
                 }
                 .recent_date_box{
                     display: flex;
-                    align-items: center;
+                    flex-direction: row;
+                    margin-bottom: 2%;
                 }
                     .recent_poll{
                         font-size: large;
@@ -139,3 +147,5 @@
                         margin-left: 3px;
                         margin-bottom: 0;
                     }
+                .recent_creator{
+                }
