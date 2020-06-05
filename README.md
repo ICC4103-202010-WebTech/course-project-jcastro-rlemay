@@ -54,7 +54,7 @@
             - In the navbar there's a search form where you can search anything requested in the section 5, and when you press the "search" button you'll be taken to a new page with all of the results at the same time(we only show 5 per category, so the page is not cluttered with info).<br/>
             - After doing a query, you can do an advanced search in the search page by choosing a filter.<br/>
 
-##Database setup:
+## Database setup:
 - to set up our database, we defined the rake task: 'rake db:set'. this task not only automatically resets and migrates the database, but also generates an array of events, users, organizations, invitations and all necessary objects to our database via our seeds and our factories functions.
 - you can check our factories.rb file to have a glimpse of how we create the database objects.
 - you can also modify the number of objects to create, by default we have 30 users, 10 events and 3 organizations, each with their respective dependencies and objects(comments, invitations, members and such).
