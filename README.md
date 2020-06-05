@@ -55,7 +55,7 @@
             - After doing a query, you can do an advanced search in the search page by choosing a filter.<br/>
 
 ## Database setup:
-- to set up our database, you only need to execute the task: 'rake db:set'. This task not only automatically resets and migrates the database, but also generates an array of events, users, organizations, invitations and all necessary objects for our database via our seeds and our factories functions.
+- to set up our database, you only need to execute the task: ```rake db:set```. This task not only automatically resets and migrates the database, but also generates an array of events, users, organizations, invitations and all necessary objects for our database via our seeds and our factories functions.
 - you can check our factories.rb file to have a glimpse of how we create the database objects.
 - you can also modify the number of objects to create. by default we have 30 users, 10 events and 3 organizations, each with their respective dependencies and objects(comments, invitations, members and such).
     
