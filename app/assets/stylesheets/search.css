@@ -22,7 +22,6 @@
     height: auto;
     background-color: #262626;
     color: #ffffff;
-    padding-top: 2%;
     border: 2px solid #8E7A3F;
     align-items: center;
 }
@@ -149,3 +148,10 @@
                     }
                 .recent_creator{
                 }
+    .Nothing_found{
+        color: #8E7A3F;
+        text-align: center;
+        align-self: center;
+        padding-bottom: 1%;
+        padding-top: 1%;
+    }

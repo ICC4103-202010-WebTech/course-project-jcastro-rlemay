@@ -33,56 +33,100 @@
 </section>
 
 <% if params[:tags] == "user by name" or params[:tags] == nil or params[:tags] == ""%>
-  <h1 class="subtitle">Users by name:</h1>
-
-  <section class="wrapper">
-    <%= render :partial => 'users/user_list', collection: @users_by_name, as: :user %>
-  </section>
+  <%if @users_by_name != [] %>
+    <h1 class="subtitle">Users by name:</h1>
+    <section class="wrapper">
+      <%= render :partial => 'users/user_list', collection: @users_by_name, as: :user %>
+    </section>
+  <% else %>
+    <h1 class="subtitle">Users by name:</h1>
+    <section class="wrapper">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
 <% end %>
 
 <% if params[:tags] == "user by username" or params[:tags] == nil or params[:tags] == ""%>
-  <h1 class="subtitle">Users by username:</h1>
-
-  <section class="wrapper">
-    <%= render :partial => 'users/user_list', collection: @users_by_username, as: :user %>
-  </section>
+  <%if @users_by_username != [] %>
+    <h1 class="subtitle">Users by username:</h1>
+    <section class="wrapper">
+      <%= render :partial => 'users/user_list', collection: @users_by_username, as: :user %>
+    </section>
+  <% else %>
+    <h1 class="subtitle">Users by username:</h1>
+    <section class="wrapper">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
 <% end %>
 
 <% if params[:tags] == "organization by name" or params[:tags] == nil or params[:tags] == ""%>
-  <h1 class="subtitle">Organizations by name:</h1>
-
-  <section class="wrapper">
-    <%= render :partial => 'organizations/organization_list', collection: @organizations_by_name, as: :organization %>
-  </section>
+  <%if @organizations_by_name != [] %>
+    <h1 class="subtitle">Organizations by name:</h1>
+    <section class="wrapper">
+      <%= render :partial => 'organizations/organization_list', collection: @organizations_by_name, as: :organization %>
+    </section>
+  <% else %>
+    <h1 class="subtitle">Organizations by name:</h1>
+    <section class="wrapper">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
 <% end %>
 
 <% if params[:tags] == "event by title" or params[:tags] == nil or params[:tags] == ""%>
-  <h1 class="subtitle">Events by name:</h1>
-
-  <section class="wrapper">
-    <%= render :partial => 'events/events_list', collection: @events_by_title, as: :event %>
-  </section>
+  <%if @events_by_title != [] %>
+    <h1 class="subtitle">Events by name:</h1>
+    <section class="wrapper">
+      <%= render :partial => 'events/events_list', collection: @events_by_title, as: :event %>
+    </section>
+  <% else %>
+    <h1 class="subtitle">Events by name:</h1>
+    <section class="wrapper">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
 <% end %>
 
 <% if params[:tags] == "event by description" or params[:tags] == nil or params[:tags] == ""%>
-  <h1 class="subtitle">Events by description:</h1>
+  <%if @events_by_desc != [] %>
+    <h1 class="subtitle">Events by description:</h1>
 
-  <section class="wrapper">
-    <%= render :partial => 'events/events_list', collection: @events_by_desc, as: :event %>
-  </section>
+    <section class="wrapper">
+      <%= render :partial => 'events/events_list', collection: @events_by_desc, as: :event %>
+    </section>
+  <% else %>
+    <h1 class="subtitle">Events by description:</h1>
+    <section class="wrapper">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
 <% end %>
 
 <% if params[:tags] == "event by creator" or params[:tags] == nil or params[:tags] == ""%>
-  <h1 class="subtitle">Events by Creator:</h1>
-
-  <section class="wrapper">
-    <%= render :partial => 'events/events_list', collection: @events_by_creator, as: :event %>
-  </section>
+  <%if @events_by_creator != [] %>
+    <h1 class="subtitle">Events by Creator:</h1>
+    <section class="wrapper">
+      <%= render :partial => 'events/events_list', collection: @events_by_creator, as: :event %>
+    </section>
+  <% else %>
+    <h1 class="subtitle">Events by Creator:</h1>
+    <section class="wrapper">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
 <% end %>
 
 <% if params[:tags] == "event by organization" or params[:tags] == nil or params[:tags] == ""%>
-  <h1 class="subtitle">Events by organization name:</h1>
-  <section class="wrapper">
-    <%= render :partial => 'events/events_list', collection: @events_by_organization, as: :event %>
-  </section>
+  <%if @events_by_organization != [] %>
+    <h1 class="subtitle">Events by organization name:</h1>
+    <section class="wrapper">
+      <%= render :partial => 'events/events_list', collection: @events_by_organization, as: :event %>
+    </section>
+  <% else %>
+    <h1 class="subtitle">Events by organization name:</h1>
+    <section class="wrapper">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
 <% end %>
