@@ -6,7 +6,7 @@
     <% if @profile.profile_picture.attached? %>
       <%= image_tag(@profile.profile_picture, width: "200px") %>
     <%else %>
-      <i class="far fa-square fa-10x"></i>
+      <%= image_tag("profile.png", width: "200px", background: "#55595c", color: "#eceeef") %>
     <% end %>
   </section>
   <section class="user_info_wrapper">
