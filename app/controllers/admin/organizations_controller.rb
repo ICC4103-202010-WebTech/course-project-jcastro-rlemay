@@ -50,9 +50,20 @@ class Admin::OrganizationsController < ApplicationController
   # PATCH/PUT /organizations/1.json
   def update
     respond_to do |format|
-      if @organization.update(name: organization_params[:name]) and
-          @profile.update(description: organization_params[:description],
-                          banner_picture: organization_params[:banner_picture])
+      if @organization.update(name: organization_params[:name])
+        if organization_params[:banner_picture]!=nil
+          if organization_params[:description]== ""
+            @profile.update(banner_picture: organization_params[:banner_picture])
+          else
+            @profile.update(description: organization_params[:description],
+                            banner_picture: organization_params[:banner_picture])
+          end
+
+        else
+          if organization_params[:description] != ""
+            @profile.update(description: organization_params[:description])
+          end
+        end
         format.html { redirect_to admin_organization_path(@organization), notice: 'Admin Organization was successfully updated.' }
 
       else

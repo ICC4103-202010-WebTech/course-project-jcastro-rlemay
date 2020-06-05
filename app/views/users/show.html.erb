@@ -38,7 +38,11 @@
 
     </section>
     <section class="events_details">
-      <i class="far fa-square fa-8x"></i>
+      <% if event.event_page.event_banner_picture.attached? %>
+        <i><%= image_tag(event.event_page.event_banner_picture, width: "100px") %></i>
+      <%else %>
+        <i><%= image_tag("event.png", width: "100px", background: "#55595c", color: "#eceeef") %></i>
+      <% end %>
       <section class="event_text">
         <h3><%= link_to event.name, event_path(event.id) %></h3>
         <%= event.description %>
@@ -57,7 +61,11 @@
 
     </section>
     <section class="events_details">
-      <i class="far fa-square fa-8x"></i>
+      <% if event.event_page.event_banner_picture.attached? %>
+        <i><%= image_tag(event.event_page.event_banner_picture, width: "100px") %></i>
+      <%else %>
+        <i><%= image_tag("event.png", width: "100px", background: "#55595c", color: "#eceeef") %></i>
+      <% end %>
       <section class="event_text">
         <h3><%= link_to event.name, event_path(event.id) %></h3>
         <%= event.description %>
