@@ -21,6 +21,13 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+
+# Add devise for user authentication, registration, etc.
+gem 'devise', '~> 4.7'
+
+# Add CanCanCan for user authorization
+gem 'cancancan', '~> 3.1'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

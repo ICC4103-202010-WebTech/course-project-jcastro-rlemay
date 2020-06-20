@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_004807) do
+ActiveRecord::Schema.define(version: 2020_06_20_172044) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -174,10 +174,17 @@ ActiveRecord::Schema.define(version: 2020_06_02_004807) do
   end
 
   create_table "system_admins", force: :cascade do |t|
-    t.integer "user_id"
+    t.string "name"
+    t.string "lastName"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_system_admins_on_user_id"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_system_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_system_admins_on_reset_password_token", unique: true
   end
 
   create_table "user_profiles", force: :cascade do |t|
@@ -193,12 +200,18 @@ ActiveRecord::Schema.define(version: 2020_06_02_004807) do
     t.string "name"
     t.string "lastName"
     t.string "password"
-    t.string "email"
     t.string "location"
     t.string "address"
     t.string "phone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "votes", force: :cascade do |t|

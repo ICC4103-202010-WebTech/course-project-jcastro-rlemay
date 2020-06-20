@@ -44,6 +44,37 @@ td,th {
     text-align: left;
 }
 
+.unlogged_topnav {
+    padding: 10px;
+    overflow: hidden;
+    background-color: #262626;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+    .header_title{
+        margin-left: 3%;
+    }
+    .sing_in_header{
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 10%;
+    }
+        .sing_in_header h3{
+            margin: 0;
+        }
+        .sing_in_header a{
+            display: block;
+            font-size: 17px;
+            padding: 14px 16px;
+            text-align: center;
+        }
+        .sing_in_header a:hover{
+            background-color: #333333;
+            color: white;
+        }
+
 .topnav {
     padding: 10px;
     overflow: hidden;
@@ -59,7 +90,6 @@ td,th {
         .page_name{
             font-size: 40px;
             display: block;
-
             margin-bottom: 0;
         }
 

@@ -62,9 +62,9 @@ u4p.save!
 n22 = Notification.create(message: "Your Username and bio has been updated!",user_id: u4.id)
 n22.save!
 
-
+/
 sa = SystemAdmin.create(user_id: u2.id)
-sa.save!
+sa.save!/
 
 o1 = Organization.create(name: "Organization 1")
 o1.save!
