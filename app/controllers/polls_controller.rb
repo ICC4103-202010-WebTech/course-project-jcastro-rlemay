@@ -42,7 +42,7 @@ class PollsController < ApplicationController
   # PATCH/PUT /polls/1.json
   def update
 
-      @vote = Vote.new(answerDate: params[:start_date], poll_id: @poll.id, user_id: 1)
+      @vote = Vote.new(answerDate: params[:start_date], poll_id: @poll.id, user_id: current_user.id)
       if @vote.save
         if @poll.update(currentAnswers: @poll.currentAnswers + 1)
           redirect_to @poll.event, notice: 'Vote was created.'

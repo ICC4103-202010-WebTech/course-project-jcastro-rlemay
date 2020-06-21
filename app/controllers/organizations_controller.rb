@@ -44,7 +44,6 @@ class OrganizationsController < ApplicationController
   # PATCH/PUT /organizations/1
   # PATCH/PUT /organizations/1.json
   def update
-    print("WWWWWWWWWWWWWW",organization_params[:description]=="")
     respond_to do |format|
       if @organization.update(name: organization_params[:name])
         if organization_params[:banner_picture]!=nil
