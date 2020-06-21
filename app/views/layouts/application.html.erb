@@ -29,6 +29,7 @@
             <% if user_signed_in? %>
               <h3><%= link_to "New Event", new_event_path %></h3>
               <h3><%= link_to "Events", events_path %></h3>
+              <h3><%= link_to "Organizations", organizations_path%></h3>
               <h3><%= link_to "Inbox", user_inboxes_path(current_user.id) %></h3>
               <h3><%= link_to "Profile", user_path(current_user.id)%></h3>
               <h3><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></h3>

@@ -13,6 +13,7 @@
     <h1 class="wrapper_title"><%= @user.name %>  <%= @user.lastName %></h1>
     <ul>
       <li><b><%= @user.name %>'s bio:</b> <%= @profile.bio %></li>
+      <li><b>Last access: <%= @user.last_sign_in_at %></b></li>
       <li><b>Email:</b> <%= @user.email %></li>
       <li><b>Location:</b> <%= @user.location %></li>
       <li><b>Address:</b> <%= @user.address %></li>
@@ -28,6 +29,7 @@
     <% else %>
       <%= link_to "Join a Organization", organizations_path %>
     <% end %>
+    <%= link_to "Change your password", edit_user_registration_path %>
   </section>
 </section>
 

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :system_admins
-  devise_for :users
+  devise_for :system_admins, controllers: { registrations: 'system_admins/registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   root "pages#home"
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

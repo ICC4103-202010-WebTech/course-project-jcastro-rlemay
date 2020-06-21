@@ -62,6 +62,13 @@
         <h3><%= link_to "Manage organizations", admin_organizations_path %></h3>
       </section>
     </div>
+    <div class="others">
+      <h1 class="other_header"><b>Welcome Admin!</b></h1>
+      <section class="other_activity">
+        <h3>Name: <%= current_system_admin.name %></h3>
+        <h3>Last Name: <%= current_system_admin.lastName %></h3>
+      </section>
+    </div>
   <% else %>
     <div class="unlogged_body_user">
       <h1 class="title">Join Our Community Now!!</h1>

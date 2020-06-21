@@ -20,6 +20,38 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  <% if resource_name.to_s == "user" %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :lastName %><br />
+      <%= f.text_field :lastName %>
+    </div>
+    <div class="field">
+      <%= f.label :location %><br />
+      <%= f.text_field :location %>
+    </div>
+    <div class="field">
+      <%= f.label :address %><br />
+      <%= f.text_field :address %>
+    </div>
+    <div class="field">
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone %>
+    </div>
+  <% elsif resource_name.to_s == "system_admin" %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :lastName %><br />
+      <%= f.text_field :lastName %>
+    </div>
+  <% end %>
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>
