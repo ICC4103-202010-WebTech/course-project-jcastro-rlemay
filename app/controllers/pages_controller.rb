@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
   def home
-    @recent_events = Invitation.where(user_id: current_user.id).limit(5).order("created_at desc")
-    @recent_notifications = Notification.where(user_id: current_user.id).limit(5).order("created_at desc")
+    if user_signed_in?
+      @recent_events = Invitation.where(user_id: current_user.id).limit(5).order("created_at desc")
+      @recent_notifications = Notification.where(user_id: current_user.id).limit(5).order("created_at desc")
+    end
   end
   def terms
 
