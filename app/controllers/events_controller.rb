@@ -59,9 +59,14 @@ class EventsController < ApplicationController
 
     end
 
+    if EventOrganizer.where(user_id: current_user.id)[0] == nil
+      EventOrganizer.create(user_id: current_user.id)
+    end
+
+
     @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
                        description: event_params[:description],
-                       event_organizer: EventOrganizer.find(1), location: event_params[:location])
+                       event_organizer: EventOrganizer.find(current_user.id), location: event_params[:location])
     respond_to do |format|
       if @event.save
         @event_page = @event.event_page
