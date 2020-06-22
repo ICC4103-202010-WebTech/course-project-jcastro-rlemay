@@ -7,6 +7,8 @@ ruby '2.6.5'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Pagy
 gem 'pagy'
+# For dropdowns
+gem 'popper_js'
 # Active Storage validator
 gem 'activestorage-validator'
 # Use sqlite3 as the database for Active Record

@@ -27,8 +27,15 @@
           </section>
           <section class="header_rightPart">
             <% if user_signed_in? %>
-              <h3><%= link_to "New Event", new_event_path %></h3>
-              <h3><%= link_to "Events", events_path %></h3>
+              <div class="dropdown show">
+                <button class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Events
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <h3><%= link_to "New Event", new_event_path, class: "dropdown-item" %></h3>
+                  <h3><%= link_to "Public Events", events_path, class: "dropdown-item" %></h3>
+                </div>
+              </div>
               <h3><%= link_to "Organizations", organizations_path%></h3>
               <h3><%= link_to "Inbox", user_inboxes_path(current_user.id) %></h3>
               <h3><%= link_to "Profile", user_path(current_user.id)%></h3>
