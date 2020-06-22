@@ -4,7 +4,6 @@
   <title>CourseProjectJcastroRlemay</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/bb30ccd945.js" crossorigin="anonymous"></script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -27,19 +26,37 @@
           </section>
           <section class="header_rightPart">
             <% if user_signed_in? %>
+
               <div class="dropdown show">
-                <button class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h3 class="dropdown-toggle" role="button" data-toggle="dropdown">
                   Events
-                </button>
+                </h3>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <h3><%= link_to "New Event", new_event_path, class: "dropdown-item" %></h3>
-                  <h3><%= link_to "Public Events", events_path, class: "dropdown-item" %></h3>
+                  <%= link_to "New Event", new_event_path, class: "dropdown-item" %>
+                  <%= link_to "Public Events", events_path, class: "dropdown-item" %>
                 </div>
               </div>
-              <h3><%= link_to "Organizations", organizations_path%></h3>
-              <h3><%= link_to "Inbox", user_inboxes_path(current_user.id) %></h3>
-              <h3><%= link_to "Profile", user_path(current_user.id)%></h3>
-              <h3><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></h3>
+
+              <div class="dropdown show">
+                <h3 class="dropdown-toggle" role="button" data-toggle="dropdown">
+                  Organizations
+                </h3>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <%= link_to "New Organization", new_organization_path, class: "dropdown-item" %>
+                  <h3><%= link_to "All Organizations", organizations_path%></h3>
+                </div>
+              </div>
+
+              <div class="dropdown show">
+                <h3 class="dropdown-toggle" role="button" data-toggle="dropdown">
+                  User
+                </h3>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <h3><%= link_to "Your Profile", user_path(current_user.id)%></h3>
+                  <h3><%= link_to "Inbox", user_inboxes_path(current_user.id) %></h3>
+                  <h3><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></h3>
+                </div>
+              </div>
             <%else%>
               <h3><%= link_to "Events", admin_events_path %></h3>
               <h3><%= link_to "Organizations", admin_organizations_path %></h3>
