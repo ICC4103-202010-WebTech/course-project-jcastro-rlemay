@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "home.css" %>
-<section class="page">
   <% if user_signed_in? %>
+  <section class="page">
     <div class="main_section">
       <h1 class="title"><b>Recent event activity</b></h1>
       <section class="recent_section">
@@ -63,7 +63,9 @@
 
       </section>
     </div>
+  </section>
   <% elsif system_admin_signed_in? %>
+  <section class="page">
     <div class="main_section">
       <h1 class="title"><b>Admin Menu</b></h1>
       <section class="recent_section">
@@ -78,9 +80,11 @@
         <h3>Last Name: <%= current_system_admin.lastName %></h3>
       </section>
     </div>
+  </section>
   <% else %>
-    <div class="unlogged_body_user">
+  <main class="unlogged_page">
+    <div class="unlogged_section">
       <h1 class="title">Join Our Community Now!!</h1>
     </div>
+  </main>
   <% end %>
-</section>

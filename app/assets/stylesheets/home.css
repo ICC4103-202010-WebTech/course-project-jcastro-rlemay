@@ -135,3 +135,21 @@
             padding-bottom: 1%;
             border: 2px solid #8E7A3F;
         }
+.unlogged_page{
+    background-image: url("Events_Background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: available;
+    padding: 2%;
+}
+
+.unlogged_section{
+    flex: 1;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+}
