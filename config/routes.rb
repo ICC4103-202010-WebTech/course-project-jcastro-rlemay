@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :system_admins, controllers: { registrations: 'system_admins/registrations' }
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations',
+                                    omniauth_callbacks: 'users/omniauth_callbacks'}
   root "pages#home"
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

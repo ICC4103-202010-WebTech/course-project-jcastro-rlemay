@@ -2,6 +2,10 @@ require 'securerandom'
 
 include FactoryBot::Syntax::Methods
 FactoryBot.define do
+  factory :message do
+    message { "MyString" }
+  end
+
 
   factory :user do
     name { Faker::FunnyName.name }

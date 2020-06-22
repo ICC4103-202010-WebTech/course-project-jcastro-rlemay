@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable
+         :recoverable, :rememberable, :validatable, :trackable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
   has_one :user_profile, dependent: :destroy
   before_create :build_user_profile
   has_one :inbox, dependent: :destroy
@@ -22,5 +23,10 @@ class User < ApplicationRecord
 
   has_one :event_organizer, dependent: :destroy #he can be an event organizer admin himself
   has_one :organization_admin, dependent: :destroy #he can be an organization admin himself
+
+  def self.from_google(email:, first_name:, last_name:)
+    create_with(name: first_name, lastName: last_name,
+                password: "123456").find_or_create_by!(email: email)
+  end
 
 end

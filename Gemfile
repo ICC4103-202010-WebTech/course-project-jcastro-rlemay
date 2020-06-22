@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 
 # Add devise for user authentication, registration, etc.
 gem 'devise', '~> 4.7'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
 
 # Add CanCanCan for user authorization
 gem 'cancancan', '~> 3.1'
