@@ -28,11 +28,16 @@ class OrganizationsController < ApplicationController
   # POST /organizations
   # POST /organizations.json
   def create
-    @organization = Organization.new(organization_params)
+    @organization = Organization.new(name: organization_params[:name])
 
     respond_to do |format|
       if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+        @organization.organization_profile.description = organization_params[:description]
+        @organization.organization_profile.banner_picture.attach(organization_params[:banner_picture])
+        @organization_admin = OrganizationAdmin.new(user_id: current_user.id, organization_id: @organization.id)
+        @organization_admin.save
+        @organization.organization_profile.save
+        format.html { redirect_to admin_organization_path(@organization), notice: 'Organization was successfully created.' }
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new }

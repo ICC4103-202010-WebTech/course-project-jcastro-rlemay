@@ -22,60 +22,69 @@
 
   </section>
   <section class="user_options_wrapper">
-    <%= link_to "Edit Profile", edit_user_path %>
-    <%= link_to "View Friends", users_path %>
-    <% if @organization != nil%>
-      <%= link_to "View Organization", organization_path(@organization.organization_id) %>
-    <% else %>
-      <%= link_to "Join a Organization", organizations_path %>
+    <% if user_signed_in? %>
+      <% if current_user.id.to_s == params[:id].to_s %>
+        <%= link_to "Edit Profile", edit_user_path %>
+        <%= link_to "Change your password", edit_user_registration_path %>
+        <% if @organization != nil%>
+          <%= link_to "View Organization", organization_path(@organization.organization_id) %>
+        <% else %>
+          <%= link_to "Join a Organization", organizations_path %>
+        <% end %>
+      <% else %>
+        <%= link_to "Report User", edit_user_path %>
+        <% if @organization != nil%>
+          <%= link_to "View Organization", organization_path(@organization.organization_id) %>
+        <% end %>
+      <% end %>
+    <%elsif system_admin_signed_in? %>
+      <%= link_to "Edit Profile", edit_user_path %>
+      <%= link_to "Delete user", user_path(@user.id), method: :delete %>
+      <% if @organization != nil%>
+        <%= link_to "View Organization", organization_path(@organization.organization_id) %>
+      <% end %>
     <% end %>
-    <%= link_to "Change your password", edit_user_registration_path %>
+
   </section>
 </section>
 
-<h1 class="profile_title">Your Created Events:</h1>
-<% @events_created.each do |event| %>
-  <section class="user_events_wrapper">
-    <section class="events_upper">
-
-    </section>
-    <section class="events_details">
-      <% if event.event_page.event_banner_picture.attached? %>
-        <i><%= image_tag(event.event_page.event_banner_picture, width: "100px") %></i>
-      <%else %>
-        <i><%= image_tag("event.png", width: "100px", background: "#55595c", color: "#eceeef") %></i>
-      <% end %>
-      <section class="event_text">
-        <h3><%= link_to event.name, event_path(event.id) %></h3>
-        <%= event.description %>
-      </section>
-    </section>
-    <section class="events_down">
-
-    </section>
-  </section>
+<% if user_signed_in? %>
+  <% if current_user.id.to_s == params[:id].to_s %>
+    <h1 class="profile_title">Your Created Events:</h1>
+  <% else %>
+    <h1 class="profile_title"><%= @user.name %>'s Created Events:</h1>
+  <% end %>
+<% else %>
+  <h1 class="profile_title"><%= @user.name %>'s Created Events:</h1>
 <% end %>
+<div class="recent_section">
+  <% if @events_created != []%>
+    <%= render :partial => 'events/events_list', collection: @events_created, as: :event %>
+  <% else %>
+    <section class="event_section">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
+</div>
+
 <br><br>
-<h1 class="profile_title">Events you were invited:</h1>
-<% @events_invited.each do |event| %>
-  <section class="user_events_wrapper">
-    <section class="events_upper">
-
-    </section>
-    <section class="events_details">
-      <% if event.event_page.event_banner_picture.attached? %>
-        <i><%= image_tag(event.event_page.event_banner_picture, width: "100px") %></i>
-      <%else %>
-        <i><%= image_tag("event.png", width: "100px", background: "#55595c", color: "#eceeef") %></i>
-      <% end %>
-      <section class="event_text">
-        <h3><%= link_to event.name, event_path(event.id) %></h3>
-        <%= event.description %>
-      </section>
-    </section>
-    <section class="events_down">
-
-    </section>
-  </section>
+<% if user_signed_in? %>
+  <% if current_user.id.to_s == params[:id].to_s %>
+    <h1 class="profile_title">Events you were invited to:</h1>
+  <% else %>
+    <h1 class="profile_title">Events <%= @user.name %> was invited to:</h1>
+  <% end %>
+<% else %>
+  <h1 class="profile_title"><%= @user.name %>'s Created Events:</h1>
 <% end %>
+<section class="recent_section">
+  <% if @events_invited != []%>
+    <%= render :partial => 'events/events_list', collection: @events_invited, as: :event %>
+  <% else %>
+    <section class="event_section">
+      <h2 class="Nothing_found"> Nothing Found </h2>
+    </section>
+  <% end %>
+</section>
+
 

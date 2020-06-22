@@ -3,7 +3,20 @@
   <section class="recent_title">
     <p class="recent_event_name"><b><%= link_to event.name, event_path(event.id)%></b></p>
     <section class="recent_buttons">
-      <i class="fas fa-user-plus"></i>
+      <% if user_signed_in? %>
+        <% if current_user.id.to_s == event.event_organizer.user.id.to_s %>
+          <%= link_to(
+                  content_tag(
+                      :i,
+                      nil,
+                      class: 'fas fa-user-plus'
+                  ),
+                  invites_event_path(event.id),
+                  method: :get
+              )
+          %>
+        <% end %>
+      <% end %>
       <i class="fas fa-bookmark"></i>
       <i class="fas fa-bell"></i>
     </section>

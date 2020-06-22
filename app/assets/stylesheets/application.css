@@ -177,3 +177,10 @@ td,th {
     border: 2px solid #8E7A3F;
 }
 
+.Nothing_found{
+    color: #8E7A3F;
+    text-align: center;
+    align-self: center;
+    padding-bottom: 1%;
+    padding-top: 1%;
+}

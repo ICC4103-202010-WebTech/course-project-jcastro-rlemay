@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @events_created = Event.where(event_organizer_id: params[:id])
+    @events_created = Event.where(event_organizer: EventOrganizer.where(user_id: params[:id]))
     @organization = OrganizationMember.where(user_id: params[:id])[0]
     @events_invited = Event.find(Invitation.where(user_id: params[:id]).pluck(:event_id))
   end

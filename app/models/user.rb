@@ -22,6 +22,5 @@ class User < ApplicationRecord
 
   has_one :event_organizer, dependent: :destroy #he can be an event organizer admin himself
   has_one :organization_admin, dependent: :destroy #he can be an organization admin himself
-  has_one :system_admin, dependent: :destroy
 
 end
