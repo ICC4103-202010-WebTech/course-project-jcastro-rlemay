@@ -92,7 +92,7 @@
       <%= form.submit "Send", class: ["btn", "btn-primary"] %>
     <% end %>
   </div>
-  <% @comments.each do |comment| %>
+  <% @comments.each_with_index do |comment, i| %>
     <section class="comment_box">
       <section class="user_comment">
         <% if comment.user.user_profile.profile_picture.attached? %>
@@ -102,23 +102,58 @@
         <% end %>
         <% full_name =  comment.user.name + " " + comment.user.lastName%>
         <p><b><%= link_to full_name, user_path(comment.user.id)%></b></p>
+        <% if user_signed_in? %>
+          <% if current_user.id.to_s == comment.user.id.to_s %>
+          <div class="trash float-right p-2 bd-highlight"><%= link_to(
+                                                                  content_tag(
+                                                                      :i,
+                                                                      nil,
+                                                                      class: 'fa fa-trash-o'
+                                                                  ),
+                                                                  admin_comment_path(comment.id),
+                                                                  method: :delete
+                                                              )
+          %></div>
+          <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
+          <% end %>
+        <% end %>
       </section>
-      <p class="comment"><%= comment.content %></p>
+      <div id="real_comment<%=i%>"><p class="comment"><%= comment.content %></p></div>
+      <div id="edit_comment<%=i%>" class="edit_comment">
+        <%= form_with url: admin_comment_path(comment), method: :patch do |form| %>
+          <%= form.text_area :content, class: "form-control", placeholder: comment.content%>
+          <%= form.submit "Send", class: ["btn", "btn-primary"] %>
+        <% end %>
+      </div>
+      <script>
+          function myFunction(p) {
+              var real_comment = document.getElementById("real_comment"+String(p));
+              var edit_comment = document.getElementById("edit_comment"+String(p));
+
+              if (real_comment.style.display === "none") {
+                  real_comment.style.display = "inline";
+                  edit_comment.style.display = "none";
+              } else {
+                  real_comment.style.display = "none";
+                  edit_comment.style.display = "inline";
+              }
+          }
+      </script>
       <% replies = @comment_replies.where(comment_id: comment.id) %>
       <% if replies != []%>
         <section class="reply_box">
-            <% replies.each do |reply| %>
-              <section class="user_reply">
-                <% if reply.user.user_profile.profile_picture.attached? %>
-                  <%= image_tag(reply.user.user_profile.profile_picture, width: "60px", class: "m-1") %>
-                <%else %>
-                  <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef", class: "m-1") %>
-                <% end %>
-                <% full_name =  reply.user.name + " " + reply.user.lastName%>
-                <p><b><%= link_to full_name, user_path(reply.user.id)%></b></p>
-              </section>
-              <p class="reply"><%= reply.content %></p>
-            <% end %>
+          <% replies.each do |reply| %>
+            <section class="user_reply">
+              <% if reply.user.user_profile.profile_picture.attached? %>
+                <%= image_tag(reply.user.user_profile.profile_picture, width: "60px", class: "m-1") %>
+              <%else %>
+                <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef", class: "m-1") %>
+              <% end %>
+              <% full_name =  reply.user.name + " " + reply.user.lastName%>
+              <p><b><%= link_to full_name, user_path(reply.user.id)%></b></p>
+            </section>
+            <p class="reply"><%= reply.content %></p>
+          <% end %>
         </section>
       <% end %>
     </section>
