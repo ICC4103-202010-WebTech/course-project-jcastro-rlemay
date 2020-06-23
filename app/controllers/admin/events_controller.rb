@@ -1,5 +1,5 @@
 class Admin::EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files, :invites]
 
   # GET /events
   # GET /events.json
@@ -153,7 +153,7 @@ class Admin::EventsController < ApplicationController
     if event_params[:invitation] != nil
       @invitation = Invitation.new(user_id: event_params[:invitation], event_id: @event.id, message: "You were invited to an event!")
       if @invitation.save
-        redirect_to invites_event_path, notice: @invitation.user.name+ " "+ @invitation.user.lastName + " was invited"
+        redirect_to invites_admin_event_path, notice: @invitation.user.name+ " "+ @invitation.user.lastName + " was invited"
       else
       end
     end
@@ -194,7 +194,7 @@ class Admin::EventsController < ApplicationController
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
                                       :minimumGuests, :maximumGuests, :description, :is_public,
-                                      :event_organizer_id, :event_banner_picture,
+                                      :event_organizer_id, :event_banner_picture, :invitation,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
                                       videos:[], photos:[], files:[])
     end

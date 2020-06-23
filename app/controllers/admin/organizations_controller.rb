@@ -14,6 +14,7 @@ class Admin::OrganizationsController < ApplicationController
     @organization_events = Event.where(id: OrganizationEvent.where(organization_id: params[:id]).
         pluck(:event_id), is_public: true)
     @organization_creator = OrganizationAdmin.where(organization_id: params[:id])[0]
+    @organization_members = OrganizationMember.where(organization_id: params[:id])
   end
 
   # GET /organizations/new
@@ -80,6 +81,23 @@ class Admin::OrganizationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_organizations_path, notice: 'Organization was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def invites
+    members = OrganizationMember.where(organization_id: params[:id]).pluck(:user_id)
+    admins = OrganizationAdmin.where(organization_id: params[:id]).pluck(:user_id)
+    admins.each do |admin|
+      members << admin
+    end
+    @pagy, @invites = pagy(User.where.not(id: members))
+    if params[:invitation] != nil
+      @notification = Notification.new(user_id: params[:invitation], message: "You were invited to an Organization!")
+      @org_member = OrganizationMember.new(user_id: params[:invitation],organization_id: params[:id])
+      if @org_member.save
+        redirect_to invites_admin_organization_path, notice: @org_member.user.name+ " "+ @org_member.user.lastName + " was invited"
+      else
+      end
     end
   end
 

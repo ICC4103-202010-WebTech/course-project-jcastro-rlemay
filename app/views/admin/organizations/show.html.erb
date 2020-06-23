@@ -34,25 +34,42 @@
   </section>
 </section>
 
-<h1 class="profile_title">This Organization's Public Events:</h1>
-<% @organization_events.each do |event| %>
-  <section class="user_events_wrapper">
-    <section class="events_upper">
-
-    </section>
-    <section class="events_details">
-      <% if event.event_page.event_banner_picture.attached? %>
-        <i><%= image_tag(event.event_page.event_banner_picture, width: "100px") %></i>
+<section class="invite_wrapper">
+  <div class="container d-flex align-items-center justify-content-between">
+    <h1 class="wrapper_title">Members: </h1>
+    <%= link_to(
+                content_tag(
+                    :i,
+                    nil,
+                    class: 'fas fa-plus fa-lg fa-2x'
+                ),
+                invites_admin_organization_path,
+                method: :get
+            )
+        %>
+  </div>
+  <% @organization_members.each do |member| %>
+    <section class="user">
+      <% if member.user.user_profile.profile_picture.attached? %>
+        <%= image_tag(member.user.user_profile.member, width: "60px") %>
       <%else %>
-        <i><%= image_tag("event.png", width: "100px", background: "#55595c", color: "#eceeef") %></i>
+        <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef") %>
       <% end %>
-      <section class="event_text">
-        <h3><%= link_to event.name, event_path(event.id) %></h3>
-        <%= event.description %>
-      </section>
+      <% full_name =  member.user.name + " " + member.user.lastName%>
+      <p class="ml-1"><b><%= link_to full_name, user_path(member.user.id)%></b></p>
     </section>
-    <section class="events_down">
+  <% end %>
+</section>
 
-    </section>
-  </section>
-<% end %>
+<section class="events_wrapper">
+  <h1 class="wrapper_title">This Organization's Public Events:</h1>
+  <div class="event_section_wrapper">
+    <% if @organization_events != []%>
+      <%= render :partial => 'admin/events/events_list', collection: @organization_events, as: :event %>
+    <% else %>
+      <section class="event_section">
+        <h2 class="Nothing_found"> Nothing Found </h2>
+      </section>
+    <% end %>
+  </div>
+</section>

@@ -56,8 +56,17 @@ Rails.application.routes.draw do
     post "events/:id", to: "comments#create", as: "new_comment"
     resources :events do
       resources :comments, shallow: true
+      member do
+        get "invites"
+        post "invites"
+      end
     end
-    resources :organizations
+    resources :organizations do
+      member do
+        get "invites"
+        post "invites"
+      end
+    end
     resources :comments
   end
 
