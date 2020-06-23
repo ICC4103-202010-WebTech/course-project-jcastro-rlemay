@@ -16,31 +16,50 @@
     </section>
   </section>
   <section class="user_options_wrapper">
-    <%= link_to "Edit Organization", edit_organization_path %>
+    <% if user_signed_in? %>
+      <% if current_user.id.to_s == @organization.organization_admins[0].user_id.to_s %>
+        <%= link_to "Edit Organization", edit_organization_path %>
+      <% else %>
+        <a role="button" data-toggle="modal" data-target="#reportModal">Report Organization</a>
+        <%= link_to "View Creator", user_path(@organization_creator.user_id) %>
+      <% end  %>
+    <% elsif system_admin_signed_in? %>
+      <%= link_to "Edit Organization", edit_organization_path %>
+    <% end %>
     <%= link_to "View users", users_path %>
-    <%= link_to "View Creator", user_path(@organization_creator.user_id) %>
   </section>
 </section>
 
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: report_organization_url ,method: "post" do |form| %>
+          <%= form.text_area :reason, class: "form-control", placeholder: "Write the reason of your report..."%>
+          <%= form.submit "Send", class: ["btn", "btn-primary"] %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <h1 class="profile_title">This Organization's Public Events:</h1>
-<% @organization_events.each do |event| %>
-  <section class="user_events_wrapper">
-    <section class="events_upper">
-
+<div class="recent_section">
+  <% if @organization_events != []%>
+    <%= render :partial => 'events/events_list', collection: @organization_events, as: :event %>
+  <% else %>
+    <section class="event_section">
+      <h2 class="Nothing_found"> Nothing Found </h2>
     </section>
-    <section class="events_details">
-      <% if event.event_page.event_banner_picture.attached? %>
-        <i><%= image_tag(event.event_page.event_banner_picture, width: "100px") %></i>
-      <%else %>
-        <i><%= image_tag("event.png", width: "100px", background: "#55595c", color: "#eceeef") %></i>
-      <% end %>
-      <section class="event_text">
-        <h3><%= link_to event.name, event_path(event.id) %></h3>
-        <%= event.description %>
-      </section>
-    </section>
-    <section class="events_down">
-
-    </section>
-  </section>
-<% end %>
+  <% end %>
+</div>

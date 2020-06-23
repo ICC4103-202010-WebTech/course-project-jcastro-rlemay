@@ -18,11 +18,14 @@ Rails.application.routes.draw do
   get "/terms", to: "pages#terms", as: "terms"
   get "/search", to: "pages#search", as: "search"
   post "/events/:id", to: "comments#create", as: "comment"
-  post "users/:id", to: "message#create", as: "new_message"
+  post "/users/:id", to: "message#create", as: "new_message"
   resources :users, defaults: { format: :html } do
     resources :inboxes, defaults: { format: :html }, shallow: true
     resources :organizations, defaults: { format: :html }
     resources :events, defaults: { format: :html }
+    member do
+      post "report", to: "reports#user"
+    end
   end
   resources :comments, defaults: { format: :html }
   resources :events, defaults: { format: :html } do
@@ -36,10 +39,14 @@ Rails.application.routes.draw do
       patch "files"
       get "invites"
       post "invites"
+      post "report", to: "reports#event"
     end
   end
   resources :organizations, defaults: { format: :html } do
     resources :events, defaults: { format: :html }
+    member do
+      post "report", to: "reports#organization"
+    end
   end
 
   namespace :admin do
