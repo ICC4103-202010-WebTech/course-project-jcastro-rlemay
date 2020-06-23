@@ -2,6 +2,18 @@ require 'securerandom'
 
 include FactoryBot::Syntax::Methods
 FactoryBot.define do
+  factory :organization_report do
+    reason { "MyString" }
+  end
+
+  factory :event_report do
+    reason { "MyString" }
+  end
+
+  factory :report do
+    reason { "MyString" }
+  end
+
   factory :message do
     message { "MyString" }
   end

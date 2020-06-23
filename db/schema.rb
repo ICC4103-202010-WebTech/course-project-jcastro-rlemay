@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_225214) do
+ActiveRecord::Schema.define(version: 2020_06_23_100939) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -181,6 +181,16 @@ ActiveRecord::Schema.define(version: 2020_06_22_225214) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_polls_on_event_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "reason"
+    t.integer "reported_id"
+    t.integer "reporter_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["reported_id"], name: "index_reports_on_reported_id"
+    t.index ["reporter_id"], name: "index_reports_on_reporter_id"
   end
 
   create_table "system_admins", force: :cascade do |t|
