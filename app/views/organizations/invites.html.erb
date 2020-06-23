@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag "new_form" %>
+
+
+  <section class="invite_wrapper">
+    <h1 class="wrapper_title">Invite Friends and Users: </h1>
+    <% @invites.each_with_index do |user, i| %>
+      <%= form_with model: @organization, url:invites_organization_path, method: :post  do |form| %>
+      <section class="user">
+        <div>
+          <i class="far fa-square fa-5x"></i>
+          <% full_name =  user.name + " " + user.lastName%>
+          <p><b><%= link_to full_name, user_path(user.id)%></b></p>
+          <%= form.hidden_field :invitation, :value => user.id%>
+        </div>
+        <%= form.submit "invite user", class: ["btn", "btn-primary"] %>
+      <% end %>
+      </section>
+    <% end %>
+    <div class="d-flex justify-content-center">
+      <%== render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
+    </div>
+    <div class="d-flex justify-content-center">
+      <%= button_to "back",organization_path, method: :get, class: ["btn", "btn-primary"]  %>
+    </div>
+  </section>
+
+

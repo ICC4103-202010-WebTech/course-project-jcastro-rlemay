@@ -163,3 +163,52 @@
             }
 
 
+.invite_wrapper{
+    margin-left: 10%;
+    margin-bottom: 5%;
+    width: 25%;
+    height: auto;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+    float: left;
+    align-items: center;
+}
+
+.user{
+    display: flex;
+    background-color: #262626;
+    color: #ffffff;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
+    border: 2px solid #8E7A3F;
+    margin: 2%;
+
+}
+.invite_wrapper i{
+    margin-right: 1%;
+}
+.invite_wrapper p{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.events_wrapper{
+    margin-right: 10%;
+    margin-bottom: 5%;
+    width: 53%;
+    height: auto;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+    float: right;
+    align-items: center;
+}
+.event_section_wrapper{
+    margin-right: 2%;
+    margin-left: 2%;
+}

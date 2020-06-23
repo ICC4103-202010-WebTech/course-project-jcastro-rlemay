@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     resources :events, defaults: { format: :html }
     member do
       post "report", to: "reports#organization"
+      get "invites"
+      post "invites"
     end
   end
 

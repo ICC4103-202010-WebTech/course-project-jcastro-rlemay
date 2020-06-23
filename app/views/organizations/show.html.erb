@@ -1,6 +1,23 @@
 <%= stylesheet_link_tag "profile.css" %>
 
-<h1 class="profile_title"><%= @organization.name %>'s Profile</h1>
+<div class="d-flex align-items-center bd-highlight mb-3">
+  <h1 class="profile_title mr-auto p-2 bd-highlight"><%= @organization.name %>'s Profile</h1>
+  <% if user_signed_in? %>
+    <% if current_user.id.to_s == @organization.organization_admins[0].user_id.to_s %>
+
+      <div class="trash p-2 bd-highlight"><%= link_to(
+                                                  content_tag(
+                                                      :i,
+                                                      nil,
+                                                      class: 'fa fa-trash-o fa-3x'
+                                                  ),
+                                                  organization_path(@organization.id),
+                                                  method: :delete
+                                              )
+      %></div>
+    <% end %>
+  <% end %>
+</div>
 <section class="profile_wrapper">
   <section class="user_image_wrapper">
     <% if @profile.banner_picture.attached? %>
@@ -26,7 +43,8 @@
     <% elsif system_admin_signed_in? %>
       <%= link_to "Edit Organization", edit_organization_path %>
     <% end %>
-    <%= link_to "View users", users_path %>
+    <a role="button" data-toggle="modal" data-target="#imageModal">View profile photo</a>
+    <%= link_to "View events", organization_events_path(params[:id]) %>
   </section>
 </section>
 
@@ -48,18 +66,52 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
-
     </div>
   </div>
 </div>
 
-<h1 class="profile_title">This Organization's Public Events:</h1>
-<div class="recent_section">
-  <% if @organization_events != []%>
-    <%= render :partial => 'events/events_list', collection: @organization_events, as: :event %>
-  <% else %>
-    <section class="event_section">
-      <h2 class="Nothing_found"> Nothing Found </h2>
+
+
+<section class="invite_wrapper">
+  <div class="container d-flex align-items-center justify-content-between">
+    <h1 class="wrapper_title">Members: </h1>
+    <% if user_signed_in? %>
+      <% if current_user.id.to_s == @organization.organization_admins[0].user_id.to_s %>
+        <%= link_to(
+                content_tag(
+                    :i,
+                    nil,
+                    class: 'fas fa-plus fa-lg fa-2x'
+                ),
+                invites_organization_path,
+                method: :get
+            )
+        %>
+      <% end %>
+    <% end %>
+
+  </div>
+  <% @organization_members.each do |member| %>
+    <section class="user">
+      <% if member.user.user_profile.profile_picture.attached? %>
+        <%= image_tag(member.user.user_profile.member, width: "60px") %>
+      <%else %>
+        <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef") %>
+      <% end %>
+      <% full_name =  member.user.name + " " + member.user.lastName%>
+      <p class="ml-1"><b><%= link_to full_name, user_path(member.user.id)%></b></p>
     </section>
   <% end %>
-</div>
+</section>
+<section class="events_wrapper">
+    <h1 class="wrapper_title">This Organization's Public Events:</h1>
+      <div class="event_section_wrapper">
+        <% if @organization_events != []%>
+          <%= render :partial => 'events/events_list', collection: @organization_events, as: :event %>
+        <% else %>
+          <section class="event_section">
+            <h2 class="Nothing_found"> Nothing Found </h2>
+          </section>
+        <% end %>
+      </div>
+</section>
