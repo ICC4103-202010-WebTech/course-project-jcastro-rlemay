@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/terms", to: "pages#terms", as: "terms"
   get "/search", to: "pages#search", as: "search"
   post "/events/:id", to: "comments#create", as: "comment"
+  post "users/:id", to: "message#create", as: "new_message"
   resources :users, defaults: { format: :html } do
     resources :inboxes, defaults: { format: :html }, shallow: true
     resources :organizations, defaults: { format: :html }

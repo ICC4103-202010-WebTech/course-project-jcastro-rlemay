@@ -105,10 +105,12 @@ ActiveRecord::Schema.define(version: 2020_06_22_225214) do
 
   create_table "messages", force: :cascade do |t|
     t.string "message"
-    t.integer "to"
-    t.integer "from"
+    t.integer "to_id"
+    t.integer "from_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["from_id"], name: "index_messages_on_from_id"
+    t.index ["to_id"], name: "index_messages_on_to_id"
   end
 
   create_table "notifications", force: :cascade do |t|

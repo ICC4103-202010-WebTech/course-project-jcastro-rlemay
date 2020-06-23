@@ -4,6 +4,7 @@ class InboxesController < ApplicationController
   # GET /inboxes
   # GET /inboxes.json
   def index
+    @messages = Message.where(to_id: params[:user_id])
     @invitations = Invitation.where(user_id: params[:user_id])
     @inboxes = Inbox.where(user_id: params[:user_id])
     @notifications = Notification.where(user_id: params[:user_id])
