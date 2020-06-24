@@ -1,4 +1,5 @@
 class MessageController < ApplicationController
+  load_and_authorize_resource
   # POST /comments
   # POST /comments.json
   def create

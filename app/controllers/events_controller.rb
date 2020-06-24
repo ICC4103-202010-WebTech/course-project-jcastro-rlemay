@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files, :invites]
+  load_and_authorize_resource
 
   # GET /events
   # GET /events.json
@@ -57,7 +58,6 @@ class EventsController < ApplicationController
     else
       x = nil
       y = nil
-
     end
     valida = false
     if params[:is_public] == "not public"

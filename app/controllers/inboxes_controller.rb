@@ -1,5 +1,6 @@
 class InboxesController < ApplicationController
   before_action :set_inbox, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /inboxes
   # GET /inboxes.json
