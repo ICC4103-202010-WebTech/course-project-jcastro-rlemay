@@ -84,7 +84,11 @@
   <% else %>
   <main class="unlogged_page">
     <div class="unlogged_section">
-      <h1 class="title">Welcome to Eventer!</h1>
+      <h1 class="title_unlogged">Welcome to Eventer!</h1>
+      <div class="unlogged_body">
+        <%=image_tag("world.PNG", size: "400x400")%>
+        <h1 class="join_unlogged"> Join more than <br> <%= Event.all.count %> events world <br>wide!</h1>
+      </div>
     </div>
   </main>
   <% end %>
