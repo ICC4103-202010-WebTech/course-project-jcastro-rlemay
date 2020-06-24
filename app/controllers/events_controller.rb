@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    y = EventOrganizer.where(user_id: current_user.id)[0]
+    @events = Event.where(is_public: true).or(Event.where(event_organizer_id: y.id, is_public: false))
   end
 
   # GET /events/1
@@ -58,16 +59,22 @@ class EventsController < ApplicationController
       y = nil
 
     end
+    valida = false
+    if params[:is_public] == "not public"
+      valida = false
+    elsif params[:is_public] == "public"
+      valida = true
+    end
 
     if EventOrganizer.where(user_id: current_user.id)[0] == nil
       if EventOrganizer.create(user_id: current_user.id)
         @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
-                           description: event_params[:description],
+                           description: event_params[:description], is_public: valida,
                            event_organizer: EventOrganizer.where(user_id: current_user.id)[0], location: event_params[:location])
       end
     else
       @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
-                         description: event_params[:description],
+                         description: event_params[:description], is_public: valida,
                          event_organizer: EventOrganizer.where(user_id: current_user.id)[0], location: event_params[:location])
     end
 
