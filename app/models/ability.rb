@@ -45,6 +45,7 @@ class Ability
               poll.event.is_public
         end
       elsif user.class.name == "SystemAdmin"
+        print("SOMOS ADMINS")
         can :manage, :all
         cannot :create, Event
         cannot :create, Organization

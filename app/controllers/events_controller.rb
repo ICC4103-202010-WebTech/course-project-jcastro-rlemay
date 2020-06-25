@@ -210,7 +210,8 @@ class EventsController < ApplicationController
 
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :description, :is_public, :event_organizer_id, :event_banner_picture, :invitation,
+                                      :description, :is_public, :event_organizer_id,
+                                      :event_banner_picture, :invitation,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
                                       videos:[], photos:[], files:[],
                                       event_page_attributes: [:minimumGuests, :maximumGuests])

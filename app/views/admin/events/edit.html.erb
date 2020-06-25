@@ -7,7 +7,7 @@
   </div>
 
   <div class="row ml-0">
-    <%= form_with model: @event do |form| %>
+    <%= form_with model: [:admin,@event] do |form| %>
       <div class="form-group">
         <%= form.label :name %>
         <%= form.text_field :name, class: "form-control" %>

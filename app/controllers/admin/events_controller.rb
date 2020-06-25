@@ -93,7 +93,6 @@ class Admin::EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    print("ENTRO AL UPDATE", event_params[:photos])
     respond_to do |format|
       if @event.update(name: event_params[:name], location: event_params[:location],
                        description: event_params[:description])
