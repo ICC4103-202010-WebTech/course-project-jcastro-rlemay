@@ -22,6 +22,8 @@ class Ability
         end
 
         can :read, Organization
+        can :new, Organization
+        can :create, Organization
         can :manage, Organization do |organization|
           OrganizationAdmin.where(:organization_id => organization.id).
               pluck(:user_id).include? user.id
@@ -31,13 +33,22 @@ class Ability
         can :manage, Comment, user_id: user.id
 
         can :read, Message, to_id: user.id
+        can :create, Message
 
         can :read, Inbox, user_id: user.id
 
-        can :read, Poll
         can :manage, Poll do |poll|
           poll.event.event_organizer.user_id == user.id
         end
+        can [:read,:update], Poll do |poll|
+          Invitation.where(event_id: poll.event_id).pluck(:user_id).include? user.id or
+              poll.event.is_public
+        end
+      elsif user.class.name == "SystemAdmin"
+        can :manage, :all
+        cannot :create, Event
+        cannot :create, Organization
+        cannot :create, Comment
       end
     end
     # Define abilities for the passed in user here. For example:

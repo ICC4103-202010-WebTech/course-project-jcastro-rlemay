@@ -1,5 +1,6 @@
 class Admin::EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files, :invites]
+  load_and_authorize_resource
 
   # GET /events
   # GET /events.json

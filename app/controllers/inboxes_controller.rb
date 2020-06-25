@@ -5,16 +5,14 @@ class InboxesController < ApplicationController
   # GET /inboxes
   # GET /inboxes.json
   def index
-    @messages = Message.where(to_id: params[:user_id])
-    @invitations = Invitation.where(user_id: params[:user_id])
-    @inboxes = Inbox.where(user_id: params[:user_id])
-    @notifications = Notification.where(user_id: params[:user_id])
   end
 
   # GET /inboxes/1
   # GET /inboxes/1.json
   def show
-    @inbox = Inbox.where(user_id: params[:user_id])
+    @messages = Message.where(to_id: current_user.id)
+    @invitations = Invitation.where(user_id: current_user.id)
+    @notifications = Notification.where(user_id: current_user.id)
   end
 
   # GET /inboxes/new

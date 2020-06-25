@@ -13,15 +13,16 @@
       <%= form.text_field :name, class: "form-control" %>
     </div>
 
-    <div class="form-group">
-      <%= form.label :banner_picture, "Set Banner Picture" %>
-      <%= form.file_field :banner_picture %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :description %>
-      <%= form.text_field :description, :placeholder => @profile.description, class: "form-control" %>
-    </div>
+    <%= form.fields_for :organization_profile_attributes do |profile| %>
+      <div class="form-group">
+        <%= profile.label :banner_picture, "Set Banner Picture" %>
+        <%= profile.file_field :banner_picture %>
+      </div>
+      <div class="form-group">
+        <%= profile.label :description %>
+        <%= profile.text_field :description, :placeholder => @profile.description, class: "form-control" %>
+      </div>
+    <%end %>
 
     <div class="form-group">
       <%= form.submit "Edit", class: ["btn", "btn-primary"] %>

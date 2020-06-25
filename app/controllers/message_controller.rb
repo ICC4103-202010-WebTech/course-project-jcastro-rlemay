@@ -3,11 +3,10 @@ class MessageController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-
-    @message = Message.new(message: params[:message], from_id: current_user.id, to_id: params[:to_id])
+    @message = Message.new(message: params[:message_content], from_id: current_user.id, to_id: params[:to_id])
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message.to, notice: 'Message was successfully sent.' }
+        format.html { redirect_to user_path(@message.to_id), notice: 'Message was successfully sent.' }
       else
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
@@ -22,6 +21,6 @@ class MessageController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def message_params
-    params.fetch(:message, {}).permit(:id, :message, :to_id)
+    params.fetch(:message, {}).permit(:id, :message_content, :to_id)
   end
 end

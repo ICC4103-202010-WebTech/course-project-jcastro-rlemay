@@ -6,7 +6,11 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     y = EventOrganizer.where(user_id: current_user.id)[0]
-    @events = Event.where(is_public: true).or(Event.where(event_organizer_id: y.id, is_public: false))
+    if y != nil
+      @events = Event.where(is_public: true).or(Event.where(event_organizer_id: y.id, is_public: false))
+    else
+      @events = Event.where(is_public: true)
+    end
   end
 
   # GET /events/1

@@ -1,5 +1,6 @@
 class Admin::OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /organizations
   # GET /organizations.json
@@ -33,8 +34,8 @@ class Admin::OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        @organization.organization_profile.description = organization_params[:description]
-        @organization.organization_profile.banner_picture.attach(organization_params[:banner_picture])
+        @organization.organization_profile.description = organization_params[:organization_profile_attributes][:description]
+        @organization.organization_profile.banner_picture.attach(organization_params[:organization_profile_attributes][:banner_picture])
         @organization_admin = OrganizationAdmin.new(user_id: 1, organization_id: @organization.id)
         @organization_admin.save
         @organization.organization_profile.save
@@ -52,17 +53,17 @@ class Admin::OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(name: organization_params[:name])
-        if organization_params[:banner_picture]!=nil
-          if organization_params[:description]== ""
-            @profile.update(banner_picture: organization_params[:banner_picture])
+        if organization_params[:organization_profile_attributes][:banner_picture]!=nil
+          if organization_params[:organization_profile_attributes][:description]== ""
+            @profile.update(banner_picture: organization_params[:organization_profile_attributes][:banner_picture])
           else
-            @profile.update(description: organization_params[:description],
-                            banner_picture: organization_params[:banner_picture])
+            @profile.update(description: organization_params[:organization_profile_attributes][:description],
+                            banner_picture: organization_params[:organization_profile_attributes][:banner_picture])
           end
 
         else
           if organization_params[:description] != ""
-            @profile.update(description: organization_params[:description])
+            @profile.update(description: organization_params[:organization_profile_attributes][:description])
           end
         end
         format.html { redirect_to admin_organization_path(@organization), notice: 'Admin Organization was successfully updated.' }
@@ -110,7 +111,7 @@ class Admin::OrganizationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.fetch(:organization, {}).permit(:id, :name, :members, :banner_picture,
-                                             :description)
+      params.fetch(:organization, {}).permit(:id, :name, :members,
+                                             organization_profile_attributes: [:banner_picture, :description])
     end
 end

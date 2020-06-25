@@ -60,7 +60,7 @@
       </div>
         <div class="modal-body">
           <%= form_with model: @message do |form| %>
-            <%= form.text_area :message, class: "form-control", placeholder: "Write a message..."%>
+            <%= form.text_area :message_content, class: "form-control", placeholder: "Write a message..."%>
             <%= form.hidden_field :to_id, value: @user.id %>
             <%= form.submit "Send", class: ["btn", "btn-primary"] %>
           <% end %>

@@ -1,4 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "inbox" %>
 
-<%= link_to 'Edit', edit_inbox_path(@inbox) %> |
-<%= link_to 'Back', root_path %>
+<h1 class="inbox_title">Your Inbox</h1>
+<section class="inbox_wrapper">
+  <h1 class="wrapper_title">Messages:</h1>
+  <% @messages.each do |message| %>
+    <p>
+      <section class="notification_wrapper">
+    <p>New message from <%= message.from.name %>: </p>
+    <%= message.message %>
+    </section>
+    </p>
+  <% end %>
+  </section>
+  <section class="inbox_wrapper">
+    <h1 class="wrapper_title">Notifications:</h1>
+    <% @notifications.each do |notification| %>
+      <p>
+        <section class="notification_wrapper">
+      <p>New notification:</p>
+      <%= notification.message %>
+      </section>
+      </p>
+    <% end %>
+    </section>
