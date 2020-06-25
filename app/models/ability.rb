@@ -8,18 +8,23 @@ class Ability
       if user.class.name == "User"
         can :read, User
         can :manage, User, user_id: user.id
+
         can :read, Event, is_public: true
         can :manage, Event,  event_organizer_id: EventOrganizer.where(user_id: user.id)[0].id
-        can :create, Event
+
         can :read, Organization
         can :manage, Organization do |organization|
           OrganizationAdmin.where(:organization_id => organization.id).
               pluck(:user_id).include? user.id
         end
+
         can :read, Comment
         can :manage, Comment, user_id: user.id
+
         can :read, Message, to_id: user.id
+
         can :read, Inbox, user_id: user.id
+
         can :read, Poll
         can :manage, Poll do |poll|
           poll.event.event_organizer.user_id == user.id

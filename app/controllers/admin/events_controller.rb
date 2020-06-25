@@ -69,8 +69,8 @@ class Admin::EventsController < ApplicationController
           @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
           @event_page.save
         end
-        @event_page.minimumGuests = event_params[:minimumGuests]
-        @event_page.maximumGuests = event_params[:maximumGuests]
+        @event_page.minimumGuests = params[:event][:event_page_attributes][:minimumGuests]
+        @event_page.maximumGuests = params[:event][:event_page_attributes][:maximumGuests]
         @event_page.save
         if x == nil
           @poll = Poll.new(
@@ -120,11 +120,11 @@ class Admin::EventsController < ApplicationController
           @event.save!
         end
         if event_params[:minimumGuests] != ""
-          @event_page.minimumGuests = event_params[:minimumGuests]
+          @event_page.minimumGuests = params[:event][:event_page_attributes][:minimumGuests]
           @event_page.save
         end
         if event_params[:maximumGuests] != ""
-          @event_page.maximumGuests = event_params[:maximumGuests]
+          @event_page.maximumGuests = params[:event][:event_page_attributes][:maximumGuests]
           @event_page.save
         end
         format.html { redirect_to admin_event_path(@event), notice: 'Event was successfully updated.' }
@@ -193,10 +193,11 @@ class Admin::EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :minimumGuests, :maximumGuests, :description, :is_public,
-                                      :event_organizer_id, :event_banner_picture, :invitation,
+                                      :description, :is_public, :event_organizer_id,
+                                      :event_banner_picture, :invitation,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
-                                      videos:[], photos:[], files:[])
+                                      videos:[], photos:[], files:[],
+                                      event_page_attributes: [:minimumGuests, :maximumGuests])
     end
 end
 

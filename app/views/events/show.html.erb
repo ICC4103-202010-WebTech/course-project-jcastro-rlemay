@@ -133,7 +133,8 @@
                                                                       nil,
                                                                       class: 'fa fa-trash-o'
                                                                   ),
-                                                                  admin_comment_path(comment.id),
+                                                                  comment_path(comment.id),
+                                                                  model: @comment,
                                                                   method: :delete
                                                               )
           %></div>
@@ -143,7 +144,7 @@
       </section>
       <div id="real_comment<%=i%>"><p class="comment"><%= comment.content %></p></div>
       <div id="edit_comment<%=i%>" class="edit_comment">
-        <%= form_with url: admin_comment_path(comment), method: :patch do |form| %>
+        <%= form_with url: comment_path(comment), method: :patch do |form| %>
           <%= form.text_area :content, class: "form-control", placeholder: comment.content%>
           <%= form.submit "Send", class: ["btn", "btn-primary"] %>
         <% end %>

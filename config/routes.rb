@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get "/terms", to: "pages#terms", as: "terms"
   get "/search", to: "pages#search", as: "search"
-  post "/events/:id", to: "comments#create", as: "comment"
+  post "/events/:id", to: "comments#create"
   post "/users/:id", to: "message#create", as: "new_message"
   resources :users, defaults: { format: :html } do
     resources :inboxes, defaults: { format: :html }, shallow: true
@@ -27,8 +27,9 @@ Rails.application.routes.draw do
       post "report", to: "reports#user"
     end
   end
-  resources :comments, defaults: { format: :html }
+
   resources :events, defaults: { format: :html } do
+    resources :comments, shallow: true
     resources :polls, defaults: { format: :html }, shallow: true
     member do
       get "photos"
@@ -42,6 +43,7 @@ Rails.application.routes.draw do
       post "report", to: "reports#event"
     end
   end
+  resources :comments
   resources :organizations, defaults: { format: :html } do
     resources :events, defaults: { format: :html }
     member do
