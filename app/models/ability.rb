@@ -7,10 +7,19 @@ class Ability
     if user.present?
       if user.class.name == "User"
         can :read, User
-        can :manage, User, user_id: user.id
+        can :manage, User, id: user.id
 
-        can :read, Event, is_public: true
-        can :manage, Event,  event_organizer_id: EventOrganizer.where(user_id: user.id)[0].id
+        can [:read,:files,:photos,:videos], Event, is_public: true
+        can [:read,:files,:photos,:videos], Event do |event|
+          Invitation.where(event_id: event.id).pluck(:user_id).include? user.id
+        end
+        can :new, Event
+        can :create, Event
+        can :manage, Event do |event|
+          if event.event_organizer != nil
+            event.event_organizer.user_id == user.id
+          end
+        end
 
         can :read, Organization
         can :manage, Organization do |organization|
