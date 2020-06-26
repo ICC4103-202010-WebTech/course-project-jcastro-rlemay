@@ -8,7 +8,7 @@ class User < ApplicationRecord
   before_create :build_user_profile
   has_one :inbox, dependent: :destroy
   before_create :build_inbox
-  has_one :organization_member
+  has_one :organization_member, dependent: :destroy #he can be an organization member himself
   has_one :organization, through: :organization_member
   has_many :notifications, dependent: :destroy
   has_many :invitations, dependent: :destroy
@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :comment_replies, dependent: :destroy
   has_many :votes, dependent: :destroy
 
-  has_one :event_organizer, dependent: :destroy #he can be an event organizer admin himself
+  has_one :event_organizer, dependent: :destroy #he can be an event organizer himself
   has_one :organization_admin, dependent: :destroy #he can be an organization admin himself
 
   def self.from_google(email:, first_name:, last_name:)

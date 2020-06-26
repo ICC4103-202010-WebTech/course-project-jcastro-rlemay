@@ -3,7 +3,7 @@
   <section class="invite_wrapper">
     <h1 class="wrapper_title">Invite Friends and Users: </h1>
     <% @invites.each_with_index do |user, i| %>
-      <%= form_with model: @organization, url:invites_organization_path, method: :post  do |form| %>
+      <%= form_with url:invites_organization_path, method: :post  do |form| %>
       <section class="user">
         <div>
           <i class="far fa-square fa-5x"></i>

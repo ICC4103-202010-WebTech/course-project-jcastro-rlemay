@@ -86,18 +86,17 @@ class OrganizationsController < ApplicationController
   end
 
   def invites
-    members = OrganizationMember.where(organization_id: params[:id]).pluck(:user_id)
-    admins = OrganizationAdmin.where(organization_id: params[:id]).pluck(:user_id)
+    members = OrganizationMember.all.pluck(:user_id)
+    admins = OrganizationAdmin.all.pluck(:user_id)
     admins.each do |admin|
       members << admin
     end
     @pagy, @invites = pagy(User.where.not(id: members))
     if params[:invitation] != nil
       @notification = Notification.new(user_id: params[:invitation], message: "You were invited to an Organization!")
-      @org_member = OrganizationMember.new(user_id: params[:invitation],organization_id: params[:id])
-      if @org_member.save
-        redirect_to invites_organization_path, notice: @org_member.user.name+ " "+ @org_member.user.lastName + " was invited"
-      else
+      @new_member = OrganizationMember.new(user_id: params[:invitation],organization_id: params[:id])
+      if @new_member.save
+        redirect_to invites_organization_path, notice: @new_member.user.name+ " "+ @new_member.user.lastName + " was invited"
       end
     end
   end
