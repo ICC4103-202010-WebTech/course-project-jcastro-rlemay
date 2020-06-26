@@ -1,4 +1,143 @@
 ### Richard Le May - Julio Castro
+# Project part 4
+
+## Summary of implemented features:
+- Here we will explain how to get to all the specific points in the project assignment:
+    1) System Access
+        - 1.1. Log in with email address.
+            - This can be done by anyone clicking the link to login where you are requested to put your already created user email with your password.
+        - 1.2. Log in with Google authentication.
+            - This can be done by anyone except the admins, because we think that is better if the users can only access with the email registered in the app.
+            - To do this, you need to go to the login button, and then click "Sign in with Google", where it'll take you to choose to google if you don't have your account settled.
+        - 1.3. Log out.
+            - This can only be done when you are logged in (obiously) and there are diffeent paths to do this if you are logged as an admin or as a normal user.
+            - If you are an admin, there's a button in the navbar, that says sign out, which takes you to log out.
+            - If you are a normal user, you have to go to the user button in the navbar and then click sign out.
+    2) Registration
+        - 2.1. User registration.
+            - To register you can do it in two different ways if you want to register as a normal user or as an admin.
+            - If you want to register as an admin, you have to go to the Log as admin button in the navbar, and then go to sign up, where you can be registered as an admin (this was implemented because of
+            the feedback given for the assignment part 3, asking for a button to take us to the logging part as an admin).
+            - If you want to register as a normal user, you have to go to the registration button in the navbar or with the sign in button and then the sign up button.
+        - 2.2. Change password.
+            - To change your password if you're logged in, you have to go to your profile and then click the "Manage your account" button, which takes you to a view asking for your new password.
+        - 2.3. Password recovery.
+            - To recover your password you have to go to the login view, and then click the button "Frogot your password?", which takes you to a new view asking your email, and then you have to follow the steps sent to the email you gave (because we are using a local host, you have to see the link given in the same machine you are running the program, because the link will need the local provider).
+    3) User Administration.
+        - 3.1. New user.
+            - This was explained in the point 2.1
+        - 3.2. View user details.
+            - To see your user details you just have to click in the navbar button called "User", then the "Your profile" button, and there you can see the user with all his attributes.
+            - If you want to see another user details, you have to click in the "Users" butotn in the navbar, which takes you to all the user that are registered.
+            - 3.2.1. Last access.
+                - The last access can be seen in the users profile, which has an attribute called "last access", showing his last access if he has accesed the page and if he haven't, he will have an empty field there.
+            - 3.2.2. User role.
+                - # FALTA POR HACEEEEEEEEEEEEEEEEEEEEEEER!!!!!!!!!!!!!!!!!!!!!!!
+        - 3.3. Edit User.
+            - The users can be edited by the admins or by the own user, going to the "User" button in the navbar and then to the "Your profile" button, which takes you to your profile and there you have a button called "Edit Profile", which lets you edit your profile.
+            - If you are an admin, you can get to the user by going in the navbar to the "Users" button or also with the "Organizations" button, then select one, an there's a button called "view users", which takes you to all users, and then you select the one you want to edit, taking you to his profile and then you have to select the "edit user" button to edit him.
+            - 3.3.1. Change password.
+                - This part was explained in the point 2.2.
+        - 3.4. Delete user.
+            - You can delete a user if you are logged with the user you want to delete or if you are an admin.
+            - If you want to delete your user you can go to the "User" button in the navbar, then to the "Your profile" taking you to your profile and then you have to go to the "Manage your account" button, and there you can click "Cancel my account" button.
+            - If you are an admin, you can get to the user by going in the navbar to the "Users" button or also with the "Organizations" button, then select one, an there's a button called "view users", which takes you to all users, and with a trash icon in the right part of the user, making you able to delete them, or you can do it the same way that a user can delete his account.
+    4) System Administration.
+        - 4.1. Perform CRUD operations on Users.
+            - 4.1.1. Create User.
+                - To create a user, you just have to do sign up just like how i explained in the point 2.1.
+            - 4.1.2. View User details.
+                - To view a specific user details, you just have to do what i explained in the point 3.2.
+            - 4.1.3. Update User.
+                - To update a user, you just have to do what i explained in the point 3.3.
+            - 4.1.4. Delete User.
+                - To delete a user, you just have to do what i explained in the point 3.4.
+        - 4.2. Perform CRUD operations on Organizations.
+            - 4.2.1. Create Organization.
+                - To create an organization, only the normal users can do this, and to do it you just have to go to the "Organizations" button in the navbar, and then by clicking the "New Organization" button, which allows you to create an organization. Also you can create one by going instead of "New Organization" to "All Organizations" and there's a plus button taking you to create a new organization.
+            - 4.2.2. View Organization details.
+                - To view a specific organization detail, you just have to press the name of an organization in the All Organizations part ("Organizations" => "All Organizations" buttons in the navbar), and you'll be taken to the profile of that organization with all his specific attributes.
+            - 4.2.3. Update Organization.
+                - To update an organization, you have to click in a specific organization, and in the right of the body there's a button called "Edit Organization", where it'll take you to edit this specific organization. This can only be done by admins or by the organization creator.
+            - 4.2.4. Delete Organization.
+                - To delete an organization, you can do it in 2 different parts, in the page where all the organizations are (just clicking the trash icon will get you to delete it) or in the organization itself where in the top right of the body is a trash button to delete it. This can only be done by an admin, or by an organization admin to his specific organization.
+        - 4.3. Perform CRUD operations on Events.
+            - 4.3.1. Create Events.
+                - To create an event, only the normal users can do this, and to do it you just have to go to the "Events" button in the navbar, and then by clicking the "New Event" button, which allows you to create an event. Also you can create one by going instead of "New Event" to "Public Events" and there's a plus button taking you to create a new event.
+            - 4.3.2. View Events details.
+                - To view a specific event detail, you just have to press the name of an event in the Public Events part ("Events" => "Public Events" buttons in the navbar), and you'll be taken to the profile of that event with all his specific attributes.
+            - 4.3.3. Update Events.
+                - To update an event, you have to click in a specific event, and in the right of the body there's a button called "Edit Event", where it'll take you to edit this specific event. This can only be done by admins, by the event creator or if the creator has an organization, by the specific organization creator.
+            - 4.3.4. Delete Events.
+                - To delete an event, you can do it in 2 different parts, in the page where all the event are (just clicking the trash icon will get you to delete it) or in the event itself where in the top right of the body is a trash button to delete it. This can only be done by admins, by the event creator or if the creator has an organization, by the specific organization creator.
+        - 4.4. Perform CRUD operations on Event comments.
+            - 4.4.1. Create Event comments.
+                - To create an event comment, only the normal users can do this, and to do it you just have to go to the "Events" button in the navbar, and then click the "Public Events" button, which allows you to view all events, and there you choose one event and if you go down you can see the comments that the event has, and there you have an option to create one. Also you can create one if you go to any event from the home page or from any part that you can get to an event, and do the same we said before. This can only be created in public events or in private but if you are invited to or you created it.
+            - 4.4.2. View Event comments.
+                - To read a specific event comments, you just have to go to the "Events" button in the navbar, and then click the "Public Events" button, which allows you to view all events, and there you choose one event and if you go down you can see the comments that the event has. Thats not the only way to get to the events, you can get from the organization, the home page, etc, but for all is the same steps to view the comments.
+            - 4.4.3. Update Event comments.
+                - To update an event comment, just like said in the previous 2 points, you have to go and see the comments from an event and if you are the creator of the comment, the creator of that event or an admin, you can edit the comment by clicking the pen icon in the right part of the comment you want to edit.
+            - 4.4.4. Delete Event comments.
+                - To delete an event comment, just like said in the previous 2 points, you have to go and see the comments from an event and if you are the creator of the comment, the creator of that event or an admin, you can delete the comment by clicking the trash icon in the right part of the comment you want to delete.
+    5) User Profile.
+        - 5.1. View user profile.
+            - This was explained in the point 3.2.
+        - 5.2. Edit user profile.
+            - This was explained in the point 3.3.
+        - 5.3. View events to which the user has been invited.
+            - To see them, you just have to go to your user profile by clicking "User" button in the navbar and then "Your Profile", when you get there you have to scroll down and you get to the section called "Events you were invited to" showing you a list with all the events you've been invited.
+        - 5.4. View created events.
+            To see them, is just like in 5.3, but instead of scrolling down to the events you were invited you have to go to the "Your created events" section.
+    6) Organization.
+        - 6.1. View organization page.
+            - This was explained in the point 4.2.2
+        - 6.2. Manage organization page.
+            - This was explained in the point 4.2.3
+        - 6.3. See public events.
+            - To see them  you just have to get to an organization and click in the name to be taken to that organization profile, and then you have to scroll down until you get to the section "This Organization's Public Events", which shows you all the public events that this organization has.
+    7) Mailbox.
+        - 7.1. See inbox.
+            - Only the users have inboxes, and they can see them by clicking the "User" button in the navbar and then the "Inbox" button.
+        - 7.2. View incoming message.
+            - In the same part that we show his inbox we can see all our incoming messages.
+        - 7.3. Compose message to user.
+            - If you want to compose a message to a user, you have to get to the user's profile and then click in the "Send Message" button, allowing you to send one.
+    8) Events.
+        - 8.1. View event
+            - You can see the event by going to the event profile page, and there you can get to the photos, details, files, and videos by clicking in the respective button.
+        - 8.2. Start event date vote.
+            - When we create an event (explained in the point 4.3.1), you can choose by setting right away the date for the event, or by making a poll, giving all the possible dates you want, minimum answers and a name, and that's how you start an event date vote.
+        - 8.3. Configure event date vote.
+            - # FALTA POR HACEEEEEEEEEEEEEEEEEEEEEEER!!!!!!!!!!!!!!!!!!!!!!!
+        - 8.4. Vote for event date.
+            - You can vote for the date of an event if the creator set the poll, and if it's public, or is private, but you were invited to it. To do this you just have to get to the event, and click the poll link and it'll take you to the specific event poll.
+        - 8.5. Invite guests.
+            -  To invite guest, you have to go to the event profile, and go to the "Invited Users section" and press the "+" button and it'll take you to a list of all the users there are and you can invite anyone you want, and after inviting him he'll be erased from that list, so you can't invite someone who's already invited. This can only be done by the event creator or by an admin.
+            - Also if you regret inviting someone, you can uninvite them by clicking in the invited users the trash button. Also this can only be done by the event creator or by an admin.
+        - 8.6. Delete event.
+            - This was explained in the point 4.3.4.
+        - 8.7. Edit event.
+            - This was explained in the point 4.3.3.
+        - 8.8. Add comment.
+            - This was explained in the point 4.4.1.
+        - 8.9. View comments.
+            - This was explained in the point 4.4.2.
+        - 8.10. Report event as inappropriate.
+            - If you go to an event page, you have the option ot report it, by clickin the button "Report Event", and you can give the reason why you're reporting it.
+            - This reports will get to all the admins, and they'll know what to do with them.
+    9) Acceptable Use Policy (AUP) and Terms of Service (ToS).
+        - 9.1. Provide AUP and ToS documents.
+            - You can get to this section in every page by going to the footer, and clicking the "AuP and ToS" button, taking you to see them, and you can expan them if you want to read all of it.
+        - 9.2. Report abusive content.
+            - You can report abusive contents by going to the user who's abusive and clicking the report button, the same to an organization, or to an event.
+            - This reports will get to all the admins, and they'll know what to do with them.
+    10) Search.
+        - All this points will be resumed, because you can get them all the same way.
+            - In the navbar there's a search form where you can search anything, and when you press the "search" button you'll be taken to a new page with all of the results.
+            - This results can filtered, with the "search by" label, where you choose the results you want to get.
+
+
+
 # Project part 3
 
 ## Summary of implemented features:
