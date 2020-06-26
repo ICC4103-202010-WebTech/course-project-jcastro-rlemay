@@ -34,15 +34,19 @@
       <% else %>
         <a role="button" data-toggle="modal" data-target="#reportModal">Report User</a>
         <a role="button" data-toggle="modal" data-target="#messageModal">Send message</a>
-        <% if @organization != nil%>
-          <%= link_to "View Organization", organization_path(@organization.organization_id) %>
+        <% if @org_member != nil%>
+          <%= link_to "View Organization", organization_path(@org_member.organization_id) %>
+        <% elsif @org_admin != nil%>
+          <%= link_to "View Organization", organization_path(@org_admin.organization_id) %>
         <% end %>
       <% end %>
     <%elsif system_admin_signed_in? %>
       <%= link_to "Edit Profile", edit_user_path %>
       <%= link_to "Delete user", user_path(@user.id), method: :delete %>
-      <% if @organization != nil%>
-        <%= link_to "View Organization", organization_path(@organization.organization_id) %>
+      <% if @org_member != nil%>
+        <%= link_to "View Organization", organization_path(@org_member.organization_id) %>
+      <% elsif @org_admin != nil%>
+        <%= link_to "View Organization", organization_path(@org_admin.organization_id) %>
       <% end %>
     <% end %>
 

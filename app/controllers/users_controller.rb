@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @events_created = Event.where(event_organizer: EventOrganizer.where(user_id: params[:id]))
-    @organization = OrganizationMember.where(user_id: params[:id])[0]
+    @org_admin = OrganizationAdmin.where(user_id: params[:id])[0]
+    @org_member = OrganizationMember.where(user_id: params[:id])[0]
     @events_invited = Event.find(Invitation.where(user_id: params[:id]).pluck(:event_id))
   end
 
