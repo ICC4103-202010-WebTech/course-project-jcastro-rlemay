@@ -6,5 +6,6 @@ class Organization < ApplicationRecord
   has_many :users, through: :organization_members
   has_many :organization_events, dependent: :destroy
   has_many :events, through: :organization_events, dependent: :destroy
+  has_many :events, through: :organization_members
   accepts_nested_attributes_for :organization_profile
 end
