@@ -1,18 +1,18 @@
 class InboxesController < ApplicationController
   before_action :set_inbox, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /inboxes
   # GET /inboxes.json
   def index
-    @invitations = Invitation.where(user_id: params[:user_id])
-    @inboxes = Inbox.where(user_id: params[:user_id])
-    @notifications = Notification.where(user_id: params[:user_id])
   end
 
   # GET /inboxes/1
   # GET /inboxes/1.json
   def show
-    @inbox = Inbox.where(user_id: params[:user_id])
+    @messages = Message.where(to_id: current_user.id)
+    @invitations = Invitation.where(user_id: current_user.id)
+    @notifications = Notification.where(user_id: current_user.id)
   end
 
   # GET /inboxes/new

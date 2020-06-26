@@ -1,5 +1,6 @@
 class Admin::EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files, :invites]
+  load_and_authorize_resource
 
   # GET /events
   # GET /events.json
@@ -69,8 +70,8 @@ class Admin::EventsController < ApplicationController
           @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
           @event_page.save
         end
-        @event_page.minimumGuests = event_params[:minimumGuests]
-        @event_page.maximumGuests = event_params[:maximumGuests]
+        @event_page.minimumGuests = params[:event][:event_page_attributes][:minimumGuests]
+        @event_page.maximumGuests = params[:event][:event_page_attributes][:maximumGuests]
         @event_page.save
         if x == nil
           @poll = Poll.new(
@@ -92,7 +93,6 @@ class Admin::EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    print("ENTRO AL UPDATE", event_params[:photos])
     respond_to do |format|
       if @event.update(name: event_params[:name], location: event_params[:location],
                        description: event_params[:description])
@@ -120,11 +120,11 @@ class Admin::EventsController < ApplicationController
           @event.save!
         end
         if event_params[:minimumGuests] != ""
-          @event_page.minimumGuests = event_params[:minimumGuests]
+          @event_page.minimumGuests = params[:event][:event_page_attributes][:minimumGuests]
           @event_page.save
         end
         if event_params[:maximumGuests] != ""
-          @event_page.maximumGuests = event_params[:maximumGuests]
+          @event_page.maximumGuests = params[:event][:event_page_attributes][:maximumGuests]
           @event_page.save
         end
         format.html { redirect_to admin_event_path(@event), notice: 'Event was successfully updated.' }
@@ -153,7 +153,7 @@ class Admin::EventsController < ApplicationController
     if event_params[:invitation] != nil
       @invitation = Invitation.new(user_id: event_params[:invitation], event_id: @event.id, message: "You were invited to an event!")
       if @invitation.save
-        redirect_to invites_event_path, notice: @invitation.user.name+ " "+ @invitation.user.lastName + " was invited"
+        redirect_to invites_admin_event_path, notice: @invitation.user.name+ " "+ @invitation.user.lastName + " was invited"
       else
       end
     end
@@ -183,6 +183,16 @@ class Admin::EventsController < ApplicationController
     end
   end
 
+  def delete_invites
+    @invitation = Invitation.find(params[:invite])
+    if @invitation.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_event_path(@event), notice: 'uninvited guest.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -193,10 +203,11 @@ class Admin::EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :minimumGuests, :maximumGuests, :description, :is_public,
-                                      :event_organizer_id, :event_banner_picture,
+                                      :description, :is_public, :event_organizer_id,
+                                      :event_banner_picture, :invitation,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
-                                      videos:[], photos:[], files:[])
+                                      videos:[], photos:[], files:[],
+                                      event_page_attributes: [:minimumGuests, :maximumGuests])
     end
 end
 

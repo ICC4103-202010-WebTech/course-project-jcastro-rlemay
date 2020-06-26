@@ -18,17 +18,25 @@
         <label for="desc_field"><b>Event Location:</b> </label>
         <%= form.text_field :location, class: "form-control" %>
       </section>
-      <div class="form-group">
-        <label for="desc_field"><b>Minimum Guests:</b> </label>
-        <%= form.number_field :minimumGuests, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <label for="desc_field"><b>Maximum Guests:</b> </label>
-        <%= form.number_field :maximumGuests, class: "form-control" %>
-      </div>
+      <%= form.fields_for :event_page_attributes do |profile| %>
+        <div class="form-group">
+          <label for="desc_field"><b>Minimum Guests:</b> </label>
+          <%= profile.number_field :minimumGuests, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="desc_field"><b>Maximum Guests:</b> </label>
+          <%= profile.number_field :maximumGuests, class: "form-control" %>
+        </div>
+      <%end %>
       <div class="form-group">
         <%= form.label :event_banner_picture, "Set Event Photo" %>
         <%= form.file_field :event_banner_picture %>
+      </div>
+      <div class="form-group">
+        <%= radio_button_tag(:is_public, "public", @event.is_public) %>
+        <h7>Public</h7><br>
+        <%= radio_button_tag(:is_public, "not public", !@event.is_public)%>
+        <h7>Private</h7><br>
       </div>
       <h4> Set the date: </h4>
       <section class="date_wrapper">
@@ -59,7 +67,7 @@
       }
     </script>
     <div id="poll_wrap" class="poll_wrapper form-group">
-      <p> Create a Poll: </p>
+      <p> Create a Poll: format (DD-MM-YYYY) and a space between if you want another date</p>
       <%= form.fields_for :poll_attributes do |poll| %>
         <div class="form-group">
           <%= poll.label :name %>

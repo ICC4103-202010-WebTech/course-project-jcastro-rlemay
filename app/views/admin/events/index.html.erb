@@ -1,6 +1,9 @@
 <%= stylesheet_link_tag "event_index" %>
 
-<h1 class="title">Events</h1>
+<div class="d-flex align-items-center bd-highlight mb-3">
+  <h1 class="title mr-auto p-2 bd-highlight">Events</h1>
+</div>
+
 <section class="recent_section">
   <%= render :partial => 'admin/events/events_list', collection: @events, as: :event %>
 </section>

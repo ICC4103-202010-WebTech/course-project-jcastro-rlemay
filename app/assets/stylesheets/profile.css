@@ -32,7 +32,7 @@
         }
 
     .user_info_wrapper{
-        width: 70%;
+        width: 60%;
         margin-right: 2%;
         margin-left: 2%;
         background-color: #262626;
@@ -51,18 +51,21 @@
     .user_options_wrapper{
         display: flex;
         flex-direction: column;
-        width: 20%;
+        width: 30%;
         background-color: #262626;
         color: #8E7A3F;
         border: 2px solid #8E7A3F;
+        height: available;
     }
     .user_options_wrapper a{
-        display: block;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         font-size: 17px;
         padding: 22px;
         text-align: center;
         border: 2px solid #8E7A3F;
-
+        height: max-content;
     }
     .user_options_wrapper a:hover{
         background-color: #333333;
@@ -76,29 +79,145 @@
         margin-bottom: 1%;
         margin-left: 2%;
     }
+.title{
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #8E7A3F;
+    font-size: 40px;
+}
 
-.user_events_wrapper{
-    height: auto;
+.recent_section{
     margin-right: 10%;
     margin-left: 10%;
-    margin-bottom: 1%;
+}
+.event_section{
+    width: 100%;
+    height: auto;
+    background-color: #262626;
+    color: #ffffff;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-bottom: 2%;
+    border: 2px solid #8E7A3F;
+    float: left;
+    display: block;
+}
+    .recent_title{
+        font-size: xx-large;
+        color: #8E7A3F;
+        display: flex;
+    }
+    .recent_event_name{
+        color: #8E7A3F;
+    }
+    .recent_buttons{
+        align-self: center;
+        margin-left: auto;
+    }
+    i:hover{
+        color: #ac934e;
+    }
+    i:active{
+        color: #8E7A3F;
+    }
+
+
+    .recent_body{
+        display: flex;
+        padding-bottom: 10px;
+    }
+        .far fa-square fa-10x{
+            float: left;
+            width: auto;
+        }
+        .recent_details{
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-content: space-evenly;
+        }
+        .recent_event_desc{
+            color: white;
+            margin-bottom: 2%;
+        }
+        .recent_date_box{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 2%;
+        }
+            .recent_poll{
+                font-size: large;
+                margin-left: 3px;
+                margin-bottom: 0;
+            }
+
+            .recent_startDate{
+                margin-left: 3px;
+                margin-right: 10px;
+                margin-bottom: 0;
+            }
+
+            .recent_endDate{
+                margin-left: 3px;
+                margin-bottom: 0;
+            }
+
+
+.invite_wrapper{
+    margin-left: 10%;
+    margin-bottom: 5%;
+    width: 25%;
+    height: auto;
     background-color: #262626;
     color: #ffffff;
     padding: 1%;
     border: 2px solid #8E7A3F;
+    float: left;
+    align-items: center;
 }
-    .events_upper{
 
-    }
-    .events_details{
-        display: flex;
-    }
-        .event_text{
+.user{
+    display: flex;
+    background-color: #262626;
+    color: #ffffff;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
+    border: 2px solid #8E7A3F;
+    margin: 2%;
 
-        }
-        .events_details i{
-            margin-right: 2%;
-        }
-    .events_down{
+}
+.invite_wrapper i{
+    margin-right: 1%;
+}
+.invite_wrapper p{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
 
-    }
+.events_wrapper{
+    margin-right: 10%;
+    margin-bottom: 5%;
+    width: 53%;
+    height: auto;
+    background-color: #262626;
+    color: #ffffff;
+    padding: 1%;
+    border: 2px solid #8E7A3F;
+    float: right;
+    align-items: center;
+}
+.event_section_wrapper{
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.modal-dialog{
+    position: relative;
+    display: table;
+    overflow-y: auto;
+    overflow-x: auto;
+    width: auto;
+    min-width: 500px;
+}

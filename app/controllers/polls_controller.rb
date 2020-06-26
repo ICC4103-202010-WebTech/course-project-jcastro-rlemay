@@ -1,5 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /polls
   # GET /polls.json
@@ -42,14 +43,9 @@ class PollsController < ApplicationController
   # PATCH/PUT /polls/1.json
   def update
 
-      @vote = Vote.new(answerDate: params[:start_date], poll_id: @poll.id, user_id: 1)
+      @vote = Vote.new(answerDate: params[:start_date], poll_id: @poll.id, user_id: current_user.id)
       if @vote.save
-        if @poll.update(currentAnswers: @poll.currentAnswers + 1)
           redirect_to @poll.event, notice: 'Vote was created.'
-        else
-          render :edit
-          render json: @poll.errors, status: :unprocessable_entity
-        end
       else
         flash[:alert] = "You already voted!"
         redirect_to @poll.event

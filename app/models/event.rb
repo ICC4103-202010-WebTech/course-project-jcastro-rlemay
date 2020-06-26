@@ -2,12 +2,13 @@ class Event < ApplicationRecord
   has_one :event_page, dependent: :destroy
   before_create :build_event_page
   belongs_to :event_organizer
-  has_one :organization
+  has_one :organization, through: :event_organizer
   has_one :poll, dependent: :destroy
   has_many :invitations, dependent: :destroy
   has_many :users, through: :invitations
   has_one :organization_event, dependent: :destroy
   accepts_nested_attributes_for :poll
+  accepts_nested_attributes_for :event_page
   #has_many :comments, through: :event_page, dependent: :destroy
 
   before_create :update_stats

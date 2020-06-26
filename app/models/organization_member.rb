@@ -1,6 +1,7 @@
 class OrganizationMember < ApplicationRecord
   belongs_to :user
   belongs_to :organization
+  has_many :events, through: :user
 
   before_create :update_organization_member
   after_destroy :erase_organization_member

@@ -1,5 +1,31 @@
-<h1>New Organization</h1>
+<%= stylesheet_link_tag "new_form" %>
 
-<%= render 'form', organization: @organization %>
+<h1 class="title">New Organization</h1>
 
-<%= link_to 'Back', organizations_path %>
+<%= form_with model: @organization  do |form| %>
+  <section class="new_event_wrapper">
+    <h1 class="wrapper_title">General information: </h1>
+
+    <section class="new_event_name">
+      <label for="name_field"> <b>Organization name:</b> </label>
+      <%= form.text_field :name, class: "form-control" %><br><br>
+    </section>
+    <%= form.fields_for :organization_profile_attributes do |profile| %>
+      <section class="new_event_desc">
+        <label for="desc_field"><b>Organization description:</b> </label>
+        <%= profile.text_field :description, class: "form-control" %><br><br>
+      </section>
+      <div class="form-group">
+        <%= profile.label :banner_picture, "Set Organization Photo" %>
+        <%= profile.file_field :banner_picture %>
+      </div>
+    <%end %>
+
+  </section>
+
+
+  <section class="button_wrapper">
+    <%= form.submit "Create Organization", class: "button" %>
+  </section>
+
+<% end %>

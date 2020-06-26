@@ -1,13 +1,14 @@
 class PagesController < ApplicationController
   def home
-    @recent_events = Invitation.where(user_id: 1).limit(5).order("created_at desc")
-    @recent_notifications = Notification.where(user_id: 1).limit(5).order("created_at desc")
+    if user_signed_in?
+      @recent_events = Invitation.where(user_id: current_user.id).limit(5).order("created_at desc")
+      @recent_notifications = Notification.where(user_id: current_user.id).limit(5).order("created_at desc")
+    end
   end
   def terms
 
   end
   def search
-    print("AAAAAAAAAAAA", params[:tags])
     if params[:tags] == nil or params[:tags] == ""
       @users_by_name = User.where("name LIKE ? or lastName LIKE ?", "%"+params[:query].to_s+"%", "%"+params[:query].to_s+"%").limit(5)
       @users_by_username = User.where(id: UserProfile.where("userName LIKE ?", "%"+params[:query].to_s+"%").pluck(:user_id)).limit(5)

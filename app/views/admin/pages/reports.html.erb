@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "inbox" %>
+</br>
+
+<h1 class="inbox_title">Your Inbox</h1>
+<section class="inbox_wrapper">
+  <h1 class="wrapper_title">User reports:</h1>
+  <% @user_reports.each do |message| %>
+    <section class="notification_wrapper">
+      <p>The user <%= link_to message.reporter.name, user_path(message.reporter.id)%> has reported user <%= link_to message.reported.name, user_path(message.reported.id)%>: </p>
+      <p>Reason: <%= message.reason %></p>
+    </section>
+  <% end %>
+</section>
+<section class="inbox_wrapper">
+  <h1 class="wrapper_title">Event reports:</h1>
+  <% @event_reports.each do |report| %>
+    <section class="notification_wrapper">
+      <p>The user <%= link_to report.user.name, user_path(report.user.id)%> has reported the event <%= link_to report.event.name, user_path(report.event.id)%>: </p>
+      <p>Reason: <%= report.reason %></p>
+    </section>
+  <% end %>
+</section>
+
+<section class="inbox_wrapper">
+  <h1 class="wrapper_title">Event reports:</h1>
+  <% @org_reports.each do |report| %>
+    <section class="notification_wrapper">
+      <p>The user <%= link_to report.user.name, user_path(report.user.id)%> has reported the organization <%= link_to report.organization.name, user_path(report.organization.id)%>: </p>
+      <p>Reason: <%= report.reason %></p>
+    </section>
+  <% end %>
+</section>

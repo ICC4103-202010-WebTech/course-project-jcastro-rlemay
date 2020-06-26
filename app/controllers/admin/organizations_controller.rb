@@ -1,5 +1,6 @@
 class Admin::OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /organizations
   # GET /organizations.json
@@ -14,6 +15,7 @@ class Admin::OrganizationsController < ApplicationController
     @organization_events = Event.where(id: OrganizationEvent.where(organization_id: params[:id]).
         pluck(:event_id), is_public: true)
     @organization_creator = OrganizationAdmin.where(organization_id: params[:id])[0]
+    @organization_members = OrganizationMember.where(organization_id: params[:id])
   end
 
   # GET /organizations/new
@@ -32,8 +34,8 @@ class Admin::OrganizationsController < ApplicationController
 
     respond_to do |format|
       if @organization.save
-        @organization.organization_profile.description = organization_params[:description]
-        @organization.organization_profile.banner_picture.attach(organization_params[:banner_picture])
+        @organization.organization_profile.description = organization_params[:organization_profile_attributes][:description]
+        @organization.organization_profile.banner_picture.attach(organization_params[:organization_profile_attributes][:banner_picture])
         @organization_admin = OrganizationAdmin.new(user_id: 1, organization_id: @organization.id)
         @organization_admin.save
         @organization.organization_profile.save
@@ -50,9 +52,20 @@ class Admin::OrganizationsController < ApplicationController
   # PATCH/PUT /organizations/1.json
   def update
     respond_to do |format|
-      if @organization.update(name: organization_params[:name]) and
-          @profile.update(description: organization_params[:description],
-                          banner_picture: organization_params[:banner_picture])
+      if @organization.update(name: organization_params[:name])
+        if organization_params[:organization_profile_attributes][:banner_picture]!=nil
+          if organization_params[:organization_profile_attributes][:description]== ""
+            @profile.update(banner_picture: organization_params[:organization_profile_attributes][:banner_picture])
+          else
+            @profile.update(description: organization_params[:organization_profile_attributes][:description],
+                            banner_picture: organization_params[:organization_profile_attributes][:banner_picture])
+          end
+
+        else
+          if organization_params[:description] != ""
+            @profile.update(description: organization_params[:organization_profile_attributes][:description])
+          end
+        end
         format.html { redirect_to admin_organization_path(@organization), notice: 'Admin Organization was successfully updated.' }
 
       else
@@ -72,6 +85,33 @@ class Admin::OrganizationsController < ApplicationController
     end
   end
 
+  def invites
+    members = OrganizationMember.where(organization_id: params[:id]).pluck(:user_id)
+    admins = OrganizationAdmin.where(organization_id: params[:id]).pluck(:user_id)
+    admins.each do |admin|
+      members << admin
+    end
+    @pagy, @invites = pagy(User.where.not(id: members))
+    if params[:invitation] != nil
+      @notification = Notification.new(user_id: params[:invitation], message: "You were invited to an Organization!")
+      @org_member = OrganizationMember.new(user_id: params[:invitation],organization_id: params[:id])
+      if @org_member.save
+        redirect_to invites_admin_organization_path, notice: @org_member.user.name+ " "+ @org_member.user.lastName + " was invited"
+      else
+      end
+    end
+  end
+
+  def delete_member
+    @member = OrganizationMember.find(params[:member])
+    if @member.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_organization_path(@organization), notice: 'uninvited guest.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
@@ -81,7 +121,7 @@ class Admin::OrganizationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      params.fetch(:organization, {}).permit(:id, :name, :members, :banner_picture,
-                                             :description)
+      params.fetch(:organization, {}).permit(:id, :name, :members,
+                                             organization_profile_attributes: [:banner_picture, :description])
     end
 end

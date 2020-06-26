@@ -4,7 +4,6 @@
   <title>CourseProjectJcastroRlemay</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/bb30ccd945.js" crossorigin="anonymous"></script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,26 +11,84 @@
 
 <body>
   <header>
-    <div class = "topnav">
-      <section class="header_brand">
-        <h1 class="page_name"><b><%= link_to "Eventer", root_path%></b></h1>
-      </section>
-      <section class="header_search">
-        <%= form_with url: search_path, method: :get, local: true do |form| %>
-          <div class="form-inline row">
-            <%= form.text_field :query, :placeholder => "Search", class: "form-control" %>
-            <%= form.submit "Search", class: ["btn", "btn-primary"] %>
-          </div>
-        <% end %>
-      </section>
-      <section class="header_rightPart">
-        <h3><%= link_to "New Event", new_event_path %></h3>
-        <h3><%= link_to "Events", events_path %></h3>
-        <h3><%= link_to "Inbox", user_inboxes_path(1) %></h3>
-        <h3><%= link_to "Profile", user_path(1)%></h3>
-      </section>
+    <% if user_signed_in? or system_admin_signed_in?%>
+      <div class = "topnav">
+          <section class="header_brand">
+            <h1 class="page_name"><b><%= link_to "Eventer", root_path%></b></h1>
+          </section>
+          <section class="header_search">
+            <%= form_with url: search_path, method: :get, local: true do |form| %>
+              <div class="form-inline row">
+                <%= form.text_field :query, :placeholder => "Search", class: "form-control" %>
+                <%= form.submit "Search", class: ["btn", "btn-primary"] %>
+              </div>
+            <% end %>
+          </section>
+          <section class="header_rightPart">
+            <%= link_to "Users", users_path %>
+            <% if user_signed_in? %>
+              <div class="dropdown show">
+                <h3 class="dropdown-toggle" role="button" data-toggle="dropdown">
+                  Events
+                </h3>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <%= link_to "New Event", new_event_path, class: "dropdown-item" %>
+                  <%= link_to "Public Events", events_path, class: "dropdown-item" %>
+                </div>
+              </div>
 
-    </div>
+              <div class="dropdown show">
+                <h3 class="dropdown-toggle" role="button" data-toggle="dropdown">
+                  Organizations
+                </h3>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <% if user_signed_in? %>
+                    <% if current_user.organization_admin != nil %>
+                      <%= link_to "Your Organization", organization_path(OrganizationAdmin.where(user_id: current_user.id)[0].organization_id), class: "dropdown-item"%>
+                    <% elsif current_user.organization_member != nil%>
+                      <%= link_to "Your Organization", organization_path(current_user.organization.id), class: "dropdown-item"%>
+                    <% else %>
+                      <%= link_to "New Organization", new_organization_path, class: "dropdown-item" %>
+                      <%= link_to "All Organizations", organizations_path, class: "dropdown-item"%>
+                    <% end %>
+                  <% else %>
+                    <%= link_to "New Organization", new_organization_path, class: "dropdown-item" %>
+                    <%= link_to "All Organizations", organizations_path, class: "dropdown-item"%>
+                  <%end %>
+                </div>
+              </div>
+
+              <div class="dropdown show">
+                <h3 class="dropdown-toggle" role="button" data-toggle="dropdown">
+                  User
+                </h3>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <h3><%= link_to "Your Profile", user_path(current_user.id)%></h3>
+                  <h3><%= link_to "Inbox", inbox_path(current_user.id) %></h3>
+                  <h3><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></h3>
+                </div>
+              </div>
+            <%else%>
+              <h3><%= link_to "Reports", admin_reports_show_path %></h3>
+              <h3><%= link_to "Events", admin_events_path %></h3>
+              <h3><%= link_to "Organizations", admin_organizations_path %></h3>
+              <h3><%= link_to "Sign Out", destroy_system_admin_session_path, method: :delete%></h3>
+            <%end %>
+          </section>
+      </div>
+    <% else %>
+      <div class = "unlogged_topnav">
+        <section class="header_title">
+          <h1 class="page_name"><b><%= link_to "Eventer", root_path%></b></h1>
+        </section>
+        <section class="sing_in_header">
+          <h3><%= link_to "Sign In", new_user_session_path %></h3>
+          <h3> <%= link_to "Log as admin", new_system_admin_session_path %></h3>
+          <h3> <%= link_to "Registration", new_user_registration_path %></h3>
+        </section>
+      </div>
+    <% end %>
+
     <% if notice.present? %>
       <div class="mb-0" role="alert">
         <div id="notice" class="alert alert-success mb-0"><%= notice %></div>
@@ -46,6 +103,9 @@
 
 
   <main>
+    <% if user_signed_in? %>
+    <br>
+    <% end %>
     <%= yield %>
   </main>
 

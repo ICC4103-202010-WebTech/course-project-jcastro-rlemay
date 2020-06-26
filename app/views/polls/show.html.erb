@@ -4,7 +4,11 @@
 
 <%= form_with model: @poll  do |form| %>
   <section class="poll_wrapper">
-    <i class="far fa-square fa-10x"></i>
+    <% if @poll.event.event_page.event_banner_picture.attached? %>
+      <%= image_tag(@poll.event.event_page.event_banner_picture, width: "200px", class: "m-1") %>
+    <%else %>
+      <%= image_tag("profile.png", width: "200px", background: "#55595c", color: "#eceeef", class: "m-1") %>
+    <% end %>
     <section class="data_wrapper">
       <h2 class="poll_title">Pick which date accommodates you:</h2>
       <p class="disclaimer">*Only one answer per user (end date will be 1 week from selected answer)</p>

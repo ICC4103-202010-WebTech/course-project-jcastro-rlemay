@@ -3,7 +3,16 @@
   <section class="recent_title">
     <p class="recent_event_name"><b><%= link_to event.name, admin_event_path(event.id)%></b></p>
     <section class="recent_buttons">
-      <i class="fas fa-user-plus"></i>
+      <%= link_to(
+              content_tag(
+                  :i,
+                  nil,
+                  class: 'fas fa-user-plus'
+              ),
+              invites_admin_event_path(event.id),
+              method: :get
+          )
+      %>
       <i class="fas fa-bookmark"></i>
       <i class="fas fa-bell"></i>
       <%= link_to(

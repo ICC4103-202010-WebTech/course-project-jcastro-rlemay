@@ -18,7 +18,7 @@
     <% if @profile.banner_picture.attached? %>
       <%= image_tag(@profile.banner_picture, width: "200px") %>
     <%else %>
-      <i class="far fa-square fa-10x"></i>
+      <%= image_tag("organization.jpeg", width: "200px", background: "#55595c", color: "#eceeef", class: "m-1") %>
     <% end %>
   </section>
   <section class="user_info_wrapper">
@@ -34,21 +34,56 @@
   </section>
 </section>
 
-<h1 class="profile_title">This Organization's Public Events:</h1>
-<% @organization_events.each do |event| %>
-  <section class="user_events_wrapper">
-    <section class="events_upper">
-
+<section class="invite_wrapper">
+  <div class="container d-flex align-items-center justify-content-between">
+    <h1 class="wrapper_title">Members: </h1>
+    <%= link_to(
+                content_tag(
+                    :i,
+                    nil,
+                    class: 'fas fa-plus fa-lg fa-2x'
+                ),
+                invites_admin_organization_path,
+                method: :get
+            )
+        %>
+  </div>
+  <% @organization_members.each do |member| %>
+    <section class="user">
+      <% if member.user.user_profile.profile_picture.attached? %>
+        <%= image_tag(member.user.user_profile.member, width: "60px") %>
+      <%else %>
+        <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef") %>
+      <% end %>
+      <% full_name =  member.user.name + " " + member.user.lastName%>
+      <p class="ml-1"><b><%= link_to full_name, user_path(member.user.id)%></b></p>
+      <% if system_admin_signed_in? or current_user.id.to_s == @organization.organization_admins[0].user_id.to_s%>
+        <div class="ml-auto p-2">
+          <%= link_to(
+                  content_tag(
+                      :i,
+                      nil,
+                      class: 'fa fa-trash-o fa-lg'
+                  ),
+                  delete_member_admin_organization_path(member: member.id),
+                  method: :delete
+              )
+          %>
+        </div>
+      <% end %>
     </section>
-    <section class="events_details">
-      <i class="far fa-square fa-8x"></i>
-      <section class="event_text">
-        <h3><%= link_to event.name, event_path(event.id) %></h3>
-        <%= event.description %>
+  <% end %>
+</section>
+
+<section class="events_wrapper">
+  <h1 class="wrapper_title">This Organization's Public Events:</h1>
+  <div class="event_section_wrapper">
+    <% if @organization_events != []%>
+      <%= render :partial => 'admin/events/events_list', collection: @organization_events, as: :event %>
+    <% else %>
+      <section class="event_section">
+        <h2 class="Nothing_found"> Nothing Found </h2>
       </section>
-    </section>
-    <section class="events_down">
-
-    </section>
-  </section>
-<% end %>
+    <% end %>
+  </div>
+</section>

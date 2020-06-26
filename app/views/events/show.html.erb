@@ -1,6 +1,46 @@
 <%= stylesheet_link_tag "event_show" %>
 
-<h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
+<div class="d-flex align-items-center bd-highlight mb-3">
+  <h1 class="title p-2"><%= @event.name %> (<%=@visibility%>)</h1>
+  <% if user_signed_in? %>
+    <% if current_user.id.to_s == @event.event_organizer.user_id.to_s %>
+      <div class="trash_start ml-auto p-2 bd-highlight"><%= link_to(
+                                                  content_tag(
+                                                      :i,
+                                                      nil,
+                                                      class: 'fa fa-trash-o fa-3x'
+                                                  ),
+                                                  event_path(@event.id),
+                                                  method: :delete
+                                              )
+      %></div>
+    <% elsif @event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id%>
+      <div class="trash_start ml-auto p-2 bd-highlight"><%= link_to(
+                                                                content_tag(
+                                                                    :i,
+                                                                    nil,
+                                                                    class: 'fa fa-trash-o fa-3x'
+                                                                ),
+                                                                event_path(@event.id),
+                                                                method: :delete
+                                                            )
+      %></div>
+
+    <% end %>
+  <% elsif system_admin_signed_in?%>
+    <div class="trash_start ml-auto p-2 bd-highlight"><%= link_to(
+                                                              content_tag(
+                                                                  :i,
+                                                                  nil,
+                                                                  class: 'fa fa-trash-o fa-3x'
+                                                              ),
+                                                              event_path(@event.id),
+                                                              method: :delete
+                                                          )
+    %></div>
+  <% end %>
+</div>
+
 <section class="event_image_wrapper">
   <% if @event_page.event_banner_picture.attached? %>
     <%= image_tag(@event.event_page.event_banner_picture, width: "200px") %>
@@ -10,8 +50,8 @@
 </section>
 <section class="event_section">
   <section class="event_details">
-    <section class="event_location">
-      <p> Created at: <%=@event.created_at %></p>
+    <section class="event_created_at">
+      <p> <b>Created at:</b> <%=@event.created_at %></p>
     </section>
     <br>
     <section class="event_dates">
@@ -28,39 +68,108 @@
       <% end %>
     </section>
     <section class="event_desc">
-      <p> Event description:</p>
-      <p> <%=@event.description %></p>
+      <p><b> Event description:</b></p>
+      <p class="container ml-1"> <%=@event.description %></p>
     </section>
     <section class="event_location">
-      <p> Event location:</p>
-      <p> <%=@event.location %></p>
+      <p><b> Event location:</b></p>
+      <p class="container ml-1"> <%=@event.location %></p>
     </section>
   </section>
   <section class="event_options_wrapper">
-    <%= link_to "Edit Event", edit_event_path %>
+    <% if user_signed_in? %>
+      <% if current_user.id.to_s == @event.event_organizer.user_id.to_s %>
+        <%= link_to "Edit Event", edit_event_path %>
+      <% elsif @event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id%>
+        <%= link_to "Edit Event", edit_event_path %>
+      <% else %>
+        <a role="button" data-toggle="modal" data-target="#reportModal">Report Event</a>
+      <% end  %>
+    <% elsif system_admin_signed_in? %>
+      <%= link_to "Edit Event", edit_event_path %>
+    <% end %>
     <%= link_to "View Event Pictures", photos_event_path %>
     <%= link_to "View Event Files", files_event_path %>
     <%= link_to "View Event Videos", videos_event_path %>
   </section>
 </section>
 
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: report_event_url ,method: "post" do |form| %>
+          <%= form.text_area :reason, class: "form-control", placeholder: "Write the reason of your report..."%>
+          <%= form.submit "Send", class: ["btn", "btn-primary"] %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <section class="invite_wrapper">
-  <h1 class="wrapper_title">Invited Users: </h1>
-  <%= link_to(
-          content_tag(
-              :i,
-              nil,
-              class: 'fas fa-plus fa-lg'
-          ),
-          invites_event_path,
-          method: :get
-      )
-  %>
+  <div class="container d-flex align-items-center justify-content-between">
+    <h1 class="wrapper_title">Invited Users: </h1>
+    <% if user_signed_in? %>
+      <% if current_user.id.to_s == @event.event_organizer.user.id.to_s %>
+        <%= link_to(
+                content_tag(
+                    :i,
+                    nil,
+                    class: 'fas fa-plus fa-lg fa-2x'
+                ),
+                invites_event_path,
+                method: :get
+            )
+        %>
+      <% elsif @event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id%>
+        <%= link_to(
+                content_tag(
+                    :i,
+                    nil,
+                    class: 'fas fa-plus fa-lg fa-2x'
+                ),
+                invites_event_path,
+                method: :get
+            )
+        %>
+      <% end %>
+    <% end %>
+
+  </div>
   <% @invited.each do |invitation| %>
     <section class="user">
-      <i class="far fa-square fa-5x"></i>
+      <% if invitation.user.user_profile.profile_picture.attached? %>
+        <%= image_tag(invitation.user.user_profile.profile_picture, width: "60px") %>
+      <%else %>
+        <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef") %>
+      <% end %>
       <% full_name =  invitation.user.name + " " + invitation.user.lastName%>
-      <p><b><%= link_to full_name, user_path(invitation.user.id)%></b></p>
+      <p class="ml-1"><b><%= link_to full_name, user_path(invitation.user.id)%></b></p>
+      <% if system_admin_signed_in? or current_user.id.to_s == @event.event_organizer.user.id.to_s%>
+        <div class="ml-auto p-2">
+          <%= link_to(
+                  content_tag(
+                      :i,
+                      nil,
+                      class: 'fa fa-trash-o fa-lg'
+                  ),
+                  delete_invites_event_path(invite: invitation.id),
+                  method: :delete
+              )
+          %>
+        </div>
+      <% end %>
     </section>
   <% end %>
 </section>
@@ -73,25 +182,95 @@
       <%= form.submit "Send", class: ["btn", "btn-primary"] %>
     <% end %>
   </div>
-  <% @comments.each do |comment| %>
+  <% @comments.each_with_index do |comment, i| %>
     <section class="comment_box">
       <section class="user_comment">
-        <i class="far fa-square fa-5x"></i>
+        <% if comment.user.user_profile.profile_picture.attached? %>
+          <%= image_tag(comment.user.user_profile.profile_picture, width: "60px", class: "m-1") %>
+        <%else %>
+          <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef", class: "m-1") %>
+        <% end %>
         <% full_name =  comment.user.name + " " + comment.user.lastName%>
         <p><b><%= link_to full_name, user_path(comment.user.id)%></b></p>
+        <% if user_signed_in? %>
+          <% if current_user.id.to_s == comment.user.id.to_s %>
+            <div class="trash float-right p-2 bd-highlight"><%= link_to(
+                                                                    content_tag(
+                                                                        :i,
+                                                                        nil,
+                                                                        class: 'fa fa-trash-o'
+                                                                    ),
+                                                                    comment_path(comment.id),
+                                                                    model: @comment,
+                                                                    method: :delete
+                                                                )
+            %></div>
+            <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
+          <% elsif current_user.id.to_s == @event.event_organizer.user.id.to_s %>
+            <div class="trash float-right p-2 bd-highlight"><%= link_to(
+                                                                    content_tag(
+                                                                        :i,
+                                                                        nil,
+                                                                        class: 'fa fa-trash-o'
+                                                                    ),
+                                                                    comment_path(comment.id),
+                                                                    model: @comment,
+                                                                    method: :delete
+                                                                )
+            %></div>
+            <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
+          <% elsif @event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id%>
+            <div class="trash float-right p-2 bd-highlight"><%= link_to(
+                                                                    content_tag(
+                                                                        :i,
+                                                                        nil,
+                                                                        class: 'fa fa-trash-o'
+                                                                    ),
+                                                                    comment_path(comment.id),
+                                                                    model: @comment,
+                                                                    method: :delete
+                                                                )
+            %></div>
+            <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
+          <% end %>
+        <% end %>
       </section>
-      <p class="comment"><%= comment.content %></p>
+      <div id="real_comment<%=i%>"><p class="comment"><%= comment.content %></p></div>
+      <div id="edit_comment<%=i%>" class="edit_comment">
+        <%= form_with url: comment_path(comment), method: :patch do |form| %>
+          <%= form.text_area :content, class: "form-control", placeholder: comment.content%>
+          <%= form.submit "Send", class: ["btn", "btn-primary"] %>
+        <% end %>
+      </div>
+      <script>
+          function myFunction(p) {
+              var real_comment = document.getElementById("real_comment"+String(p));
+              var edit_comment = document.getElementById("edit_comment"+String(p));
+
+              if (real_comment.style.display === "none") {
+                  real_comment.style.display = "inline";
+                  edit_comment.style.display = "none";
+              } else {
+                  real_comment.style.display = "none";
+                  edit_comment.style.display = "inline";
+              }
+          }
+      </script>
       <% replies = @comment_replies.where(comment_id: comment.id) %>
       <% if replies != []%>
         <section class="reply_box">
-            <% replies.each do |reply| %>
-              <section class="user_reply">
-                <i class="far fa-square fa-5x"></i>
-                <% full_name =  reply.user.name + " " + reply.user.lastName%>
-                <p><b><%= link_to full_name, user_path(reply.user.id)%></b></p>
-              </section>
-              <p class="reply"><%= reply.content %></p>
-            <% end %>
+          <% replies.each do |reply| %>
+            <section class="user_reply">
+              <% if reply.user.user_profile.profile_picture.attached? %>
+                <%= image_tag(reply.user.user_profile.profile_picture, width: "60px", class: "m-1") %>
+              <%else %>
+                <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef", class: "m-1") %>
+              <% end %>
+              <% full_name =  reply.user.name + " " + reply.user.lastName%>
+              <p><b><%= link_to full_name, user_path(reply.user.id)%></b></p>
+            </section>
+            <p class="reply"><%= reply.content %></p>
+          <% end %>
         </section>
       <% end %>
     </section>

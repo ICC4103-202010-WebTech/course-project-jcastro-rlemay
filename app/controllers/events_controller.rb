@@ -1,10 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :photos, :videos, :files, :invites]
+  load_and_authorize_resource
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    y = EventOrganizer.where(user_id: current_user.id)[0]
+    if y != nil
+      @events = Event.where(is_public: true).or(Event.where(event_organizer_id: y.id, is_public: false))
+    else
+      @events = Event.where(is_public: true)
+    end
   end
 
   # GET /events/1
@@ -56,12 +62,26 @@ class EventsController < ApplicationController
     else
       x = nil
       y = nil
-
+    end
+    valida = false
+    if params[:is_public] == "not public"
+      valida = false
+    elsif params[:is_public] == "public"
+      valida = true
     end
 
-    @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
-                       description: event_params[:description],
-                       event_organizer: EventOrganizer.find(1), location: event_params[:location])
+    if EventOrganizer.where(user_id: current_user.id)[0] == nil
+      if EventOrganizer.create(user_id: current_user.id)
+        @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
+                           description: event_params[:description], is_public: valida,
+                           event_organizer: EventOrganizer.where(user_id: current_user.id)[0], location: event_params[:location])
+      end
+    else
+      @event = Event.new(name: event_params[:name], start_date: x, end_date: y,
+                         description: event_params[:description], is_public: valida,
+                         event_organizer: EventOrganizer.where(user_id: current_user.id)[0], location: event_params[:location])
+    end
+
     respond_to do |format|
       if @event.save
         @event_page = @event.event_page
@@ -69,8 +89,8 @@ class EventsController < ApplicationController
           @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
           @event_page.save
         end
-        @event_page.minimumGuests = event_params[:minimumGuests]
-        @event_page.maximumGuests = event_params[:maximumGuests]
+        @event_page.minimumGuests = params[:event][:event_page_attributes][:minimumGuests]
+        @event_page.maximumGuests = params[:event][:event_page_attributes][:maximumGuests]
         @event_page.save
         if x == nil
           @poll = Poll.new(
@@ -92,7 +112,6 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    print("ENTRO AL UPDATE", event_params[:photos])
     respond_to do |format|
       if @event.update(name: event_params[:name], location: event_params[:location],
                        description: event_params[:description])
@@ -120,11 +139,11 @@ class EventsController < ApplicationController
           @event.save!
         end
         if event_params[:minimumGuests] != ""
-          @event_page.minimumGuests = event_params[:minimumGuests]
+          @event_page.minimumGuests = params[:event][:event_page_attributes][:minimumGuests]
           @event_page.save
         end
         if event_params[:maximumGuests] != ""
-          @event_page.maximumGuests = event_params[:maximumGuests]
+          @event_page.maximumGuests = params[:event][:event_page_attributes][:maximumGuests]
           @event_page.save
         end
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -183,6 +202,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def delete_invites
+    @invitation = Invitation.find(params[:invite])
+    if @invitation.destroy
+      respond_to do |format|
+        format.html { redirect_to event_path(@event), notice: 'uninvited guest.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     def set_event
       @event = Event.find(params[:id])
@@ -191,9 +220,10 @@ class EventsController < ApplicationController
 
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
-                                      :minimumGuests, :maximumGuests, :description, :is_public,
-                                      :event_organizer_id, :event_banner_picture, :invitation,
+                                      :description, :is_public, :event_organizer_id,
+                                      :event_banner_picture, :invitation,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
-                                      videos:[], photos:[], files:[])
+                                      videos:[], photos:[], files:[],
+                                      event_page_attributes: [:minimumGuests, :maximumGuests])
     end
 end
