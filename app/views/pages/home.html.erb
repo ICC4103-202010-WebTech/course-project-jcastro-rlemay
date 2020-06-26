@@ -10,7 +10,46 @@
               <section class="recent_title">
                 <p><b>New Event Created:</b></p>
                 <section class="recent_buttons">
-                  <i class="fas fa-user-plus"></i>
+                  <% if user_signed_in? %>
+                    <% if current_user.id.to_s == invitation.event_organizer.user.id.to_s %>
+                      <%= link_to(
+                              content_tag(
+                                  :i,
+                                  nil,
+                                  class: 'fas fa-user-plus'
+                              ),
+                              invites_event_path(invitation.id),
+                              method: :get
+                          )
+                      %>
+                    <% end %>
+                  <% elsif system_admin_signed_in?%>
+                    <%= link_to(
+                            content_tag(
+                                :i,
+                                nil,
+                                class: 'fas fa-user-plus'
+                            ),
+                            invites_admin_event_path(invitation.id),
+                            method: :get
+                        )
+                    %>
+                  <% elsif OrganizationEvent.where(event_id: invitation.id)[0] != nil %>
+                    <% if OrganizationEvent.where(event_id: invitation.id) and
+                        OrganizationEvent.where(event_id: invitation.id)[0].organization.
+                            organization_admins.include? current_user%>
+                      <%= link_to(
+                              content_tag(
+                                  :i,
+                                  nil,
+                                  class: 'fas fa-user-plus'
+                              ),
+                              invites_event_path(invitation.id),
+                              method: :get
+                          )
+                      %>
+                    <% end %>
+                  <% end %>
                   <i class="fas fa-bookmark"></i>
                   <i class="fas fa-bell"></i>
                 </section>
