@@ -22,7 +22,7 @@ FactoryBot.define do
   factory :user do
     name { Faker::FunnyName.name }
     lastName { Faker::Name.last_name }
-    password { Faker::Internet.password }
+    password { 'webtech' }
     email {Faker::Internet.safe_email}
     location {Faker::Nation.capital_city}
     address {Faker::Address.full_address}
