@@ -25,9 +25,8 @@
             <% end %>
           </section>
           <section class="header_rightPart">
+            <%= link_to "Users", users_path %>
             <% if user_signed_in? %>
-
-                <%= link_to "Users", users_path %>
               <div class="dropdown show">
                 <h3 class="dropdown-toggle" role="button" data-toggle="dropdown">
                   Events
@@ -69,8 +68,8 @@
                   <h3><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></h3>
                 </div>
               </div>
-
             <%else%>
+              <h3><%= link_to "Reports", admin_reports_show_path %></h3>
               <h3><%= link_to "Events", admin_events_path %></h3>
               <h3><%= link_to "Organizations", admin_organizations_path %></h3>
               <h3><%= link_to "Sign Out", destroy_system_admin_session_path, method: :delete%></h3>

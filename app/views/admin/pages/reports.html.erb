@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "inbox" %>
+</br>
+
+<h1 class="inbox_title">Your Inbox</h1>
+<section class="inbox_wrapper">
+  <h1 class="wrapper_title">User reports:</h1>
+  <% @user_reports.each do |message| %>
+    <section class="notification_wrapper">
+      <p>New report from <%= message.reporter.name %> To: <%= message.reported.name %>: </p>
+      <%= message.reason %>
+    </section>
+  <% end %>
+</section>
+<section class="inbox_wrapper">
+  <h1 class="wrapper_title">Event reports:</h1>
+  <% @event_reports.each do |notification| %>
+    <section class="notification_wrapper">
+      <p>New report from <%= notification.user.name %> to <%= notification.event.name %>: </p>
+      <%= notification.reason %>
+    </section>
+  <% end %>
+</section>
+
+<section class="inbox_wrapper">
+  <h1 class="wrapper_title">Event reports:</h1>
+  <% @org_reports.each do |notification| %>
+    <section class="notification_wrapper">
+      <p>New report from <%= notification.user.name %> to <%= notification.organization.name %>: </p>
+      <%= notification.reason %>
+    </section>
+  <% end %>
+</section>

@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root "pages#home"
     post "events/:id", to: "comments#create", as: "new_comment"
+    get "/reports", to: "pages#reports", as: "reports_show"
     resources :events do
       resources :comments, shallow: true
       member do
