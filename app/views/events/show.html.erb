@@ -1,6 +1,46 @@
 <%= stylesheet_link_tag "event_show" %>
 
-<h1 class="title"><%= @event.name %> (<%=@visibility%>)</h1>
+<div class="d-flex align-items-center bd-highlight mb-3">
+  <h1 class="title p-2"><%= @event.name %> (<%=@visibility%>)</h1>
+  <% if user_signed_in? %>
+    <% if current_user.id.to_s == @event.event_organizer.user_id.to_s %>
+      <div class="trash_start ml-auto p-2 bd-highlight"><%= link_to(
+                                                  content_tag(
+                                                      :i,
+                                                      nil,
+                                                      class: 'fa fa-trash-o fa-3x'
+                                                  ),
+                                                  event_path(@event.id),
+                                                  method: :delete
+                                              )
+      %></div>
+    <% elsif @event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id%>
+      <div class="trash_start ml-auto p-2 bd-highlight"><%= link_to(
+                                                                content_tag(
+                                                                    :i,
+                                                                    nil,
+                                                                    class: 'fa fa-trash-o fa-3x'
+                                                                ),
+                                                                event_path(@event.id),
+                                                                method: :delete
+                                                            )
+      %></div>
+
+    <% end %>
+  <% elsif system_admin_signed_in?%>
+    <div class="trash_start ml-auto p-2 bd-highlight"><%= link_to(
+                                                              content_tag(
+                                                                  :i,
+                                                                  nil,
+                                                                  class: 'fa fa-trash-o fa-3x'
+                                                              ),
+                                                              event_path(@event.id),
+                                                              method: :delete
+                                                          )
+    %></div>
+  <% end %>
+</div>
+
 <section class="event_image_wrapper">
   <% if @event_page.event_banner_picture.attached? %>
     <%= image_tag(@event.event_page.event_banner_picture, width: "200px") %>
