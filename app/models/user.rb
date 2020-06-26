@@ -13,6 +13,10 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :invitations, dependent: :destroy
   has_many :events, through: :invitations
+  has_many :reports_received, class_name: "Report", :foreign_key => 'reported_id', dependent: :destroy
+  has_many :reports_made, class_name: "Report", :foreign_key => 'reporter_id', dependent: :destroy
+  has_many :event_reports, dependent: :destroy
+  has_many :organization_reports, dependent: :destroy
   validates :email, uniqueness: true, format: {
       with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
       message: 'invalid email'

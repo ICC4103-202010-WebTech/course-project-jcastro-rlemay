@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   has_many :invitations, dependent: :destroy
   has_many :users, through: :invitations
   has_one :organization_event, dependent: :destroy
+  has_many :event_reports, dependent: :destroy
   accepts_nested_attributes_for :poll
   accepts_nested_attributes_for :event_page
   #has_many :comments, through: :event_page, dependent: :destroy
