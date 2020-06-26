@@ -1,6 +1,13 @@
 <%= stylesheet_link_tag "profile.css" %>
-
-<h1 class="profile_title">Your Profile</h1>
+<% if user_signed_in?  %>
+  <% if current_user.id == @user.id %>
+    <h1 class="profile_title">Your Profile</h1>
+  <%else %>
+    <h1 class="profile_title"><%=@user.name%>'s Profile</h1>
+  <% end %>
+<%else %>
+  <h1 class="profile_title"><%=@user.name%>'s Profile</h1>
+<% end %>
 <section class="profile_wrapper">
   <section class="user_image_wrapper">
     <% if @profile.profile_picture.attached? %>
@@ -12,6 +19,20 @@
   <section class="user_info_wrapper">
     <h1 class="wrapper_title"><%= @user.name %>  <%= @user.lastName %></h1>
     <ul>
+      <% x =  ""%>
+      <% if @user.event_organizer != nil %>
+        <% x +=  " Event Organizer"%>
+        <% if @user.organization_admin != nil %>
+          <% x +=  ", Organization Admin"%>
+        <%end %>
+      <% elsif @user.organization_admin != nil %>
+        <% x +=  " Organization Admin"%>
+      <%end %>
+      <% if x!=""%>
+        <li><b>Roles: </b><%= x %></li>
+      <% else %>
+        <li><b>Roles: </b><%= "Regular user" %></li>
+      <% end %>
       <li><b><%= @user.name %>'s bio:</b> <%= @profile.bio %></li>
       <li><b>Last access: </b><%= @user.last_sign_in_at %></li>
       <li><b>Email:</b> <%= @user.email %></li>

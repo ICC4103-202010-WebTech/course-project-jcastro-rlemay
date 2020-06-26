@@ -3,13 +3,22 @@ namespace :db do
     Rake::Task["db:drop:all"].invoke
     Rake::Task["db:migrate"].invoke
     Rake::Task["db:populate_fake_data"].invoke
+    Rake::Task["db:create_admin"].invoke
   end
   task :populate_fake_data => :environment do
     Rake::Task["db:seed"].invoke
-    puts "Populating database"
+    puts "Populating database.."
+    puts "Creating users"
     create_list(:user, 30)
+    puts "Creating events"
     create_list(:event_organizer_with_events, 10)
+    puts "Creating organizations"
     create_list(:organization, 3)
+  end
+  task :create_admin => :environment do
+    puts "Creating the system admin"
+    admin = SystemAdmin.new(:name => 'Eventer',:lastName => 'Admin',:email => 'eventerltda@gmail.com', :password => 'webtech', :password_confirmation => 'webtech')
+    admin.save
   end
   task :query1 => :environment do
     puts("Query 1: Get all events created by certain user.")

@@ -1,6 +1,12 @@
 ### Richard Le May - Julio Castro
 # Project part 4
 
+## Database setup:
+- To set up our database, you only need to execute the task: ```rake db:set```. This task not only automatically resets and migrates the database, but also generates an array of events, users, organizations, invitations and all necessary objects for our database via our seeds and our factories functions.
+- You can also modify the number of objects to create. by default we have 30 users, 10 events and 3 organizations, each with their respective dependencies and objects(comments, invitations, members and such).
+- All users created by default have the password "webtech"
+- We created one Admin by default, with credentials: "eventerltda@gmail.com" and password "webtech".
+    
 ## Summary of implemented features:
 - Here we will explain how to get to all the specific points in the project assignment:
     1) System Access
@@ -10,7 +16,7 @@
             - This can be done by anyone except the admins, because we think that is better if the users can only access with the email registered in the app.
             - To do this, you need to go to the login button, and then click "Sign in with Google", where it'll take you to choose to google if you don't have your account settled.
         - 1.3. Log out.
-            - This can only be done when you are logged in (obiously) and there are diffeent paths to do this if you are logged as an admin or as a normal user.
+            - This can only be done when you are logged in (obviously) and there are different paths to do this if you are logged as an admin or as a normal user.
             - If you are an admin, there's a button in the navbar, that says sign out, which takes you to log out.
             - If you are a normal user, you have to go to the user button in the navbar and then click sign out.
     2) Registration
@@ -22,15 +28,15 @@
         - 2.2. Change password.
             - To change your password if you're logged in, you have to go to your profile and then click the "Manage your account" button, which takes you to a view asking for your new password.
         - 2.3. Password recovery.
-            - To recover your password you have to go to the login view, and then click the button "Frogot your password?", which takes you to a new view asking your email, and then you have to follow the steps sent to the email you gave (because we are using a local host, you have to see the link given in the same machine you are running the program, because the link will need the local provider).
+            - To recover your password you have to go to the login view, and then click the button "Forgot your password?", which takes you to a new view asking your email, and then you have to follow the steps sent to the email you gave (because we are using a local host, you have to see the link given in the same machine you are running the program, because the link will need the local provider).
     3) User Administration.
         - 3.1. New user.
             - This was explained in the point 2.1
         - 3.2. View user details.
             - To see your user details you just have to click in the navbar button called "User", then the "Your profile" button, and there you can see the user with all his attributes.
-            - If you want to see another user details, you have to click in the "Users" butotn in the navbar, which takes you to all the user that are registered.
+            - If you want to see another user details, you have to click in the "Users" button in the navbar, which takes you to all the user that are registered.
             - 3.2.1. Last access.
-                - The last access can be seen in the users profile, which has an attribute called "last access", showing his last access if he has accesed the page and if he haven't, he will have an empty field there.
+                - The last access can be seen in the users profile, which has an attribute called "last access", showing his last access if he has accessed the page and if he haven't, he will have an empty field there.
             - 3.2.2. User role.
                 - You can see the user role by going to the user profile, and there's a paragraph called "Role" which gives you the roles of that specific user.
                 - The roles can be:
@@ -78,7 +84,7 @@
             - 4.4.1. Create Event comments.
                 - To create an event comment, only the normal users can do this, and to do it you just have to go to the "Events" button in the navbar, and then click the "Public Events" button, which allows you to view all events, and there you choose one event and if you go down you can see the comments that the event has, and there you have an option to create one. Also you can create one if you go to any event from the home page or from any part that you can get to an event, and do the same we said before. This can only be created in public events or in private but if you are invited to or you created it.
             - 4.4.2. View Event comments.
-                - To read a specific event comments, you just have to go to the "Events" button in the navbar, and then click the "Public Events" button, which allows you to view all events, and there you choose one event and if you go down you can see the comments that the event has. Thats not the only way to get to the events, you can get from the organization, the home page, etc, but for all is the same steps to view the comments.
+                - To read a specific event comments, you just have to go to the "Events" button in the navbar, and then click the "Public Events" button, which allows you to view all events, and there you choose one event and if you go down you can see the comments that the event has. That's not the only way to get to the events, you can get from the organization, the home page, etc, but for all is the same steps to view the comments.
             - 4.4.3. Update Event comments.
                 - To update an event comment, just like said in the previous 2 points, you have to go and see the comments from an event and if you are the creator of the comment, the creator of that event or an admin, you can edit the comment by clicking the pen icon in the right part of the comment you want to edit.
             - 4.4.4. Delete Event comments.
@@ -127,11 +133,11 @@
         - 8.9. View comments.
             - This was explained in the point 4.4.2.
         - 8.10. Report event as inappropriate.
-            - If you go to an event page, you have the option ot report it, by clickin the button "Report Event", and you can give the reason why you're reporting it.
+            - If you go to an event page, you have the option ot report it, by clicking the button "Report Event", and you can give the reason why you're reporting it.
             - This reports will get to all the admins, and they'll know what to do with them.
     9) Acceptable Use Policy (AUP) and Terms of Service (ToS).
         - 9.1. Provide AUP and ToS documents.
-            - You can get to this section in every page by going to the footer, and clicking the "AuP and ToS" button, taking you to see them, and you can expan them if you want to read all of it.
+            - You can get to this section in every page by going to the footer, and clicking the "AuP and ToS" button, taking you to see them, and you can expand them if you want to read all of it.
         - 9.2. Report abusive content.
             - You can report abusive contents by going to the user who's abusive and clicking the report button, the same to an organization, or to an event.
             - This reports will get to all the admins, and they'll know what to do with them.
