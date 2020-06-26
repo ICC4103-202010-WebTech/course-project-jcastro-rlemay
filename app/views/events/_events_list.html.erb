@@ -1,7 +1,11 @@
 
 <section class="event_section">
   <section class="recent_title">
-    <p class="recent_event_name"><b><%= link_to event.name, event_path(event.id)%></b></p>
+    <% if user_signed_in?%>
+      <p class="recent_event_name"><b><%= link_to event.name, event_path(event.id)%></b></p>
+    <% elsif system_admin_signed_in?%>
+      <p class="recent_event_name"><b><%= link_to event.name, admin_event_path(event.id)%></b></p>
+    <% end %>
     <section class="recent_buttons">
       <% if user_signed_in? %>
         <% if current_user.id.to_s == event.event_organizer.user.id.to_s %>
@@ -16,6 +20,17 @@
               )
           %>
         <% end %>
+      <% elsif system_admin_signed_in?%>
+        <%= link_to(
+                content_tag(
+                    :i,
+                    nil,
+                    class: 'fas fa-user-plus'
+                ),
+                invites_admin_event_path(event.id),
+                method: :get
+            )
+        %>
       <% end %>
       <i class="fas fa-bookmark"></i>
       <i class="fas fa-bell"></i>
