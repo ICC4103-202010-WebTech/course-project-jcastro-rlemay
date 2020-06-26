@@ -17,7 +17,8 @@ class Ability
         can :create, Event
         can :manage, Event do |event|
           if event.event_organizer != nil
-            event.event_organizer.user_id == user.id
+            event.event_organizer.user_id == user.id or event.organization.organization_admins.pluck(:user_id).include? user.id
+
           end
         end
 
@@ -30,7 +31,9 @@ class Ability
         end
 
         can :read, Comment
-        can :manage, Comment, user_id: user.id
+        can :manage, Comment do |comment|
+          comment.user_id == user.id or comment.event.organization.organization_admins.pluck(:user_id).include? user.id
+        end
 
         can :read, Message, to_id: user.id
         can :create, Message

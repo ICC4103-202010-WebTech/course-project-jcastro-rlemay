@@ -40,6 +40,8 @@
     <% if user_signed_in? %>
       <% if current_user.id.to_s == @event.event_organizer.user_id.to_s %>
         <%= link_to "Edit Event", edit_event_path %>
+      <% elsif @event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id%>
+        <%= link_to "Edit Event", edit_event_path %>
       <% else %>
         <a role="button" data-toggle="modal" data-target="#reportModal">Report Event</a>
       <% end  %>
@@ -90,6 +92,17 @@
                 method: :get
             )
         %>
+      <% elsif @event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id%>
+        <%= link_to(
+                content_tag(
+                    :i,
+                    nil,
+                    class: 'fas fa-plus fa-lg fa-2x'
+                ),
+                invites_event_path,
+                method: :get
+            )
+        %>
       <% end %>
     <% end %>
 
@@ -127,18 +140,44 @@
         <p><b><%= link_to full_name, user_path(comment.user.id)%></b></p>
         <% if user_signed_in? %>
           <% if current_user.id.to_s == comment.user.id.to_s %>
-          <div class="trash float-right p-2 bd-highlight"><%= link_to(
-                                                                  content_tag(
-                                                                      :i,
-                                                                      nil,
-                                                                      class: 'fa fa-trash-o'
-                                                                  ),
-                                                                  comment_path(comment.id),
-                                                                  model: @comment,
-                                                                  method: :delete
-                                                              )
-          %></div>
-          <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
+            <div class="trash float-right p-2 bd-highlight"><%= link_to(
+                                                                    content_tag(
+                                                                        :i,
+                                                                        nil,
+                                                                        class: 'fa fa-trash-o'
+                                                                    ),
+                                                                    comment_path(comment.id),
+                                                                    model: @comment,
+                                                                    method: :delete
+                                                                )
+            %></div>
+            <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
+          <% elsif current_user.id.to_s == @event.event_organizer.user.id.to_s %>
+            <div class="trash float-right p-2 bd-highlight"><%= link_to(
+                                                                    content_tag(
+                                                                        :i,
+                                                                        nil,
+                                                                        class: 'fa fa-trash-o'
+                                                                    ),
+                                                                    comment_path(comment.id),
+                                                                    model: @comment,
+                                                                    method: :delete
+                                                                )
+            %></div>
+            <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
+          <% elsif @event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id%>
+            <div class="trash float-right p-2 bd-highlight"><%= link_to(
+                                                                    content_tag(
+                                                                        :i,
+                                                                        nil,
+                                                                        class: 'fa fa-trash-o'
+                                                                    ),
+                                                                    comment_path(comment.id),
+                                                                    model: @comment,
+                                                                    method: :delete
+                                                                )
+            %></div>
+            <i onclick="myFunction(<%=i%>)" class="pencil fas fa-pencil-alt"></i>
           <% end %>
         <% end %>
       </section>
