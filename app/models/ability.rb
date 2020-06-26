@@ -33,8 +33,8 @@ class Ability
 
         can :read, Comment
         can :create, Comment
-        can [:update,:delete], Comment do |comment|
-          comment.event.organization.organization_admins.pluck(:user_id).include? user.id
+        can [:update,:destroy], Comment do |comment1|
+          comment1.event.organization.organization_admins.pluck(:user_id).include? user.id
         end
         can :manage, Comment do |comment|
           comment.user_id == user.id
