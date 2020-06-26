@@ -2,16 +2,27 @@
 
 <h1 class="title">Event poll:</h1>
 
-<%= form_with model: @poll  do |form| %>
-  <section class="poll_wrapper">
-    <% if @poll.event.event_page.event_banner_picture.attached? %>
-      <%= image_tag(@poll.event.event_page.event_banner_picture, width: "200px", class: "m-1") %>
-    <%else %>
-      <%= image_tag("profile.png", width: "200px", background: "#55595c", color: "#eceeef", class: "m-1") %>
+<% if @poll.event.event_organizer == current_user.event_organizer %>
+  <section class="section_wrapper">
+    <h1 class="title ml-0">Current poll answers: </h1>
+    <% votes = Vote.select(:answerDate).group(:answerDate).order("count_id desc").count("id") %>
+    <% votes.each do |date| %>
+      <p class="options">
+        <h3 class="ml-3">The date <%=date[0]%> has <%=date[1]%> vote<%= date[1] > 1 ? "s":""%></h3>
+      </p>
     <% end %>
-    <section class="data_wrapper">
-      <h2 class="poll_title">Pick which date accommodates you:</h2>
-      <p class="disclaimer">*Only one answer per user (end date will be 1 week from selected answer)</p>
+  </section>
+<% else %>
+  <%= form_with model: @poll  do |form| %>
+    <section class="poll_wrapper">
+      <% if @poll.event.event_page.event_banner_picture.attached? %>
+        <%= image_tag(@poll.event.event_page.event_banner_picture, width: "200px", class: "m-1") %>
+      <%else %>
+        <%= image_tag("profile.png", width: "200px", background: "#55595c", color: "#eceeef", class: "m-1") %>
+      <% end %>
+      <section class="data_wrapper">
+        <h2 class="poll_title">Pick which date accommodates you:</h2>
+        <p class="disclaimer">*Only one answer per user (end date will be 1 week from selected answer)</p>
         <% @dates.each do |date| %>
           <p class="options">
             <label class="container">
@@ -21,10 +32,12 @@
             </label>
           </p>
         <% end %>
+      </section>
     </section>
-  </section>
 
-  <section class="button_wrapper">
-    <%= form.submit "Vote", class: "button" %>
-  </section>
-<%end %>
+    <section class="button_wrapper">
+      <%= form.submit "Vote", class: "button" %>
+    </section>
+  <%end %>
+<% end %>
+
