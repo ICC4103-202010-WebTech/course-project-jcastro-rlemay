@@ -16,9 +16,10 @@ class Ability
         can :new, Event
         can :create, Event
         can :manage, Event do |event|
-          if event.event_organizer != nil
+          if event.organization != nil and event.event_organizer != nil
             event.event_organizer.user_id == user.id or event.organization.organization_admins.pluck(:user_id).include? user.id
-
+          elsif event.event_organizer != nil
+            event.event_organizer.user_id == user.id
           end
         end
 
@@ -31,8 +32,12 @@ class Ability
         end
 
         can :read, Comment
+        can :create, Comment
+        can [:update,:delete], Comment do |comment|
+          comment.event.organization.organization_admins.pluck(:user_id).include? user.id
+        end
         can :manage, Comment do |comment|
-          comment.user_id == user.id or comment.event.organization.organization_admins.pluck(:user_id).include? user.id
+          comment.user_id == user.id
         end
 
         can :read, Message, to_id: user.id

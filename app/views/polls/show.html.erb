@@ -5,7 +5,7 @@
 <% if @poll.event.event_organizer == current_user.event_organizer %>
   <section class="section_wrapper">
     <h1 class="title ml-0">Current poll answers: </h1>
-    <% votes = Vote.select(:answerDate).group(:answerDate).order("count_id desc").count("id") %>
+    <% votes = Vote.where(poll_id: @poll.id).select(:answerDate).group(:answerDate).order("count_id desc").count("id") %>
     <% votes.each do |date| %>
       <p class="options">
         <h3 class="ml-3">The date <%=date[0]%> has <%=date[1]%> vote<%= date[1] > 1 ? "s":""%></h3>

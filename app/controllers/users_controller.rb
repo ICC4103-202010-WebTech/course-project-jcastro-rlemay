@@ -12,10 +12,16 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @events_created = Event.where(event_organizer: EventOrganizer.where(user_id: params[:id]))
+    if current_user == @user
+      @events_created = Event.where(event_organizer: EventOrganizer.where(user_id: params[:id]))
+      @events_invited = Event.find(Invitation.where(user_id: params[:id]).pluck(:event_id))
+    else
+      @events_created = Event.where(event_organizer: EventOrganizer.where(user_id: params[:id]), is_public: true)
+      @events_invited = Event.where(id: Invitation.where(user_id: params[:id]).pluck(:event_id), is_public: true)
+    end
     @org_admin = OrganizationAdmin.where(user_id: params[:id])[0]
     @org_member = OrganizationMember.where(user_id: params[:id])[0]
-    @events_invited = Event.find(Invitation.where(user_id: params[:id]).pluck(:event_id))
+
   end
 
   # GET /users/new

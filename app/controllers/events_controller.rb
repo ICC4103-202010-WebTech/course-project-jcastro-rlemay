@@ -85,8 +85,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         @event_page = @event.event_page
-        if event_params[:event_banner_picture] != nil
-          @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+        if event_params[:event_page_attributes][:event_banner_picture] != nil
+          @event_page.event_banner_picture.attach(event_params[:event_page_attributes][:event_banner_picture])
           @event_page.save
         end
         @event_page.minimumGuests = params[:event][:event_page_attributes][:minimumGuests]
@@ -115,8 +115,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.update(name: event_params[:name], location: event_params[:location],
                        description: event_params[:description])
-        if event_params[:event_banner_picture] != nil
-          @event_page.event_banner_picture.attach(event_params[:event_banner_picture])
+        if event_params[:event_page_attributes][:event_banner_picture] != nil
+          @event_page.event_banner_picture.attach(event_params[:event_page_attributes][:event_banner_picture])
           @event_page.save
         end
         if event_params[:photos] != nil
@@ -221,9 +221,10 @@ class EventsController < ApplicationController
     def event_params
       params.fetch(:event, {}).permit(:id, :name, :start_date, :end_date, :location,
                                       :description, :is_public, :event_organizer_id,
-                                      :event_banner_picture, :invitation,
+                                      :invitation,
                                       poll_attributes: [:name, :possibleDates, :minimumAnswers],
                                       videos:[], photos:[], files:[],
-                                      event_page_attributes: [:minimumGuests, :maximumGuests])
+                                      event_page_attributes: [:minimumGuests, :maximumGuests,
+                                                              :event_banner_picture])
     end
 end
