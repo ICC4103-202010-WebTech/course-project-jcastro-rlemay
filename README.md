@@ -32,7 +32,11 @@
             - 3.2.1. Last access.
                 - The last access can be seen in the users profile, which has an attribute called "last access", showing his last access if he has accesed the page and if he haven't, he will have an empty field there.
             - 3.2.2. User role.
-                - # FALTA POR HACEEEEEEEEEEEEEEEEEEEEEEER!!!!!!!!!!!!!!!!!!!!!!!
+                - You can see the user role by going to the user profile, and there's a paragraph called "Role" which gives you the roles of that specific user.
+                - The roles can be:
+                    - Event Organizer.
+                    - Organization Admin.
+                    - Just a regular user, with no privileges.
         - 3.3. Edit User.
             - The users can be edited by the admins or by the own user, going to the "User" button in the navbar and then to the "Your profile" button, which takes you to your profile and there you have a button called "Edit Profile", which lets you edit your profile.
             - If you are an admin, you can get to the user by going in the navbar to the "Users" button or also with the "Organizations" button, then select one, an there's a button called "view users", which takes you to all users, and then you select the one you want to edit, taking you to his profile and then you have to select the "edit user" button to edit him.
