@@ -118,7 +118,8 @@
         - 8.2. Start event date vote.
             - When we create an event (explained in the point 4.3.1), you can choose by setting right away the date for the event, or by making a poll, giving all the possible dates you want, minimum answers and a name, and that's how you start an event date vote.
         - 8.3. Configure event date vote.
-            - # FALTA POR HACEEEEEEEEEEEEEEEEEEEEEEER!!!!!!!!!!!!!!!!!!!!!!!
+            - To configure the event date vote, you need to select the poll option in the event creation page, there you can configure the number of dates to choose from by following this format:
+                - "DD-MM-YYYY DD-MM-YYYY DD-MM-YYYY ...". For example "11-12-2021 05-08-2020".
         - 8.4. Vote for event date.
             - You can vote for the date of an event if the creator set the poll, and if it's public, or is private, but you were invited to it. To do this you just have to get to the event, and click the poll link and it'll take you to the specific event poll.
         - 8.5. Invite guests.
