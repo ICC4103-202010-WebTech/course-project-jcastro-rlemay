@@ -1,13 +1,16 @@
 <%= stylesheet_link_tag "new_form" %>
 
-
   <section class="invite_wrapper">
     <h1 class="wrapper_title">Invite Friends and Users: </h1>
     <% @invites.each_with_index do |user, i| %>
       <%= form_with model: @event, url:invites_event_path, method: :post  do |form| %>
       <section class="user">
         <div>
-          <i class="far fa-square fa-5x"></i>
+          <% if user.user_profile.profile_picture.attached? %>
+            <%= image_tag(invitation.user.user_profile.profile_picture, width: "60px") %>
+          <%else %>
+            <%= image_tag("profile.png", width: "60px", background: "#55595c", color: "#eceeef") %>
+          <% end %>
           <% full_name =  user.name + " " + user.lastName%>
           <p><b><%= link_to full_name, user_path(user.id)%></b></p>
           <%= form.hidden_field :invitation, :value => user.id%>

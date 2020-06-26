@@ -5,28 +5,26 @@
 - To set up our database, you only need to execute the task: ```rake db:set```. This task not only automatically resets and migrates the database, but also generates an array of events, users, organizations, invitations and all necessary objects for our database via our seeds and our factories functions.
 - You can also modify the number of objects to create. by default we have 30 users, 10 events and 3 organizations, each with their respective dependencies and objects(comments, invitations, members and such).
 - All users created by default have the password "webtech"
-- We created one Admin by default, with credentials: "eventerltda@gmail.com" and password "webtech".
+- ```rake db:set``` also creates an admin with the following credentials: "eventerltda@gmail.com" as the email and "webtech" as the password.
     
 ## Summary of implemented features:
 - Here we will explain how to get to all the specific points in the project assignment:
     1) System Access
         - 1.1. Log in with email address.
-            - This can be done by anyone clicking the link to login where you are requested to put your already created user email with your password.
+            - This can be done by any registered user or admin by clicking the login button. inside the login page you are requested to put the credential of your account.
         - 1.2. Log in with Google authentication.
-            - This can be done by anyone except the admins, because we think that is better if the users can only access with the email registered in the app.
-            - To do this, you need to go to the login button, and then click "Sign in with Google", where it'll take you to choose to google if you don't have your account settled.
+            - This can be done by any registered user by going to the login view and lcicking in the "Sign in with Google" option.
         - 1.3. Log out.
-            - This can only be done when you are logged in (obviously) and there are different paths to do this if you are logged as an admin or as a normal user.
+            - This can only be done when you are logged in (obviously).
             - If you are an admin, there's a button in the navbar, that says sign out, which takes you to log out.
             - If you are a normal user, you have to go to the user button in the navbar and then click sign out.
     2) Registration
         - 2.1. User registration.
-            - To register you can do it in two different ways if you want to register as a normal user or as an admin.
-            - If you want to register as an admin, you have to go to the Log as admin button in the navbar, and then go to sign up, where you can be registered as an admin (this was implemented because of
-            the feedback given for the assignment part 3, asking for a button to take us to the logging part as an admin).
+            - For the registration, you can do it in two different ways, register as a regular user, or as an admin.
+            - If you want to register as an admin, you have to go to the Log as admin button in the navbar, and then go to sign up, where you can be registered as an admin. for now anyone can be an admin if they register as one.
             - If you want to register as a normal user, you have to go to the registration button in the navbar or with the sign in button and then the sign up button.
         - 2.2. Change password.
-            - To change your password if you're logged in, you have to go to your profile and then click the "Manage your account" button, which takes you to a view asking for your new password.
+            - To change your password, you have to go to your profile and then click the "Manage your account" button, which takes you to a view asking for your new password.
         - 2.3. Password recovery.
             - To recover your password you have to go to the login view, and then click the button "Forgot your password?", which takes you to a new view asking your email, and then you have to follow the steps sent to the email you gave (because we are using a local host, you have to see the link given in the same machine you are running the program, because the link will need the local provider).
     3) User Administration.
