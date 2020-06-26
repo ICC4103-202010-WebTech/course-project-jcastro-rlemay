@@ -102,6 +102,16 @@ class Admin::OrganizationsController < ApplicationController
     end
   end
 
+  def delete_member
+    @member = OrganizationMember.find(params[:member])
+    if @member.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_organization_path(@organization), notice: 'uninvited guest.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization

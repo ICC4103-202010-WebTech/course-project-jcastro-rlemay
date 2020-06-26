@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       patch "files"
       get "invites"
       post "invites"
+      delete "invites/:invite", to: "events#delete_invites", as: "delete_invites"
       post "report", to: "reports#event"
     end
   end
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
       post "report", to: "reports#organization"
       get "invites"
       post "invites"
+      delete "member/:member", to: "organizations#delete_member", as: "delete_member"
     end
   end
 
@@ -62,12 +64,14 @@ Rails.application.routes.draw do
       member do
         get "invites"
         post "invites"
+        delete "invites/:invite", to: "events#delete_invites", as: "delete_invites"
       end
     end
     resources :organizations do
       member do
         get "invites"
         post "invites"
+        delete "member/:member", to: "organizations#delete_member", as: "delete_member"
       end
     end
     resources :comments

@@ -202,6 +202,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def delete_invites
+    @invitation = Invitation.find(params[:invite])
+    if @invitation.destroy
+      respond_to do |format|
+        format.html { redirect_to event_path(@event), notice: 'uninvited guest.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     def set_event
       @event = Event.find(params[:id])

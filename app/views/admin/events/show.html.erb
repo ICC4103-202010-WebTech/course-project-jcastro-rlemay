@@ -81,6 +81,20 @@
       <% end %>
       <% full_name =  invitation.user.name + " " + invitation.user.lastName%>
       <p class="ml-1"><b><%= link_to full_name, user_path(invitation.user.id)%></b></p>
+      <% if system_admin_signed_in? or current_user.id.to_s == @event.event_organizer.user.id.to_s%>
+        <div class="ml-auto p-2">
+          <%= link_to(
+                  content_tag(
+                      :i,
+                      nil,
+                      class: 'fa fa-trash-o fa-lg'
+                  ),
+                  delete_invites_admin_event_path(id: params[:id],invite: invitation.id),
+                  method: :delete
+              )
+          %>
+        </div>
+      <% end %>
     </section>
   <% end %>
 </section>
