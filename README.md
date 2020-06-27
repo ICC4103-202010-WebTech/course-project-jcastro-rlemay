@@ -115,6 +115,7 @@
             - You can see the event by going to the event profile page, and there you can get to the photos, details, files, and videos by clicking in the respective button.
         - 8.2. Start event date vote.
             - When we create an event (explained in the point 4.3.1), you can choose by setting right away the date for the event, or by making a poll, giving all the possible dates you want, minimum answers and a name, and that's how you start an event date vote.
+            - To see how many votes there are in your poll, you have to be an administrator, or the creator of the event, and then you have to go to to the poll of the event and the votes are going to be shown there.
         - 8.3. Configure event date vote.
             - To configure the event date vote, you need to select the poll option in the event creation page, there you can configure the number of dates to choose from by following this format:
                 - "DD-MM-YYYY DD-MM-YYYY DD-MM-YYYY ...". For example "11-12-2021 05-08-2020".
