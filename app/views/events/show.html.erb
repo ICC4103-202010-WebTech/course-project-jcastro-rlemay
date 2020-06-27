@@ -156,7 +156,7 @@
       <% end %>
       <% full_name =  invitation.user.name + " " + invitation.user.lastName%>
       <p class="ml-1"><b><%= link_to full_name, user_path(invitation.user.id)%></b></p>
-      <% if system_admin_signed_in? or current_user.id.to_s == @event.event_organizer.user.id.to_s%>
+      <% if system_admin_signed_in? or current_user.id.to_s == @event.event_organizer.user.id.to_s or (@event.organization != nil and @event.organization.organization_admins.pluck(:user_id).include? current_user.id)%>
         <div class="ml-auto p-2">
           <%= link_to(
                   content_tag(
