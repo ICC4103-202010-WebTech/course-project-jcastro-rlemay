@@ -5,7 +5,7 @@
   <h1 class="wrapper_title">Messages:</h1>
   <% @messages.each do |message| %>
     <section class="notification_wrapper">
-      <p>New message from <%= message.from.name %>: </p>
+      <p>New message from <b><%= link_to message.from.name, user_path(message.from.id)%>: </b></p>
       <%= message.message %>
     </section>
   <% end %>
