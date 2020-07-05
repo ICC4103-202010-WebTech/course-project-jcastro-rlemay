@@ -12,8 +12,10 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.json
   def show
     @profile = OrganizationProfile.where(organization_id: params[:id])[0]
-    @organization_events = Event.where(id: OrganizationEvent.where(organization_id: params[:id]).
-        pluck(:event_id), is_public: true)
+    @organization_events = Event.where(event_organizer_id: EventOrganizer.where(
+        user_id: OrganizationMember.where(organization_id: params[:id]).pluck(
+            :user_id)), is_public: true)
+
     @organization_creator = OrganizationAdmin.where(organization_id: params[:id])[0]
     @organization_members = OrganizationMember.where(organization_id: params[:id])
   end
