@@ -16,7 +16,7 @@ n12 = Notification.create(message: "Your Username and bio has been updated!",use
 n12.save!
 
 u2 = User.create(name: "Julio", lastName: "Castro", password: "webtech",
-                 email: "jacatro2@miuandes.cl", location: "Edificio de Ingenieria",
+                 email: "jacastro2@miuandes.cl", location: "Edificio de Ingenieria",
                  address: "Universidad de los Andes", phone: "+569452746541")
 n2 = Notification.create(message: "Welcome to the Event Web Page",user_id: u2.id)
 u2.save!

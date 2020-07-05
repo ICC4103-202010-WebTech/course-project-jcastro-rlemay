@@ -43,7 +43,7 @@
 
 <section class="event_image_wrapper">
   <% if @event_page.event_banner_picture.attached? %>
-    <%= image_tag(@event.event_page.event_banner_picture, width: "200px") %>
+    <%= image_tag(@event.event_page.event_banner_picture, width: "900px") %>
   <%else %>
     <%= image_tag("event.png", width: "200px", background: "#55595c", color: "#eceeef") %>
   <% end %>
