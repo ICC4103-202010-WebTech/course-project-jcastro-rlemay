@@ -36,11 +36,13 @@
   <%if @users_by_name != [] %>
     <h1 class="subtitle">Users by name:</h1>
     <section class="wrapper">
+      <br>
       <%= render :partial => 'users/user_list', collection: @users_by_name, as: :user %>
     </section>
   <% else %>
     <h1 class="subtitle">Users by name:</h1>
     <section class="wrapper">
+      <br>
       <h2 class="Nothing_found"> Nothing Found </h2>
     </section>
   <% end %>
@@ -50,11 +52,13 @@
   <%if @users_by_username != [] %>
     <h1 class="subtitle">Users by username:</h1>
     <section class="wrapper">
+      <br>
       <%= render :partial => 'users/user_list', collection: @users_by_username, as: :user %>
     </section>
   <% else %>
     <h1 class="subtitle">Users by username:</h1>
     <section class="wrapper">
+      <br>
       <h2 class="Nothing_found"> Nothing Found </h2>
     </section>
   <% end %>
@@ -64,11 +68,13 @@
   <%if @organizations_by_name != [] %>
     <h1 class="subtitle">Organizations by name:</h1>
     <section class="wrapper">
+      <br>
       <%= render :partial => 'organizations/organization_list', collection: @organizations_by_name, as: :organization %>
     </section>
   <% else %>
     <h1 class="subtitle">Organizations by name:</h1>
     <section class="wrapper">
+      <br>
       <h2 class="Nothing_found"> Nothing Found </h2>
     </section>
   <% end %>
@@ -78,11 +84,13 @@
   <%if @events_by_title != [] %>
     <h1 class="subtitle">Events by name:</h1>
     <section class="wrapper">
+      <br>
       <%= render :partial => 'events/events_list', collection: @events_by_title, as: :event %>
     </section>
   <% else %>
     <h1 class="subtitle">Events by name:</h1>
     <section class="wrapper">
+      <br>
       <h2 class="Nothing_found"> Nothing Found </h2>
     </section>
   <% end %>
@@ -93,11 +101,13 @@
     <h1 class="subtitle">Events by description:</h1>
 
     <section class="wrapper">
+      <br>
       <%= render :partial => 'events/events_list', collection: @events_by_desc, as: :event %>
     </section>
   <% else %>
     <h1 class="subtitle">Events by description:</h1>
     <section class="wrapper">
+      <br>
       <h2 class="Nothing_found"> Nothing Found </h2>
     </section>
   <% end %>
@@ -107,11 +117,13 @@
   <%if @events_by_creator != [] %>
     <h1 class="subtitle">Events by Creator:</h1>
     <section class="wrapper">
+      <br>
       <%= render :partial => 'events/events_list', collection: @events_by_creator, as: :event %>
     </section>
   <% else %>
     <h1 class="subtitle">Events by Creator:</h1>
     <section class="wrapper">
+      <br>
       <h2 class="Nothing_found"> Nothing Found </h2>
     </section>
   <% end %>
@@ -121,11 +133,13 @@
   <%if @events_by_organization != [] %>
     <h1 class="subtitle">Events by organization name:</h1>
     <section class="wrapper">
+      <br>
       <%= render :partial => 'events/events_list', collection: @events_by_organization, as: :event %>
     </section>
   <% else %>
     <h1 class="subtitle">Events by organization name:</h1>
     <section class="wrapper">
+      <br>
       <h2 class="Nothing_found"> Nothing Found </h2>
     </section>
   <% end %>
