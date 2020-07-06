@@ -39,7 +39,12 @@ class Ability
           end
         end
         can :manage, Comment do |comment|
-          comment.user_id == user.id or comment.event.event_organizer.user_id == user.id
+          comment.user_id == user.id
+        end
+        can :manage, Comment do |comment|
+          if comment.event != nil
+            comment.event.event_organizer.user_id == user.id
+          end
         end
 
         can :read, Message, to_id: user.id
