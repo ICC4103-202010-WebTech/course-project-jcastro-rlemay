@@ -5,12 +5,17 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    y = EventOrganizer.where(user_id: current_user.id)[0]
-    if y != nil
-      @events = Event.where(is_public: true).or(Event.where(event_organizer_id: y.id, is_public: false))
+    if params["organization_id"] != nil
+      @events = Event.where(id: OrganizationEvent.where(organization_id: params["organization_id"]).pluck(:event_id)).or(Event.where(event_organizer_id: EventOrganizer.where(user_id: User.where(id: OrganizationMember.where(organization_id: params["organization_id"]).pluck(:user_id))).pluck(:id)))
     else
-      @events = Event.where(is_public: true)
+      y = EventOrganizer.where(user_id: current_user.id)[0]
+      if y != nil
+        @events = Event.where(is_public: true).or(Event.where(event_organizer_id: y.id, is_public: false))
+      else
+        @events = Event.where(is_public: true)
+      end
     end
+
   end
 
   # GET /events/1
