@@ -34,10 +34,12 @@ class Ability
         can :read, Comment
         can :create, Comment
         can [:update,:destroy], Comment do |comment1|
-          comment1.event.organization.organization_admins.pluck(:user_id).include? user.id
+          if comment1.event.organization!= nil
+            comment1.event.organization.organization_admins.pluck(:user_id).include? user.id
+          end
         end
         can :manage, Comment do |comment|
-          comment.user_id == user.id
+          comment.user_id == user.id or comment.event.event_organizer.user_id == user.id
         end
 
         can :read, Message, to_id: user.id
